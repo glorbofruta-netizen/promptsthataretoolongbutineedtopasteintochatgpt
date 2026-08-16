@@ -1,0 +1,3155 @@
+RESEARCH SYNTHESIS (key findings)
+
+Google HDR+/Night Sight/Super-Res Zoom: burst capture → alignment (optical flow/feature) → merged denoised frame; Night Sight = super-res merge + tone mapping; astro = long stacked exposures. (ACM TOG 2016, Google Research; pixel features lists) → YUVCam analog exists via YUV burst.
+
+MotionCam Pro: RAW video, RAW histograms, per-RGB-channel clipping maps, false color, ISO invariance focus → YUVCam can do per-channel clip maps on YUV, RAW-style histograms.
+
+OpenCamera: auto-aligned HDR w/ ghost removal, focus bracketing, camera2 manual, zebra/focus peaking/histogram, night NR → baselines to beat with YUV-first processing.
+
+Blackmagic/medical scopes: waveform, RGB parade, vectorscope, HDR graticules → portable to YUV viewfinder overlays.
+
+Astro calibration: darks/bias/flats subtraction + stacking = core noise-floor work possible from YUV private-storage captures.
+
+Burst denoising research: alignment + noise-prior integration + temporal averaging; FBA deblur via Fourier accum.
+
+Illuminant estimation: gray world / white patch / shades-of-gray / gray edges / PCA bright-dark → all computable on YUV chroma.
+
+Sensor defect research: hot/stuck pixel maps buildable from many frames; static behavior → one-time calibration fits.
+
+Gyro+RS correction: Karpenko et al. — gyro-calibrated rolling-shutter rectification for stills (usable on single frames at capture).
+
+Mertens exposure fusion: Laplacian pyramid, no tonemap needed → ideal for YUV burst HDR.
+
+Focus stacking: distance-sweep + per-frame sharpness map → depth + all-in-focus; Helicon-style. OpenCamera does brackets; full stack render is differentiator.
+CATEGORY A — 500 EXTREMELY INNOVATIVE IDEAS (cats by cluster)
+A1. SENSOR CHARACTERIZATION & CALIBRATION (1-50)
+
+
+1. Hot-pixel map builder — auto-detect stuck/hot pixels across N frames at long shutter; stores map + preview blotches on overlay. Y3C:LD:MOg:RES (Chapman defekt-work)
+
+
+2. Dead-pixel map from black frames — lens-cap calibration mode; map persists per device. Y3C:LD:ERk:L
+
+
+3. Dark-frame library — capture darks per ISO/shutter; subtract before saving buried prints. Y3C:LD:ERk:L
+
+
+4. Bias-frame profiler — shortest-exposure offset map; separates read noise from dark current. Y3C:LD:ERk:L
+
+
+5. Flat-field mapper — user points at white wall; vignette/shadowness map per lens position. Y3C:LD:MRk:L
+
+
+6. Lens shading profile editor — per-corner gain curves stored; preview corrected live. Y3C:LD:MRk:M
+
+
+7. Chromatic aberration calibration — red/blue channel displacement field from captured dot chart; applied at save. Y3C:MD:MOg:RES (Rudakova)
+
+
+8. Per-device noise model — measure std-dev vs luma vs ISO monthly; store σ(L,ISO) curve; feeds denoisers. Y3C:LD:MRk:L
+
+
+9. Noise floor meter — numeric readout of current-frame noise; guides ISO selection. Y3C:LD:MRk:L
+
+
+10. Sensor temperature estimate — from dark-current increase during long captures; warns thermal. Y3C:LD:MRk:L
+
+
+11. Pixel gain uniformity map — per-pixel gain differences via repeated flat frames. Y3C:MD:HRk:M
+
+
+12. ISO invariance tester — capture same scene; plot SNR vs ISO; advises shooting ISO. Y3C:MD:MRk:L
+
+
+13. Dual-gain ISO visualization — estimate where sensor switches gain stages; mark "safe" ISO ranges. Y2C:LD:MRk:L
+
+
+14. Read-noise sieving — segment noise into read/PRNU/shot components via paired frames. Y3C:MD:HRk:M
+
+
+15. PRNU fingerprint capture — camera identity from fixed-pattern noise; used to verify shots are from same device. Y3C:MD:HRk:L
+
+
+16. Dynamic range map — per-region DR estimate from dual exposure pair; overlay heat map. Y2C:MD:HRk:M
+
+
+17. Saturation index map — per-pixel "how close to clip" % shown as colored contour. Y3C:LD:ERk:L
+
+
+18. Per-channel clip map — red/green/blue clip zones separately — YUV luma+chroma derived approximation. Y3C:LD:MOg:ADA (MotionCam-ish)
+
+
+19. Sensor linearity tester — plot luma vs exposure steps; detects nonlinear regions. Y3C:LD:ERk:L
+
+
+20. Black level tracker — per-frame black offset estimate from masked-pixels/metadata; auto subtract. Y3C:LD:MRk:L
+
+
+21. Temporal FPN canceller — align 2+ frames, subtract median → removes static pattern noise. Y3C:MD:HRk:M
+
+
+22. Defect growth monitor — monthly hot-pixel delta report; shows sensor aging. Y3C:LD:ERk:L
+
+
+23. Smear/purple-fringe profiler — bright-source bleed characterization; auto reduction toggle. Y3C:MD:HRk:M
+
+
+24. Corner contrast loss map — MTF drops per corner measured on test chart; shows lens decentering. Y3C:HD:XRk:H
+
+
+25. Per-lens clarity profile — sharpening strength per focus distance & zoom; anti-waxy output. Y3C:MD:HRk:M
+
+
+26. Bayer-style CFA sim on YUV — overlay mosaic sim to visualize chroma sampling of sensor. Y2C:LD:MRk:L
+
+
+27. Gain error map — ISO step vs actual luma increase; reports inaccurate gain stages. Y3C:LD:MRk:L
+
+
+28. Shutter accuracy test — compare requested vs timestamped exposure durations over 100 frames. Y3C:LD:ERk:L
+
+
+29. Rolling shutter rate measurer — motion + known blur length → RS readout speed in ms. Y3C:MD:HOg:RES (gyro RS work)
+
+
+30. Flash consistency profiler — LED flash intensity curve over burst; warns drift. Y3C:LD:MRk:L
+
+
+31. Lens focus breathing meter — field-of-view change across focus sweep; displays %. Y3C:MD:HRk:M
+
+
+32. OIS effectiveness tester — same scene stabilized vs not; blur diameter report. Y3C:MD:HRk:M
+
+
+33. Anti-shake hold indicator — gyro-derived blур risk gauge before pressing shutter. Y3C:LD:ERk:L
+
+
+34. Tripod detector — gyro variance → auto "tripod mode": longer exposure allowed, night stacking enabled. Y3C:LD:MRk:L
+
+
+35. Subject vs camera motion separator — block flow fields flag moving vs camera-shake components. Y3C:HD:XRk:H
+
+
+36. Micro-vibration spectral display — gyro FFT; shows handshake frequency bands live. Y3C:LD:MRk:L
+
+
+37. Zero-shake shutter predictor — wait until gyro variance below threshold, then fire (smart shutter). Y3C:LD:ERk:L
+
+
+38. Hold-quality scoreboard — rates your handheld stability over burst; logs best frames. Y3C:LD:ERk:L
+
+
+39. Long-exposure safety check — predicts star-trail/motion blur from gyro + exposure. Y3C:LD:ERk:L
+
+
+40. Exposure jitter analyzer — AE settling frames vs target; finds flicker/instability sources. Y3C:LD:MRk:L
+
+
+41. Flicker phase tracker — luma of consecutive frames at fixed 50/60Hz; auto anti-banding sync. Y3C:LD:MRk:L
+
+
+42. Banding detector — FFT along scanline; flags fluorescent banding in preview. Y3C:MD:HRk:M
+
+
+43. Line-skip detector — missing rows check during capture for corrupted frames. Y3C:LD:MRk:L
+
+
+44. Frame-drop counter — ImageReader drops per session; reliability metric display. Y3C:LD:ERk:L
+
+
+45. Timestamp jitter plot — frame intervals vs expected; stopwatch for camera pipeline health. Y3C:LD:ERk:L
+
+
+46. Latency chain profiler — shutter press → exposure start → frame avail in ms; breakdown display. Y3C:LD:MRk:M
+
+
+47. AF convergence curve — focus metric vs time plot; shows focus hunt. Y3C:LD:MRk:L
+
+
+48. AE convergence curve — luma vs time during AE settle. Y3C:LD:MRk:L
+
+
+49. Manual control validity test — runs probe captures; reports which manual controls truly work. Y3C:LD:MRk:L
+
+
+50. Capability report card — full Camera2 feature matrix exportable as text. Y3C:LD:ERk:L
+A2. TEMPORAL & MOTION-PROCESSING (51-110)
+
+
+51. Lucky-frame picker — burst ranks frames by sharpness; auto keeps best. Y3C:MD:MOg:RES (lucky imaging)
+
+
+52. Motion-quality prefilter — burst frames rejected by local motion/blur before merge. Y3C:HD:XRk:H
+
+
+53. Optical-flow burst aligner — multi-frame YUV registration via pyramidal flow. Y3C:HD:XOg:RES (HDR+ lineage)
+
+
+54. Phase-correlation aligner — FFT shift estimation for near-static bursts. Y3C:MD:MRk:M
+
+
+55. Gyro-assisted aligner — import gyro trajectory into aligner initialization. Y3C:MD:HRk:M
+
+
+56. Temporal median filter — burst median per pixel; kills outliers/sparkles. Y3C:MD:MRk:L
+
+
+57. Temporal mean with sigma-clip — robust average: clip 3σ deviations per pixel. Y3C:MD:MRk:L
+
+
+58. Multi-frame noise model integrator — per-pixel variance reduces as 1/N; merges with current noise map. Y3C:HD:XRk:H
+
+
+59. Ghost-aware burst merge — detects moving objects, keeps one reference for ghost regions. Y3C:HD:XOg:ADA (OpenCamera ghost removal)
+
+
+60. Exposure stacking (long-exposure sim) — many short frames averaged → ND-filter look, noise-free. Y3C:HD:HRk:M
+
+
+61. Star trail composer — burst star frames → trail synthesis on device. Y3C:HD:HOg:RES (star trails)
+
+
+62. Light trail composer — night traffic lights → smooth trails via frame accumulation. Y3C:HD:HRk:M
+
+
+63. Light painting composer — live view + accumulate only bright pixels; paint with flashlights. Y3C:MD:HRk:M
+
+
+64. Slit-scan stills — sweep slit over YUV frames → surreal timelines. Y3C:MD:MRk:L
+
+
+65. Multi-frame deblur (Fourier burst) — aligned burst FFT accumulation deconvolves shake blur. Y3C:VHD:XOg:RES (FBA)
+
+
+66. Multi-frame deblur (iterative) — EM-style latent + blur kernel estimation on burst. Y3C:VHD:XRk:H
+
+
+67. Rolling-shutter rectifier — single-frame skew correction using gyro + known RS rate. Y3C:MD:HOg:RES (Karpenko)
+
+
+68. Global-shutter simulator — multi-row time-warp frames into one instant via burst. Y3C:HD:XRk:H
+
+
+69. Jello predictor — shows RS distortion expected at current shutter+pan speed. Y3C:LD:MRk:L
+
+
+70. Motion-vector view — optical-flow field overlaid as arrows on live view. Y3C:HD:XRk:H
+
+
+71. Motion heat map — shows where scene changes frame-to-frame; aids HDR ghost awareness. Y3C:MD:HRk:M
+
+
+72. Freeze-motion trigger — auto shutter at low-motion instant between frames (sports). Y3C:HD:XRk:H
+
+
+73. Peak-action predictor — learns motion periodicity; fires at extremum. Y3C:MD:HRk:M
+
+
+74. Motion-blur direction meter — dominant blur axis from burst; guides pan technique. Y3C:MD:HRk:M
+
+
+75. Blur magnitude map — per-tile blur estimate on current frame (localized sharpness). Y3C:MD:HRk:M
+
+
+76. Handheld super-resolution from YUV — subpixel shifts from hand tremor merged → denser luma grid. Y3C:VHD:XOg:RES (multi-frame super-res)
+
+
+77. Chroma-aware super-res — upsample U/V separately from Y at 4:2:0 statistics. Y3C:HD:XRk:H
+
+
+78. Subpixel shift estimator — reports actual subpixel offsets between aligned frames. Y3C:MD:HRk:M
+
+
+79. Temporal highlight recovery — pixels clipped in one frame recovered from underexposed neighbor frame. Y3C:HD:XRk:H
+
+
+80. Burst HDR with YUV fusion — Mertens Laplacian exposure fusion on YUV burst. Y3C:HD:HOg:RES (Mertens)
+
+
+81. Multi-frame shadow lift — 2-3 frames with different exposure → merged shadow detail without noise. Y3C:HD:HRk:M
+
+
+82. Frame-rate adaptive denoise — temporal denoise strength = f(current FPS, motion). Y3C:MD:MRk:L
+
+
+83. Long-exposure noise characterizer — measures dark-current buildup as function of exposure length. Y3C:LD:MRk:L
+
+
+84. Before/after frame difference viewer — highlights exactly what changed; motion analysis. Y3C:LD:ERk:L
+
+
+85. Panorama deghosting — multi-row stitching with moving-object suppression. Y3C:HD:XRk:H
+
+
+86. Tripod-stabilized long stack — detects rock-solid hold; captures max-length stack safely. Y3C:MD:MRk:L
+
+
+87. Airy-disk-aware sharpening — diffraction limit per aperture; sharpens only recoverable frequencies. Y3C:MD:HRk:M
+
+
+88. Upsample-then-merge detail boost — super-res for crops (digital zoom quality). Y3C:HD:XRk:H
+
+
+89. In-burst frame interpolation — synthesize mid-frames between bursts for smoother timelapses. Y3C:HD:XRk:H
+
+
+90. Exposure-time interpolation — combine frames shot at different shutter to emulate impossible shutter. Y3C:HD:XRk:M
+
+
+91. Dual-ISO burst sim — merge short+long frames → pseudo dual-gain image. Y3C:HD:HRk:M
+
+
+92. Focus-time interpolation — bracketed focus frames merged into continuous-all-sharp. Y3C:HD:HOg:RES (focus stacking)
+
+
+93. Alignment confidence map — shows where aligner failed; flags ghost risk. Y3C:MD:MRk:L
+
+
+94. Burst consistency report — per-frame quality scores exported with sidecar. Y3C:MD:MRk:L
+
+
+95. Auto burst length advisor — suggests frames needed given light level & motion. Y3C:LD:MRk:L
+
+
+96. Flicker-aware burst spacing — schedules frames at same AC phase for even exposure. Y3C:LD:MRk:L
+
+
+97. Streaming temporal noise floor — live "noise trend" graph while holding still. Y3C:MD:MRk:L
+
+
+98. Anti-ghost preview — semi-transparent overlay of previous frame where motion detected. Y3C:MD:HRk:M
+
+
+99. Merged-frame live preview — ramps quality while burst accumulates (progressive refinement). Y3C:HD:XRk:H
+
+
+100. Capture-commit protocol — "capture when stable: N quality frames acquired" auto workflow. Y3C:MD:MRk:L
+
+
+101. Instant replay of burst — after shutter, scrub frames; pick keeper (camera-local, not gallery). Y3C:LD:EOg:ADA (Top Shot-ish)
+
+
+102. Burst alignment scrub — visual overlay of all frames aligned; inspect parallax. Y3C:MD:MRk:L
+
+
+103. Rejection reason log — why each burst frame rejected (blur/motion/clip). Y3C:LD:MRk:L
+
+
+104. Micro-timer for decisive moment — focus/exposure pre-armed, waits internally for stable frame. Y3C:LD:MRk:L
+
+
+105. Frame countdown to shutter — shows exactly when burst starts; predictable capture. Y3C:LD:ERk:L
+
+
+106. Parallel reference frame — one ultra-short reference for colors during long stacked shot. Y3C:MD:HRk:M
+
+
+107. Scene-change abort — burst aborts if scene changes too much midway. Y3C:MD:MRk:L
+
+
+108. Stable-region boost map — merge only static regions more, motion regions less. Y3C:HD:XRk:H
+
+
+109. Temporal white balance — WB estimated from averaged chroma over many frames → stable AWB. Y3C:LD:MRk:L
+
+
+110. Temporal histogram persistence — smoothed histogram over frames; noise-free monitoring. Y3C:LD:MRk:L
+A3. EXPOSURE SYSTEMS (111-160)
+
+
+111. ETTR guide for YUV — pushes exposure right until clip warning; max DR capture. Y3C:LD:ERk:L
+
+
+112. Per-channel ETTR — separate R/G/B clipping; balances channels. Y3C:MD:MRk:L
+
+
+113. Highlight-protect mode — metering center on brightest region, no blown sky. Y3C:LD:ERk:L
+
+
+114. Shadow-priority mode — metering on darkest region preserving detail. Y3C:LD:ERk:L
+
+
+115. Zone metering — Ansel-style luminance zones displayed; pick zone target. Y3C:MD:MOg:ADA (zone system)
+
+
+116. Spot-linked exposure — AE region pinned to focus point. Y3C:LD:ERk:L
+
+
+117. Exposure lock with confidence — locks AE only when scene stable; avoids locked-wrong-exposure. Y3C:LD:MRk:L
+
+
+118. EV histogram targeting — rotates exposure to center histogram at chosen percentile. Y3C:LD:MRk:L
+
+
+119. Flicker-resilient AE — averages luma over full AC cycle before AE decision. Y3C:LD:MRk:L
+
+
+120. ISO-first vs shutter-first automation — user chooses priority; auto picks other. Y3C:LD:ERk:L
+
+
+121. Auto-ISO with noise budget — user sets max visible noise; ISO never exceeds. Y3C:MD:MRk:L
+
+
+122. Auto-shutter with blur budget — shutter chosen so predicted blur < threshold from gyro. Y3C:LD:MRk:L
+
+
+123. Exposure variance guard — warns if exposure keeps oscillating between frames. Y3C:LD:ERk:L
+
+
+124. AE freeze on burst — locks exposure across burst for even frames. Y3C:LD:ERk:L
+
+
+125. Adaptive HDR exposure plan — computes optimal exposure pair for current DR before burst. Y3C:MD:MRk:M
+
+
+126. Dual-exposure live preview — blink between short/long frames to preview HDR result. Y3C:LD:ERk:L
+
+
+127. Metering weight map editor — user taps regions; weight multipliers for AE. Y3C:LD:ERk:L
+
+
+128. Aperture-priority-like mode — maps to shutter/ISO auto on fixed-aperture phones. Y3C:LD:ERk:L
+
+
+129. Exposure simulation — preview how +1EV / -2EV will look before shooting. Y3C:LD:MRk:L
+
+
+130. Histogram-matched re-shoot — tells user exactly how to adjust for target histogram. Y3C:LD:MRk:L
+
+
+131. Pixel-count clip meter — % of pixels clipped, live. Y3C:LD:ERk:L
+
+
+132. Sky vs ground metering — horizon-aware split metering for landscapes. Y3C:LD:MRk:L
+
+
+133. Subject metering via saliency — salient region gets AE weight (no ML, just contrast/edges). Y3C:MD:HRk:M
+
+
+134. Exposure incompatible-scene warning — says "scene exceeds sensor DR by X stops". Y3C:MD:MRk:L
+
+
+135. Long-exposure risk advisor — gimbal/motion estimate vs chosen shutter; keeps safe. Y3C:LD:MRk:L
+
+
+136. Bulb-like manual stacking — manual multi-frame "bulb" with visible accumulation. Y3C:HD:HRk:M
+
+
+137. AE snake/curve display — exposure settings plotted as curve over time. Y3C:LD:MRk:L
+
+
+138. Instant re-exposure — after capture, auto another shot with corrected exposure if clipped. Y3C:LD:ERk:L
+
+
+139. ISO phantom range — extends ISO sliders beyond spec with warning (reduced DR). Y3C:LD:ERk:M
+
+
+140. Exposure-duration precision mode — targets exact durations matching AC cycles. Y3C:LD:MRk:L
+
+
+141. Sunny-16 assistant — suggests settings from lighting estimate; vintage workflow. Y3C:LD:ERk:L
+
+
+142. Shutter-priority action mode — auto-ISO servo to keep shutter fast vs motion. Y3C:LD:ERk:L
+
+
+143. Highlight rolloff emulation — adds film-like shoulder to YUV output; prevents hard clip. Y3C:LD:MRk:L
+
+
+144. Shadow rolloff emulation — film-like toe lifted; clean shadows. Y3C:LD:MRk:L
+
+
+145. Custom tone curve recording — user-drawn curve applied at save (not UI-heavy redesign; same sliders). Y3C:LD:MRk:L
+
+
+146. Exposure bracket plan generator — from DR measurement, chooses 3-5 EV set optimally. Y3C:MD:MRk:L
+
+
+147. Bracket-file fusion preview — fused preview of bracket before final save. Y3C:HD:HRk:M
+
+
+148. Auto ND emulation — inserts neutral density as multi-frame average; "no ND needed". Y3C:HD:HRk:M
+
+
+149. Exposure memory — remembers best exposure per scene type; returns to it next time. Y3C:LD:MRk:L
+
+
+150. Adaptive DR window — auto switches between standard/HDR/stacking capture based on scene. Y3C:MD:MRk:M
+
+
+151. Highlight-only histogram — histogram of only top 20% luma; fine exposure control. Y3C:LD:ERk:L
+
+
+152. Shadow-only histogram — histogram of only bottom 20%. Y3C:LD:ERk:L
+
+
+153. Clipping-distance indicator — how many EV from current exposure until clip occurs. Y3C:LD:MRk:L
+
+
+154. Midtone-weighted AE — weights histogram center; faces/objects stay bright. Y3C:LD:MRk:L
+
+
+155. AE reaction speed dial — how fast AE responds; avoids pumping. Y3C:LD:ERk:L
+
+
+156. Exposure coherence meter — shot-to-shot exposure drift display. Y3C:LD:ERk:L
+
+
+157. Multi-point metering matrix — 3x3 spot readings displayed as EV grid. Y3C:LD:ERk:L
+
+
+158. Metering pattern visualizer — shows current AE region weighting on preview. Y3C:LD:ERk:L
+
+
+159. EV-offset from AE — shows current exposure deviation from AE recommendation. Y3C:LD:ERk:L
+
+
+160. Auto-exposure histogram goal — user sets target histogram 20th/80th percentile shape; AE matches. Y3C:MD:HRk:M
+A4. FOCUS SYSTEMS (161-215)
+
+
+161. Focus distance ruler — live estimate of focus distance in cm/m from lens position. Y3C:LD:MOg:ADA (ProShot-ish focus aid)
+
+
+162. Depth-from-focus map — sweep many focus positions; per-pixel argmax sharpness → depth map. Y3C:HD:XRk:H
+
+
+163. Focus-bracket planner — optimal N distances coverage for stack (near to infinity). Y3C:LD:MRk:L
+
+
+164. Auto focus-stack render — aligned stack fused all-in-focus on device. Y3C:HD:XOg:RES (Helicon-like)
+
+
+165. Caustic-focus protection — peaking ignores high-frequency water/specular noise. Y3C:MD:HRk:M
+
+
+166. Focus ring feel — haptic ticks per diopter step; tactile manual focus. Y3C:LD:ERk:L
+
+
+167. Focus velocity control — accel-based focus movement; slow ramp for macro. Y3C:LD:MRk:L
+
+
+168. AF hunting detector — flags oscillation; suggests manual focus. Y3C:LD:MRk:L
+
+
+169. CA-aware peaking — filters fringing from peak response (better edges). Y3C:MD:HRk:M
+
+
+170. Focus pincushion guide — "focus at 55% height" landscape hyperfocal helper. Y3C:LD:ERk:L
+
+
+171. Hyperfocal calculator — computes hyperfocal distance from lens data + aperture estimate. Y3C:LD:ERk:L
+
+
+172. Macro magnification meter — current reproduction ratio. Y3C:LD:MRk:L
+
+
+173. Focus breathing compensation — warps frames during zoom/focus change to keep framing. Y3C:MD:HRk:M
+
+
+174. Focus sweep cinema effect — auto ramp focus capturing frames; composited into rack-focus still. Y3C:MD:MRk:L
+
+
+175. Tap-to-refine loop — tap point → AF → metric shows improvement confidence. Y3C:LD:ERk:L
+
+
+176. Quad-focus monitor — four focus metrics in corners (edge energy variants). Y3C:MD:MRk:L
+
+
+177. Contrast-curve scope — focus metric as live oscilloscope; manual focusing via peaks. Y3C:LD:MRk:L
+
+
+178. Focus-on-motion — continually refocuses on moving region (auto tracking w/o ML). Y3C:HD:XRk:H
+
+
+179. Prefocus timer — decouples focus from shutter; focus-now-shoot-later workflow. Y3C:LD:ERk:L
+
+
+180. Focus-lock drift detector — lens position drifting from target? visual indicator. Y3C:LD:MRk:L
+
+
+181. Parfocal sim — keeps focus distance fixed while zooming via ratios. Y3C:LD:MRk:L
+
+
+182. AF point persistence — AF point follows scene via flow (not ML). Y3C:MD:HRk:M
+
+
+183. Focus bracketing for panoramas — stacks per pano tile; deep-DOF panorama. Y3C:HD:XRk:H
+
+
+184. Bokeh control via stacking — synthetic shallow DOF by selective focus-plane blend. Y3C:HD:XRk:H
+
+
+185. Tilt-shift simulation — planes of sharpness from focus stack; photographic tilt effect. Y3C:HD:HRk:M
+
+
+186. Lensbaby sim — localized blur region with soft falloff from focus depth. Y3C:HD:HRk:M
+
+
+187. Focus "iron cross" assist — target reticle + sharpness meter at center. Y3C:LD:EOg:OBS (focus assist)
+
+
+188. Infinity calibration check — tells if lens reaches true infinity focus. Y3C:LD:MRk:L
+
+
+189. Focus distance marker overlay — ticks at 0.5/1/2/5m on focus slider. Y3C:LD:ERk:L
+
+
+190. Auto-focus limiter — restrict AF search range (near/far); faster + no hunt. Y3C:LD:MOg:OBS (lens limiter)
+
+
+191. Focus sweep recorder — records focus positions over time; for reproducible macro sets. Y3C:LD:MRk:L
+
+
+192. AF phase visualization — shows AF "in/out of phase" like DSLR confirm. Y3C:LD:ERk:L
+
+
+193. Focus stepping for video-ish time-lapse — focus ramp over timelapse capture. Y3C:MD:MRk:L
+
+
+194. Peak-only display mode — dims image, shows only sharp edges (extreme peaking). Y3C:LD:MRk:L
+
+
+195. Dual peaking colors — green=in focus, red=oversharp/halation. Y3C:LD:ERk:L
+
+
+196. Microcontrast meter — localized MTF at selected point. Y3C:MD:HRk:M
+
+
+197. Focus repeatability tester — 20 AF cycles, reports % same distance. Y3C:LD:MRk:L
+
+
+198. Depth-of-field simulator — shows expected DOF range for settings at tapped distance. Y3C:LD:MRk:L
+
+
+199. Near-far focus indicator — says "focused closer than X / farther than Y". Y3C:LD:MRk:L
+
+
+200. Focus merge preview — all-in-focus sim preview before capture (focus stacking preview). Y3C:HD:XRk:H
+
+
+201. CA-fringe focus assist — uses fringe magnitude as focus clue (achromatic edges). Y3C:MD:HRk:M
+
+
+202. Flexible focal point — off-center focus with metering follow (common but refined). Y3C:LD:ERk:L
+
+
+203. Focus step audible tone — pitch rises as sharpness rises (audio focus feedback). Y3C:LD:ERk:L
+
+
+204. Bracket-hold assistant — beeps when stable for each focus bracket frame. Y3C:LD:ERk:L
+
+
+205. Focus keeper log — records focus distances per captured frame sequence. Y3C:LD:ERk:L
+
+
+206. Risk of misfocus overlay — where edges blurry, tint overlay. Y3C:MD:HRk:M
+
+
+207. Automatic focus stack size — adapts bracket count to macro magnification. Y3C:LD:MRk:L
+
+
+208. Depth preview dots — sparse depth map shown as point cloud on top of scene. Y3C:HD:XRk:H
+
+
+209. Focus breathing plot — FOV change vs focus slider graphed live. Y3C:LD:MRk:L
+
+
+210. AF servo mode for stills — continuous AF with shutter-priority: fire when sharp. Y3C:MD:HRk:M
+
+
+211. Lens drive noise meter — not applicable (no sound) — REPLACED by Focus latency meter — time from tap to sharp frame. Y3C:LD:ERk:L
+
+
+212. Focus calibration per zoom step — stores focus correction per focal length. Y3C:LD:HRk:M
+
+
+213. Infinity stack shortcut — one button: burst from current→infinity for landscape stacking. Y3C:MD:MRk:L
+
+
+214. Macro rail emulation — focus stepping by equal lens-position deltas; smooth z-stack. Y3C:LD:MRk:L
+
+
+215. Z-stack preview GIF — animated through acquired focus stack frames. Y3C:LD:ERk:L
+A5. COLOR SCIENCE (216-265)
+
+
+216. Illuminant estimator (gray world) — estimates light source color from chroma averages. Y3C:LD:MRk:L
+
+
+217. Shades-of-gray estimator — Minkowski norm p-adjustable; better WB than gray world. Y3C:LD:MRk:L
+
+
+218. Gray-edge estimator — illuminant from edge statistics; robust to flat scenes. Y3C:MD:HRk:M
+
+
+219. WB confidence meter — how much scene supports current WB estimate. Y3C:LD:MRk:L
+
+
+220. Dual illuminant split — detects mixed lighting (warm/cool) zones; shows split. Y3C:MD:HRk:M
+
+
+221. Skin-tone preservation mode — computes skin locus on U/V; keeps hue under WB shifts. Y3C:MD:HRk:M
+
+
+222. Skin-tone protection meter — shows if faces will shift color under current WB. Y3C:MD:HRk:M
+
+
+223. Kelvin dial with dual-axis — Tint+Temp controls; standard but refined with live preview. Y3C:LD:ERk:L
+
+
+224. WB from reference card — user taps white card in scene; full channel gains applied. Y3C:LD:ERk:L
+
+
+225. Chromatic adaptation preview — simulates D65 adaptation effect on preview. Y3C:LD:MRk:L
+
+
+226. Color cast detector — measures overall tint; suggests corrective WB. Y3C:LD:ERk:L
+
+
+227. Vectorscope on U/V plane — live chroma monitor with skin-tone line. Y3C:LD:MOg:ADA (video scopes)
+
+
+228. Chroma histogram — U and V histograms separately. Y3C:LD:ERk:L
+
+
+229. Saturation map overlay — shows where colors exceed gamut/displayable. Y3C:MD:MRk:L
+
+
+230. Hue-angle scope — hue distribution circular plot. Y3C:LD:MRk:L
+
+
+231. Color accuracy report — captures color chart; reports ΔE per patch. Y3C:MD:MRk:M
+
+
+232. Memory-color boost — subtle boost for sky/skin/greens, tied to detected colors. Y3C:MD:HRk:M
+
+
+233. Saturation bracketing — 3 shots different saturation; "pick later" workflow. Y3C:LD:ERk:L
+
+
+234. Color temperature flash/fill hint — suggests LED torch to correct WB. Y3C:LD:MRk:L
+
+
+235. Metamerism warning — scenes where two lights match under one illuminant; WB risk alert. Y3C:MD:HRk:M
+
+
+236. Gamut clip map (YUV→sRGB) — display where converted image clips in RGB. Y3C:MD:MRk:L
+
+
+237. BT.601/709/2020 matrix switch — YUV→RGB conversion matrix selectable. Y3C:LD:ERk:L
+
+
+238. Chroma noise separation meter — how much noise is in U/V vs Y. Y3C:MD:MRk:L
+
+
+239. Chroma denoise strength dial — independent U/V denoise (more aggressive safe). Y3C:MD:MRk:L
+
+
+240. Luma-only sharpening toggle — sharpen Y only; no color artifacts. Y3C:LD:ERk:L
+
+
+241. Monochrome mode from Y only — clean B/W with full-res luma. Y3C:LD:ERk:L
+
+
+242. Split-tone monitor — preview shadows/highlights tinting like film. Y3C:LD:MRk:L
+
+
+243. White balance memory for scenes — per-scene WB profiles (sunset, forest, office). Y3C:LD:ERk:L
+
+
+244. Green-magenta axis fine tune — beyond Kelvin; tint control. Y3C:LD:ERk:L
+
+
+245. Channel gain readout — actual R/G/B gains in effect. Y3C:LD:ERk:L
+
+
+246. Color checker detection — finds X-Rite-like chart, auto WB + exposure from it. Y3C:MD:MRk:M
+
+
+247. False-color saturation mapping — IR-like false color of chroma saturation levels. Y3C:LD:MRk:L
+
+
+248. Portrait tone flattening preview — softens skin texture via luma low-pass in face areas. Y3C:HD:XRk:H
+
+
+249. Teal-orange detector — flags overused color grading; shows originality. Y3C:LD:ERk:L
+
+
+250. Custom color profile save — user-adjusted WB/sat/curve set saved as profile. Y3C:LD:ERk:L
+
+
+251. Dynamic range color display — colors regions by brightness EV zone. Y3C:LD:MRk:L
+
+
+252. AWB delay compensation — AWB lags scene change; manual override timing. Y3C:LD:ERk:L
+
+
+253. Illuminant histogram — light source color over time; shows mixed-lighting drift. Y3C:LD:MRk:L
+
+
+254. RGB channel histogram — separate R/G/B histograms (not just luma). Y3C:LD:ERk:L
+
+
+255. Print-sim preview — soft-proof to sRGB print gamut. Y3C:LD:MRk:L
+
+
+256. Display P3 clip check — current colors inside P3? per-pixel warning. Y3C:MD:MRk:L
+
+
+257. Color constancy viewer — shows scene under different illuminants (simulation). Y3C:MD:HRk:M
+
+
+258. Chroma subsampling aware preview — shows true 4:2:0 resolution edges. Y3C:LD:MRk:L
+
+
+259. U/V plane viewer — raw chroma planes as grayscale views. Y3C:LD:ERk:L
+
+
+260. Y plane viewer — raw luma plane view. Y3C:LD:ERk:L
+
+
+261. Chroma alignment check — detects misregistered U/V vs Y (demosaic artifacts). Y3C:MD:HRk:M
+
+
+262. Color-noise reduction preview — before/after chroma denoise split view. Y3C:MD:MRk:L
+
+
+263. Warm/cool zone map — displays WB zone of each region (mixed light map). Y3C:MD:HRk:M
+
+
+264. Spectral-like estimate — rough scene spectral estimate from WB+histogram (educational). Y3C:LD:MRk:L
+
+
+265. Color science preset library — ACES-like, film emulations as LUTs applied to YUV save. Y3C:LD:MRk:L
+A6. MONITORING & PROFESSIONAL SCOPES (266-320)
+
+
+266. Full waveform monitor — Y luma waveform overlay. Y3C:MD:MOg:ADA (Blackmagic style)
+
+
+267. RGB parade scope — three luma slices for R/G/B. Y3C:MD:MRk:L
+
+
+268. YCbCr parade scope — Y, Cb, Cr slices. Y3C:MD:MRk:L
+
+
+269. Vectorscope with skin line — U/V vectorscope + skin-tone axis. Y3C:MD:MRk:L
+
+
+270. HDR-style waveform graticule — 0-1000% style luma scale for HDR awareness. Y3C:MD:MRk:L
+
+
+271. Composite scope mode — waveform+vectorscope combined small overlay. Y3C:MD:MRk:L
+
+
+272. Luma bar meter — simple vertical exposure meter bars (left/right). Y3C:LD:ERk:L
+
+
+273. Segmented EV level meter — like audio VU: shows exposure headroom. Y3C:LD:ERk:L
+
+
+274. Clipping contour overlay — outlines clipped regions, not just fill. Y3C:LD:MRk:L
+
+
+275. Switching false color — multiple LUT none: exposure false color variants (PRO, ARRI-like). Y3C:LD:MOg:ADA (false color pro cams)
+
+
+276. Highlight-only false color — colors only above 90% region. Y3C:LD:ERk:L
+
+
+277. Shadow-only false color — colors only below 10% region. Y3C:LD:ERk:L
+
+
+278. Skin-tone false color — colors likely skin regions (for exposure of faces). Y3C:MD:HRk:M
+
+
+279. Zebra with % level dial — adjustable zebra threshold (70-100 IRE). Y3C:LD:ERk:L
+
+
+280. Zebra in chroma — zebra on saturated colors too. Y3C:LD:MRk:L
+
+
+281. Luma heat map — thermal-style brightness display. Y3C:LD:MRk:L
+
+
+282. Dynamic range heat map — DR per tile color-coded. Y3C:MD:HRk:M
+
+
+283. Focus heat map — sharpness per tile color-coded. Y3C:MD:HRk:M
+
+
+284. Focus peaking thresholds — sensitivity level control. Y3C:LD:ERk:L
+
+
+285. Focus peaking blink mode — flashing overlay when in focus (visibility). Y3C:LD:ERk:L
+
+
+286. Corner focus zoom loupe — magnified corner inset while composing. Y3C:LD:ERk:L
+
+
+287. Dual-mode loupe — split screen zoom + normal. Y3C:LD:ERk:L
+
+
+288. Per-channel waveform — individual R/G/B/Y wave selectable. Y3C:MD:MRk:L
+
+
+289. Waveform peak hold — max/min traces persist (signal confidence). Y3C:LD:MRk:L
+
+
+290. Histogram with clip indicators — animated ends when clipping. Y3C:LD:ERk:L
+
+
+291. Log-scale histogram — better shadow distribution view. Y3C:LD:ERk:L
+
+
+292. Overlay opacity control — scopes blend level with preview. Y3C:LD:ERk:L
+
+
+293. Scope snapshot — freeze scope while adjusting settings. Y3C:LD:ERk:L
+
+
+294. Long-press scope zoom — tap-hold scope area to enlarge. Y3C:LD:ERk:L
+
+
+295. Tri-level scope mode — waveform, parade, vector stacked. Y3C:MD:MRk:L
+
+
+296. IRE readout — numeric IRE at crosshair location. Y3C:LD:MRk:L
+
+
+297. Exposure target marker — crosshair shows target IRE; shot-to-shot consistency. Y3C:LD:MRk:L
+
+
+298. Skin tone exposure readout — luma value at detected skin regions. Y3C:MD:HRk:M
+
+
+299. False color calibration card — displays reference false-color wedge. Y3C:LD:ERk:L
+
+
+300. RGB clip count numeric — text of clipped pixel counts. Y3C:LD:ERk:L
+
+
+301. Stable-frame indicator — dot that turns green when frame stable (no new noise). Y3C:LD:ERk:L
+
+
+302. Exposure drift arrow — shows exposure trending up/down. Y3C:LD:ERk:L
+
+
+303. WB drift arrow — WB trending warmer/cooler. Y3C:LD:ERk:L
+
+
+304. Combined status HUD — ISO/shutter/EV/focus/WB all in one compact readout. Y3C:LD:ERk:L
+
+
+305. HDR shooting indicator — warns when scene exceeds single-frame range. Y3C:MD:MRk:L
+
+
+306. Readout dimming mode — scopes auto-dim to not distract. Y3C:LD:ERk:L
+
+
+307. Focus distance scope — plotted focus distance vs time. Y3C:LD:MRk:L
+
+
+308. Stabilization confidence meter — how well a steady shot will come out. Y3C:LD:ERk:L
+
+
+309. Frame loss alert — drops counter visual alarming. Y3C:LD:ERk:L
+
+
+310. Resolution/quality summary bar — one-line: "4:2:0 10MP, lens f/1.8 equiv". Y3C:LD:ERk:L
+
+
+311. Exposure narrative log — textual record of AE/AF decisions for review. Y3C:LD:MRk:L
+
+
+312. Grid + scope combined mode — overlay both without clutter. Y3C:LD:ERk:L
+
+
+313. Level meter for focus — audio-style VU meter for sharpness. Y3C:LD:ERk:L
+
+
+314. Waveform freeze-frame compare — compare waveform of last shot vs live. Y3C:LD:MRk:L
+
+
+315. Multi-tile exposure readout — 9-zone luma numbers grid. Y3C:LD:MRk:L
+
+
+316. Per-frame metadata scroller — scroll through previous capture metadata. Y3C:LD:ERk:L
+
+
+317. Battery-thermal-aware HUD — shows thermal throttle predicted impact. Y3C:LD:MRk:L
+
+
+318. Picture-to-scope compare — last take's scope vs current (consistency). Y3C:MD:MRk:L
+
+
+319. Quality index number — computed single score of scene (sharpness, DR, noise). Y3C:MD:HRk:M
+
+
+320. Technical mood light — corner zone tints green/amber/red for exposure health. Y3C:LD:ERk:L
+A7. COMPUTATIONAL PHOTOGRAPHY PIPELINE (321-370)
+
+
+321. Zero-UI night mode — detects low light, recommends/auto-engages stacking. Y3C:MD:MOg:ADA (Night Sight)
+
+
+322. Scene DR estimator pre-capture — decides SNR strategy before shutter. Y3C:MD:MRk:L
+
+
+323. Merge quality progress bar — shows stack quality accumulating. Y3C:LD:ERk:L
+
+
+324. Alignment warp visualization — shows corrected warp grid of merged burst. Y3C:MD:MRk:L
+
+
+325. Exposure fusion on YUV directly — Laplacian pyramid on Y plane + chroma simpler fusion. Y3C:HD:HRk:M
+
+
+326. Detail-preserving tone curve auto — adaptive curve from scene histogram. Y3C:MD:HRk:M
+
+
+327. Local adaptive contrast — CLAHE-like on Y plane with clip control. Y3C:MD:MRk:L
+
+
+328. Highlight reconstruction — clipped regions inferred from neighbors/channels (YUV approximations). Y2C:HD:XRk:H
+
+
+329. Shadow reconstruction from burst — underexposed frames fill shadows. Y3C:HD:XRk:H
+
+
+330. Frequency-band noise/ detail split — wavelet-ish decompose; denoise low freq, enhance high. Y3C:HD:HRk:M
+
+
+331. Guided filter detail layer — edge-preserving smoothing on Y, recompose. Y3C:MD:HRk:M
+
+
+332. BM3D-like on YUV — block-match 3D denoise (simplified) on luma. Y3C:HD:XRk:H
+
+
+333. Non-local means on Y plane — patch-based denoise with chroma co-location. Y3C:HD:XRk:H
+
+
+334. Bilateral smoothing preview — real-time bilateral slider. Y3C:MD:MRk:L
+
+
+335. Unsharp with radius zones — micro/meso/macro sharpening separate. Y3C:MD:MRk:L
+
+
+336. Deconvolution sharpening — PSF estimate from edge profiles; inverse filter. Y3C:HD:XRk:H
+
+
+337. Anti-halo sharpen — morphological-aware; no white rings. Y3C:HD:XRk:H
+
+
+338. Luma noise gate — only sharpen if luma above noise floor. Y3C:MD:HRk:M
+
+
+339. Grain synthesis from noise model — add film grain matching sensor noise character. Y3C:MD:MRk:L
+
+
+340. Dynamic grain level — spatially varies grain with brightness (film-like). Y3C:MD:HRk:M
+
+
+341. Contrast retention fusion — merge stack while preserving microcontrast. Y3C:HD:XRk:H
+
+
+342. Chroma upsample mode chooser — nearest/bilinear/cosine; quality control for 4:2:0. Y3C:LD:ERk:L
+
+
+343. Edge-aware chroma upsampling — use Y edges to guide U/V interpolation. Y3C:MD:HRk:M
+
+
+344. Luma-consistent chroma denoise — chroma smoothing that respects Y edges. Y3C:MD:HRk:M
+
+
+345. HDR ghost suppression by variance — high variance pixels rejected from merge. Y3C:HD:XRk:H
+
+
+346. Contrast-preserving tone compress — adaptive S-curve with shadow/highlight guards. Y3C:MD:HRk:M
+
+
+347. Midtone detail boost analysis — shows where midtone contrast lost pre-merge. Y3C:MD:HRk:M
+
+
+348. Recursive temporal accumulator — continuous stack weights frames recursively (live long-exposure). Y3C:MD:HRk:M
+
+
+349. Alignment confidence weighting — frames weighted by alignment reliability in merge. Y3C:HD:XRk:H
+
+
+350. Per-tile merge strategy — static tiles averaged; moving tiles single-frame. Y3C:HD:XRk:H
+
+
+351. Detail recovery from adjacent frames — blurry frame sharpened using sharp neighbor's high-freq. Y3C:HD:XRk:H
+
+
+352. Exposure normalization before merge — gain-match frames to common exposure; avoids banding. Y3C:MD:MRk:L
+
+
+353. Tone map before save preview — final look preview of computational result. Y3C:LD:MRk:L
+
+
+354. Aspect-masked processing — process only usable pixels (multi-camera crop). Y3C:LD:MRk:L
+
+
+355. Custom processing recipe profiles — named settings combos saved (WB, NR, tone). Y3C:LD:ERk:L
+
+
+356. Versioned processing — same burst reprocessed with different recipe; compare outputs. Y3C:HD:XRk:H
+
+
+357. Batch reprocess from sidecar — re-render prior captures with new recipe (keeps YUV core). Y3C:HD:XRk:H
+
+
+358. Processing time budget — estimates compute time per recipe; picks fast path. Y3C:LD:MRk:L
+
+
+359. Preview-accurate processing — WYSIWYG: preview matches saved result. Y3C:LD:MRk:M
+
+
+360. Bit-depth check — warns when 8-bit save loses data; suggests stacking to recover. Y3C:LD:MRk:L
+
+
+361. Y-plane resolution report — full-res luma detail preserved? indicator. Y3C:LD:MRk:L
+
+
+362. Progressive refinement saves — first save fast preview-quality, then full-quality overwrite. Y3C:HD:XRk:M
+
+
+363. Computational pipeline profiler — ms per stage table in settings. Y3C:LD:ERk:L
+
+
+364. Stack memory manager — warns if burst will exceed memory; auto shard. Y3C:LD:ERk:L
+
+
+365. Multi-buffer pipeline — async chain capture→align→merge→save without stalls. Y3C:MD:HRk:M
+
+
+366. Exposure-time consistency in merged HDR — alignment also estimates per-frame exposure mismatch. Y3C:MD:HRk:M
+
+
+367. 8-bit output dithering control — reduces banding in saved YUV prints. Y3C:LD:MRk:L
+
+
+368. Band-free gradient test — synthetic ramp capture test; measures banding. Y3C:LD:ERk:L
+
+
+369. Color banding detector — finds posterization zones in saved capture. Y3C:MD:HRk:M
+
+
+370. Full-pipeline sidecar — every algorithm parameter logged per shot (reproducibility). Y3C:LD:MRk:L
+A8. CREATIVE/EXPERIMENTAL CAPTURE (371-430)
+
+
+371. Multiple-exposure blend — composite N shots with add/screen/lighten modes. Y3C:MD:MRk:L
+
+
+372. Double-exposure preview — align guide ghost while composing second shot. Y3C:MD:HRk:M
+
+
+373. IR simulation — false color mapping; "IR" look from visible scene. Y3C:LD:ERk:L
+
+
+374. Lensbaby/ tilt sim — localized blur from depth estimates. Y3C:HD:HRk:M
+
+
+375. Pinhole sim — soft global defocus + falloff. Y3C:LD:MRk:L
+
+
+376. Anamorphic flare sim — horizontal streaks from bright sources. Y3C:LD:MRk:L
+
+
+377. Light leak sim — film leak color casts at frame edges (tonal). Y3C:LD:ERk:L
+
+
+378. Bleach bypass preview — high contrast desat look computed from YUV. Y3C:LD:ERk:L
+
+
+379. Film stock simulator — grain + curve + halation combos. Y3C:MD:MRk:L
+
+
+380. Halation simulation — bloom around highlights (cinematic). Y3C:MD:MRk:L
+
+
+381. Orton effect — blend blur+sharp layers for dreamy look. Y3C:LD:ERk:L
+
+
+382. Infrared foliage emphasis — foliage brightening like IR photography. Y3C:LD:ERk:L
+
+
+383. UV-induced fluorescence sim — artistic color mapping on bright regions. Y3C:LD:ERk:L
+
+
+384. Time-slice collapse — simultaneous multiple time slices in one frame. Y3C:HD:XRk:H
+
+
+385. Multi-frequency composite — each region from best frequency of best frame. Y3C:HD:XRk:H
+
+
+386. Synthetic long exposure on water — average frames; silky water effect. Y3C:HD:HRk:M
+
+
+387. Sky replacement via hist match (local, no cloud) — NO sky replacement — replace with: Sky texture enhancement — boosts cloud contrast using local tone. Y3C:MD:HRk:M
+
+
+388. Star-point preserving stack — astro stack keeps stars pinpoints via alignment. Y3C:HD:XRk:H
+
+
+389. Comet / satellite trail mode — tracks fast moving objects; long exposure for trails. Y3C:MD:HRk:M
+
+
+390. Aurora detector — green sky detection; suggests astro settings. Y3C:MD:HRk:M
+
+
+391. Moon sharpener — high-frequency enhancement on bright disc region. Y3C:MD:HRk:M
+
+
+392. Day-for-night sim — blue cast + exposure pull; creative stills. Y3C:LD:ERk:L
+
+
+393. Miniature world (tilt-shift blur) — top-down blur ramp. Y3C:LD:ERk:L
+
+
+394. Bokeh shape simulator — aperture blade shape bokeh from depth map. Y3C:HD:XRk:H
+
+
+395. Splatter/water drop bokeh — creative bokeh overlays on highlights. Y3C:LD:MRk:L
+
+
+396. Star-spike diffraction sim — 4/6-point spikes on bright points (aperture sim). Y3C:LD:MRk:L
+
+
+397. Contrast-negative mode (X-ray art) — inverts luma selectively. Y3C:LD:ERk:L
+
+
+398. Tonal split posterization — quantized tone zones poster art. Y3C:LD:ERk:L
+
+
+399. Sobel/lith print sim — edge-based lithography look. Y3C:MD:MRk:L
+
+
+400. Duotone capture mode — two-color mapping live. Y3C:LD:ERk:L
+
+
+401. True black&white with color filters — R/G/B/IR-like weighting on Y. Y3C:LD:ERk:L
+
+
+402. Gradient ND sim — split neutral density gradient (landscape). Y3C:LD:ERk:L
+
+
+403. Center ND / radial sim — radial grad filter. Y3C:LD:ERk:L
+
+
+404. Graduated color cast — split-tone per sky/ground. Y3C:LD:ERk:L
+
+
+405. Texture scan mode — flat-field + focus stack for document/texture quality. Y3C:MD:MRk:L
+
+
+406. Specular highlight softener — reduces harsh reflections (jewelry). Y3C:MD:HRk:M
+
+
+407. Water droplet macro aid — focus limiter + flash burst for droplet patterns. Y3C:MD:MRk:L
+
+
+408. Time-blend of people flow — crowd trails via temporal blend. Y3C:HD:XRk:H
+
+
+409. Painting with motion — long-exposure abstract via gyro-driven brush. Y3C:HD:XRk:H
+
+
+410. Perspective control assist — level/horizon guides with correction at save. Y3C:MD:MRk:L
+
+
+411. Keystone preview — architectural perspective corrected preview. Y3C:MD:MRk:L
+
+
+412. Microphone-triggered capture — sound-trigger (burst at clap). Y3C:LD:ERk:L
+
+
+413. Gyro-triggered pan capture — auto burst during smooth pan (pano-ish). Y3C:LD:MRk:L
+
+
+414. Laser-pointer focus target — light spot detected as AF target. Y3C:MD:HRk:M
+
+
+415. Chromatic fringe art mode — exaggerates CA for artistic edges. Y3C:LD:ERk:L
+
+
+416. Vibration art (camera shake painting) — intentional shake capture with pattern. Y3C:LD:ERk:L
+
+
+417. Slow-scan effect — line-by-line exposure like early TV (creative). Y3C:MD:MRk:L
+
+
+418. Photo-wind streak sim — adds motion streak to leaves/water via directional blur. Y3C:MD:MRk:L
+
+
+419. Reflection composer — flips+blends for mirror images (creative comp). Y3C:LD:ERk:L
+
+
+420. Painterly edge emphasis — selective edge darkening (etching look). Y3C:MD:MRk:L
+
+
+421. Bokeh ball foreground sim — foreground blurred circles overlay. Y3C:MD:HRk:M
+
+
+422. Rain-streak sim — adds rain streaks at fixed angle (creative). Y3C:LD:ERk:L
+
+
+423. Snow-storm sim — particle overlay frozen into capture. Y3C:LD:ERk:L
+
+
+424. Dust/light-saber light painting — long-exposure light drawing guide. Y3C:HD:HRk:M
+
+
+425. Mid-air freeze assist — high-shutter reminder + burst for water splashes. Y3C:LD:ERk:L
+
+
+426. Leaf/sky contrast boost — channel-mix style green/blue separation. Y3C:LD:ERk:L
+
+
+427. Water transparency enhance — polarization-like effect: reduce sky reflection in water. Y3C:MD:HRk:M
+
+
+428. Fog/haze creative control — add or remove aerial perspective. Y3C:MD:HRk:M
+
+
+429. Grain-matched to ISO — added grain amplitude follows ISO/light. Y3C:LD:ERk:L
+
+
+430. In-camera contact sheet — small matrix of recipe variants of one burst (workflow local). Y3C:HD:XRk:H
+A9. SCIENTIFIC / TECHNICAL IMAGING (431-475)
+
+
+431. Flat-field mode for macro — capture white reference for desktop/top-down work. Y3C:LD:ERk:L
+
+
+432. Color chart auto-cal — full X-Rite detection; per-channel matrix saved. Y3C:MD:MRk:M
+
+
+433. Microscope-style grid reticle — calibration scale overlay in microns estimate. Y3C:LD:ERk:L
+
+
+434. Measurement scale capture — ruler overlay from focus distance estimate. Y3C:MD:HRk:M
+
+
+435. Document flat capture — perspective + even light + sharp (text-focused). Y3C:HD:HRk:M
+
+
+436. NDVI-lite vegetation index — green/near-IR proxy index from visible. Y3C:MD:HRk:M
+
+
+437. Reflectance estimation — relative reflectance from flat + exposure cal. Y3C:HD:XRk:H
+
+
+438. Time-lapse science mode — fixed interval, fixed settings, timestamped files (not video). Y3C:LD:ERk:L
+
+
+439. Timelapse focus ramp — focus changes across interval captures. Y3C:MD:MRk:L
+
+
+440. Timelapse day-night transition — auto exposure ramp for smooth day-night sequences. Y3C:MD:HRk:M
+
+
+441. Star stacking with darks — astro light frames + dark frames auto-processed. Y3C:HD:XRk:H
+
+
+442. Bias/dark/flat calibration workflow — guided capture of calibration sets. Y3C:LD:MOg:ADA (astro cal)
+
+
+443. Star alignment by centroid — bright-star centroid registration (astro). Y3C:HD:XRk:H
+
+
+444. Dithering assistant — instructs nudging device between astro frames. Y3C:LD:ERk:L
+
+
+445. Stack rejection by satellite streaks — detects and rejects frames with streaks. Y3C:MD:HRk:M
+
+
+446. Meteor capture mode — continuous capture, keeps only frames with bright streaks. Y3C:MD:MRk:M
+
+
+447. Moon exposure optimizer — spot metering on moon, HDR disabled. Y3C:LD:ERk:L
+
+
+448. Solar event safe reminder — cap exposure, warn about sensor damage. Y3C:LD:ERk:L
+
+
+449. Photometry mode — linear luma readout at crosshair (scientific). Y3C:LD:MRk:L
+
+
+450. Colorimetry mode — CIE xy readout at crosshair. Y3C:MD:HRk:M
+
+
+451. Spectral-ish sampling — sample patches, list RGB triplets (forensic). Y3C:LD:MRk:L
+
+
+452. Motion trail analysis — trajectory of bright spots over burst (science). Y3C:HD:XRk:H
+
+
+453. Particle tracking mode — bright blob centroid tracks output to file. Y3C:HD:XRk:H
+
+
+454. Splatter/microsecond measure — ultra-short shutter for high speed events. Y3C:LD:ERk:L
+
+
+455. Magnification calibration — measure actual zoom/focal length from known-size object. Y3C:LD:MRk:L
+
+
+456. Sensor row timing exposure — sync exposure to row readout phase (RS scientific). Y3C:LD:HRk:M
+
+
+457. Extreme low-light confidence — predicts if capture will produce usable image. Y3C:LD:MRk:L
+
+
+458. Electromagnetic interference detector — random noise spikes/sparkle detection. Y3C:MD:HRk:M
+
+
+459. Chromatic fringe magnitude report — quantifies CA for lens review. Y3C:MD:HRk:M
+
+
+460. Corner sharpness chart — MTF at 5 points displayed on chart capture. Y3C:HD:XRk:H
+
+
+461. Haze/contrast meter — atmospheric haze estimate from scene contrast. Y3C:MD:HRk:M
+
+
+462. Water clarity meter — uses polarization-ish channel differences (proxy). Y3C:HD:XRk:H
+
+
+463. Night sky brightness meter — sky glow measurement from astro frames. Y3C:MD:HRk:M
+
+
+464. Aurora activity hint — green tint + motion in sky detection. Y3C:MD:HRk:M
+
+
+465. Sensor linearity map — per-region linearity from exposure ramp. Y3C:HD:XRk:H
+
+
+466. MTF from slanted edge — built-in slanted-edge test chart analysis. Y3C:MD:XRk:H
+
+
+467. SNR chart mode — flat field + ISO steps → SNR curve graph. Y3C:MD:HRk:M
+
+
+468. 12-bit container check — verify capture bit depth (metadata). Y3C:LD:ERk:L
+
+
+469. File integrity sidecar — checksums + settings recorded with each capture. Y3C:LD:ERk:L
+
+
+470. Reproducible capture script — settings sequence logged for lab reproducibility. Y3C:LD:MRk:L
+
+
+471. Frame metadata dumper — export full CaptureResult metadata JSON. Y3C:LD:ERk:L
+
+
+472. Stability test pattern — repeat scene capture; report consistency. Y3C:LD:ERk:L
+
+
+473. Drift monitor — long session; track exposure/WB drift over time. Y3C:LD:MRk:L
+
+
+474. Multi-camera comparison mode — same scene from all lenses; side-by-side analysis. Y3C:LD:MRk:M
+
+
+475. Firmware/hal fingerprint — records camera HAL characteristics; detects updates. Y3C:LD:ERk:L
+A10. CAPTURE RELIABILITY & WORKFLOW (476-500)
+
+
+476. Thermal-aware burst planner — reduces burst length if device hot. Y3C:LD:ERk:L
+
+
+477. Storage headroom manager — warns before low-space capture; auto cleanup of temp. Y3C:LD:ERk:L
+
+
+478. Write-failure retry — re-queue save if file write fails. Y3C:LD:ERk:L
+
+
+479. Atomic save protocol — temp file + rename; never partial capture. Y3C:LD:ERk:L
+
+
+480. Camera reopen watchdog — auto-recover from camera errors; logs cause. Y3C:LD:MRk:L
+
+
+481. Session health monitor — frame rate, drops, errors in one metric. Y3C:LD:MRk:L
+
+
+482. Capture queue depth display — shows pending saves; prevents pileup. Y3C:LD:ERk:L
+
+
+483. Exposure consistency check between shots — warns if consecutive exposures differ wildly. Y3C:LD:ERk:L
+
+
+484. Automatic scene re-detection — if scene changes post-focus, suggests re-shoot. Y3C:MD:HRk:M
+
+
+485. HDR-tripod requirement check — recommends tripod based on scene motion. Y3C:LD:ERk:L
+
+
+486. Handoff to computational queue — capture returns fast; processing in background. Y3C:LD:MRk:L
+
+
+487. Backup sidecar auto-generated — .txt settings always written (existing) + enriched. Y3C:LD:ERk:L
+
+
+488. Shot numbering with metadata — filenames encode ISO/shutter for archaeology. Y3C:LD:ERk:L
+
+
+489. Per-session folder structure — session-based organization (not gallery). Y3C:LD:ERk:L
+
+
+490. Capture script recorder — records UI interactions into repeatable sequence. Y3C:LD:MRk:L
+
+
+491. Remote trigger (network) — capture from another device via simple protocol. Y3C:LD:MRk:M
+
+
+492. Timer with pre-roll focus — starts AF before countdown ends. Y3C:LD:ERk:L
+
+
+493. Motion-hold autoshoot — fires when device stable AND subject sharp. Y3C:MD:HRk:M
+
+
+494. Bracket error recovery — if one bracket frame fails, retries only it. Y3C:LD:MRk:L
+
+
+495. Exposure-slot scheduling — precise timing of multi-frame sequences. Y3C:LD:HRk:M
+
+
+496. Self-diagnostic on boot — brief camera pipeline test; reports issues. Y3C:LD:MRk:L
+
+
+497. Config backup / restore — export settings file (not cloud). Y3C:LD:ERk:L
+
+
+498. Per-lens settings memory — remembers settings per camera ID. Y3C:LD:ERk:L
+
+
+499. Low-battery capture mode — disables heavy processing; keeps capture only. Y3C:LD:ERk:L
+
+
+500. Error code diary — crash-free logbook of camera errors with stack hints. Y3C:LD:ERk:L
+CATEGORY B — 500 PRACTICAL BUT EXCELLENT IDEAS
+(B = baseline-adapted / practical; same dedup discipline, real app research applied.)
+B1. CAPTURE CONTROLS & WORKFLOW (1-100)
+
+
+501. Focus distance readout — cm/m on focus slider. OBS:ProShot
+
+
+502. Grid style selector — thirds/phi/cross/center (exists in YUVCam — extend grid styles). OBS
+
+
+503. Tilt/horizon level — gyro level line. OBS
+
+
+504. Burst count selector — 2-10 frames. OBS
+
+
+505. Burst speed control — fps between frames. OBS
+
+
+506. Intervalometer with stop conditions — count, time cap. OBS:OpenCamera
+
+
+507. Self-timer with burst — timer + burst combo. OBS
+
+
+508. HDR mode with alignment — auto align then merge. OBS:OpenCamera
+
+
+509. Night mode with stacking — burst + merge. OBS:OpenCamera/GCam
+
+
+510. Exposure bracketing auto — 3/5/7 frames. OBS:OpenCamera
+
+
+511. Focus bracketing auto — distance steps. OBS:OpenCamera
+
+
+512. RAW-style histogram from YUV — wide DR estimate. ADA:MotionCam
+
+
+513. Sensor clipping map — per-channel. ADA:MotionCam
+
+
+514. False-color exposure view — video-standard. OBS:cinema apps
+
+
+515. Waveform scope — luma. OBS:Blackmagic
+
+
+516. RGB parade — channel scope. OBS:Blackmagic
+
+
+517. Vectorscope — chroma scope. OBS:Blackmagic
+
+
+518. Focus peaking — exists — improve: threshold control. OBS
+
+
+519. Zebra stripes — exists — improve: % selectable. OBS
+
+
+520. Manual ISO — exists. OBS
+
+
+521. Manual shutter — exists. OBS
+
+
+522. Manual focus — exists. OBS
+
+
+523. Manual WB Kelvin — exists — add tint axis. OBS
+
+
+524. EV compensation slider — exists — add fine 1/3 stops. OBS
+
+
+525. AE/AF lock separate buttons — photographer standard. OBS
+
+
+526. Spot metering with AE point drag — OBS
+
+
+527. Center-weighted metering preset — OBS
+
+
+528. Matrix metering preset — OBS
+
+
+529. Highlight-weighted metering — OBS
+
+
+530. Shadow-weighted metering — OBS
+
+
+531. Exposure simulation preview — ±EV preview. ADA
+
+
+532. Manual focus assist zoom — loupe. OBS
+
+
+533. Tap-to-focus with focus ring — exists. OBS
+
+
+534. Face-priority AE/AF — simple detection. OBS
+
+
+535. Subject tracking (flow-based) — lightweight. ADA
+
+
+536. Long-press half-shutter behavior — AE/AF lock on hold. ADA:DSLR
+
+
+537. Shutter sound off/on — exists. OBS
+
+
+538. GPS tagging on/off — exists. OBS
+
+
+539. Timestamp overlay option — burned-in time. OBS
+
+
+540. Filename template custom — user pattern. OBS
+
+
+541. Storage path picker — exists via All Files Access. OBS
+
+
+542. Save as YUV only / YUV+sidecar toggle — expand current. OBS
+
+
+543. Session counter — shots today. OBS
+
+
+544. Voice capture command — "capture" TTS. OBS
+
+
+545. Volume-key shutter — exists. OBS
+
+
+546. Battery % in viewfinder HUD — OBS
+
+
+547. Free space indicator — OBS
+
+
+548. FPS meter — OBS
+
+
+549. Frame-drop counter — diagnostics. ORIG
+
+
+550. Vendor extension access — camera extensions API (night, HDR hints). OBS
+
+
+551. Open Camera-style camera switcher animation — skip (UI). → replace: Camera ID info display — lens/type. OBS
+
+
+552. Front camera mirror toggle — exists. OBS
+
+
+553. Grayscale viewfinder — B/W focus check. OBS
+
+
+554. Blue-only / red-only channel view — focus/exposure check. ORIG
+
+
+555. Split-screen dual camera — front+back simultaneously. OBS:Samsung
+
+
+556. Picture-in-picture second camera — OBS
+
+
+557. Multi-camera simultaneous capture — SAVE same instant from two lenses. ADA
+
+
+558. Lens quick-switch with settings memory — OBS
+
+
+559. Custom capture presets — saved set of ISO/shutter/WB. OBS:ProShot custom modes
+
+
+560. Program mode (auto ISO/shutter) — OBS
+
+
+561. Aperture-priority-equivalent — shutter/ISO auto pair. OBS
+
+
+562. Shutter-priority — OBS
+
+
+563. ISO-priority — OBS
+
+
+564. Auto mode with manual limiters — auto but capped ISO. ADA
+
+
+565. Scene presets (auto/landscape/portrait) — OBS
+
+
+566. Night mode manual override — manual settings preserved. ADA
+
+
+567. Astro mode — long shutter + stacking + darks. OBS:GCam
+
+
+568. Star trails mode — burst→trail compose. ADA
+
+
+569. Panorama mode — stitching (YUV-based). OBS
+
+
+570. Photo-sphere-lite — tiled panorama. ADA
+
+
+571. Focus stacking mode — brackets+merge. OBS:OpenCamera
+
+
+572. Macro mode (close-focus bias) — OBS
+
+
+573. Document mode — contrast+flat. ADA
+
+
+574. Time-lapse mode (stills) — OBS
+
+
+575. Bulb mode (manual multiple) — ADA
+
+
+576. Long exposure mode — OBS
+
+
+577. Light painting mode — ADA
+
+
+578. HDR merge preview before save — ORIG
+
+
+579. Burst replay scrub — keeper pick. ADA:TopShot
+
+
+580. Raw-ish dynamic range capture via dual ISO — RES
+
+
+581. Quick capture from lock screen — activity alias. OBS
+
+
+582. Widget quick-launch — OBS
+
+
+583. Shortcut: astro mode — OBS
+
+
+584. Notify when processing done — background processing. ORIG
+
+
+585. Share via URI sending original YUV — direct share not gallery. OBS
+
+
+586. Export processed PNG/JPEG explicitly — opt-in conversion (allowed as export, not core). OBS
+
+
+587. Export multi-frame folders — ORIG
+
+
+588. Capture session naming — ORIG
+
+
+589. Thumbnail strip of last burst — camera roll on-camera (not gallery). ADA
+
+
+590. Undo last capture — delete last file quickly. ADA
+
+
+591. Photo counter per session — ORIG
+
+
+592. Settings export as text — reproducibility. ORIG
+
+
+593. Crash-free recovery on resume — state restore. ORIG
+
+
+594. Camera permission graceful downgrade — ORIG
+
+
+595. Storage permission guidance UI — exists. OBS
+
+
+596. One-handed mode layout option — minimal structural change. OBS
+
+
+597. Left/right handed shutter position — move shutter mirror. OBS
+
+
+598. Button mapping (volume=custom) — OBS
+
+
+599. Double-tap power = camera — system feature. OBS
+
+
+600. Battery-saver capture mode — ORIG
+B2. IMAGE QUALITY PROCESSING (101-200)
+
+
+601. Y-only sharpening — RES
+
+
+602. Chroma denoise separate — RES
+
+
+603. Luma denoise strength — RES
+
+
+604. Denoise preview — realtime toggle. OBS
+
+
+605. Noise reduction auto scene-aware — ADA
+
+
+606. Contrast curve presets — flat/log/normal. OBS:log video
+
+
+607. Log profile save (YUVCamLog) — flat YUV for grading. ADA
+
+
+608. Highlight recovery attempt — soft clip. RES
+
+
+609. Shadow lifting with noise control — RES
+
+
+610. Saturation control — OBS
+
+
+611. Hue rotation control — OBS
+
+
+612. Vibrance vs saturation split — OBS
+
+
+613. Tint control — OBS
+
+
+614. Temperature control — exists. OBS
+
+
+615. Black level adjust — OBS
+
+
+616. White point adjust — OBS
+
+
+617. Gamma adjust — OBS
+
+
+618. Tone curve editor (points) — OBS:Snapseed-like
+
+
+619. Split toning — OBS
+
+
+620. Color grading LUT import — OBS
+
+
+621. ACES-like output option — RES
+
+
+622. Film emulation presets — OBS
+
+
+623. Grain simulation — OBS
+
+
+624. Vignetting control — add/remove. OBS
+
+
+625. Chromatic aberration correction — RES
+
+
+626. Lens distortion correction — RES
+
+
+627. Perspective correction — OBS
+
+
+628. Rotation assist — gyro-level rotation at save. OBS
+
+
+629. Auto straighten — OBS
+
+
+630. Crop presets (3:2, 4:3, 1:1) — OBS
+
+
+631. 2x / 4x digital zoom with super-res — RES
+
+
+632. Smart zoom (multi-frame) — RES
+
+
+633. Upscale luma only — ORIG
+
+
+634. Debayer sim (false color) — ORIG
+
+
+635. Chroma noise graph — ORIG
+
+
+636. Dynamic range optimizer — local tone. OBS:OpenCamera DRO
+
+
+637. HDR+ lite — burst merge with alignment. RES
+
+
+638. Low-light mode with auto burst — OBS
+
+
+639. Multi-frame temporal noise reduction ON by default (night) — RES
+
+
+640. Sharpness preview micro-contrast — ORIG
+
+
+641. Edge enhancement level — OBS
+
+
+642. Noise vs detail tradeoff slider — ORIG
+
+
+643. Texture preservation mode — keep cloth/hair detail. ORIG
+
+
+644. Smooth skin mode (face-aware soften) — OBS
+
+
+645. Clarity (local contrast) slider — OBS
+
+
+646. Micro-contrast slider — OBS
+
+
+647. Dehaze slider — OBS
+
+
+648. Import deghost strength — RES
+
+
+649. Merge radius control — ORIG
+
+
+650. Alignment strength control — ORIG
+
+
+651. Stack count preview — ORIG
+
+
+652. Output bit-depth selectable (8/10-bit) — ORIG
+
+
+653. Dithering toggle — RES
+
+
+654. Banding guard — noise dither. RES
+
+
+655. WB from face — face-based WB. OBS
+
+
+656. WB from sky — landscape WB. ORIG
+
+
+657. WB lock indicator — ORIG
+
+
+658. Flash WB compensation — OBS
+
+
+659. Flash exposure compensation — OBS
+
+
+660. LED fill light intensity — OBS
+
+
+661. Flash burst (low-light) — multiple flashes. ORIG
+
+
+662. High-speed sync sim — short shutter with flash. ORIG
+
+
+663. Red-eye reduction flash — OBS
+
+
+664. Fill-flash balance — OBS
+
+
+665. Front flash (screen bright) — OBS
+
+
+666. Torch mode — exists. OBS
+
+
+667. Torch auto in night — ORIG
+
+
+668. Anti-flicker manual Hz — exists. OBS
+
+
+669. Scene-adaptive WB — auto WB per detected scene. OBS
+
+
+670. Memory colors tweak — sky/grass/skin. RES
+
+
+671. Gamut soft-proof to sRGB — RES
+
+
+672. Display-P3 output option — RES
+
+
+673. Preview color accuracy calibration — display profile. RES
+
+
+674. Reference white overlay — 18% gray patch in preview. ORIG
+
+
+675. Middle gray exposure target — OBS
+
+
+676. Zone system overlay — zones I-X. ADA
+
+
+677. Exposure bias in thirds readout — OBS
+
+
+678. Shutter count estimate — ORIG
+
+
+679. Lens info display — focal length, aperture if known. OBS
+
+
+680. Sensor info display — OBS
+
+
+681. EXIF-lite sidecar completeness — all settings. ORIG
+
+
+682. Per-shot processing log — ORIG
+
+
+683. Capture settings diff viewer — compare two shots. ORIG
+
+
+684. Batch reprocess with same settings — ORIG
+
+
+685. Recipe presets (landscape/night/macro) — OBS
+
+
+686. Default save format choice UI — current YUV+txt core. OBS
+
+
+687. Sidecar enrichment: GPS, gyro, thermal — ORIG
+
+
+688. Sidecar enrichment: scene tags — ORIG
+
+
+689. Sidecar JSON+txt dual — ORIG
+
+
+690. Timestamp accuracy display — ORIG
+
+
+691. Shutter lag display — ORIG
+
+
+692. Capture timestamp sync to GPS time — ORIG
+
+
+693. Interval precision display — ORIG
+
+
+694. Dropped frame record — ORIG
+
+
+695. AF/AE final values recorded — ORIG
+
+
+696. Merge frames count record — ORIG
+
+
+697. Processing duration metric — ORIG
+
+
+698. Firmware version in sidecar — ORIG
+
+
+699. Lens profile ID in sidecar — ORIG
+
+
+700. Scene luminance estimate in sidecar — ORIG
+B3. MONITORING & ANALYSIS (201-300)
+
+
+701. Live histogram overlaid — exists (improve % readouts). OBS
+
+
+702. Histogram RGB mode — OBS
+
+
+703. Histogram luma mode — OBS
+
+
+704. Histogram zoom region — ORIG
+
+
+705. Histogram averages display — mean/median. ORIG
+
+
+706. Clipping % readout — OBS:MotionCam
+
+
+707. Per-channel clip % — ADA
+
+
+708. Zebra on highlights — exists. OBS
+
+
+709. Zebra on shadows control — ORIG
+
+
+710. Zebra level slider — OBS
+
+
+711. Peaking color selection — OBS
+
+
+712. Peaking luminance mode — OBS
+
+
+713. Focus distance readout — ADA:ProShot
+
+
+714. DOF preview — ORIG
+
+
+715. Hyperfocal indicator — OBS
+
+
+716. Sharpspot meter (tap point) — ORIG
+
+
+717. Blur warning — motion risk. ORIG
+
+
+718. Handshake indicator — ORIG
+
+
+719. Tripod detect icon — ORIG
+
+
+720. Exposure time warning under flicker — ORIG
+
+
+721. Thermal warning — ORIG
+
+
+722. Free-space warning — OBS
+
+
+723. Battery warning in capture — OBS
+
+
+724. High-ISO noise warning — ORIG
+
+
+725. Slow-shutter blur simulation preview — ORIG
+
+
+726. Motion blur preview — gyro projected motion. ORIG
+
+
+727. Pan tilt meter — ORIG
+
+
+728. Roll meter (level) — OBS
+
+
+729. Gyro stability graph — ORIG
+
+
+730. Astro tracker hint — star movement speed. ORIG
+
+
+731. File count session — ORIG
+
+
+732. Capture rate limit — avoid thermal. ORIG
+
+
+733. Thermal-based max burst — ORIG
+
+
+734. CPU load during processing — ORIG
+
+
+735. Memory pressure indicator — ORIG
+
+
+736. Buffer queue depth — ORIG
+
+
+737. Preview frame latency measure — ORIG
+
+
+738. Shutter-to-frame delay measure — ORIG
+
+
+739. AF time measure — ORIG
+
+
+740. AE settle time measure — ORIG
+
+
+741. Focus score number — ORIG
+
+
+742. Scene brightness number (lux-ish) — ORIG
+
+
+743. Color temperature readout — OBS
+
+
+744. ISO readout — exists. OBS
+
+
+745. Shutter readout — exists. OBS
+
+
+746. EV readout — exists. OBS
+
+
+747. Focus distance readout — ADA
+
+
+748. Zoom ratio readout — OBS
+
+
+749. Digital zoom crop indicator — OBS
+
+
+750. OIS status indicator — OBS
+
+
+751. HAL status indicator — ORIG
+
+
+752. Model/temperature in HUD — ORIG
+
+
+753. Night sky visible meter — ORIG
+
+
+754. Moon phase hint — ORIG
+
+
+755. Sun position overlay — golden hour. OBS
+
+
+756. Blue hour indicator — ORIG
+
+
+757. Weather-ish light quality hint — ORIG
+
+
+758. Scene type label — ORIG
+
+
+759. Focus risk zones overlay — ORIG
+
+
+760. Edge blur map — ORIG
+
+
+761. Saturation clip map — ORIG
+
+
+762. Chroma noise map overlay — ORIG
+
+
+763. Luma noise map overlay — ORIG
+
+
+764. Band detection warning — ORIG
+
+
+765. Smeared highlight warning — ORIG
+
+
+766. Purple fringe indicator — ORIG
+
+
+767. Planar detail indicator (RS) — ORIG
+
+
+768. Pixel pitch estimate display — ORIG
+
+
+769. Sensor crop factor display — ORIG
+
+
+770. Focal length equivalent — ORIG
+
+
+771. Aperture estimate (EXIF) — OBS
+
+
+772. Lens profile name — ORIG
+
+
+773. Multi-camera capabilities table — ORIG
+
+
+774. Camera2 feature matrix view — ORIG
+
+
+775. Manual control availability list — ORIG
+
+
+776. Max ISO/shutter limits display — OBS
+
+
+777. Stabilization modes list — OBS
+
+
+778. Video-stab irrelevant → Focus modes list — OBS
+
+
+779. Scene modes list — OBS
+
+
+780. Tone map modes — OBS
+
+
+781. Test pattern generator (built-in) — ORIG
+
+
+782. Color bars preview — OBS
+
+
+783. Grayscale ramp test — ORIG
+
+
+784. Focus chart preview — ORIG
+
+
+785. Sharpness chart preview — ORIG
+
+
+786. Sweep chart generator — ORIG
+
+
+787. Chart capture mode — auto-detect chart. ORIG
+
+
+788. Flat-field capture helper — RES
+
+
+789. Dark frame capture helper — RES
+
+
+790. Bias frame capture helper — RES
+
+
+791. Calibration frame library UI — RES
+
+
+792. Calibration application toggle — RES
+
+
+793. Calibration before/after preview — RES
+
+
+794. Flat-corrected preview — RES
+
+
+795. Dark-subtracted preview — RES
+
+
+796. Defect-corrected preview — RES
+
+
+797. Defect map visualization — RES
+
+
+798. Noise profile graph — RES
+
+
+799. ISO invariance graph — RES
+
+
+800. Dynamic range test capture — RES
+B4. FOCUS & EXPOSURE SYSTEMS (301-400)
+
+
+801. Focus peaking in zoomed loupe — OBS
+
+
+802. AF fine-tune (back/front focus) — RES
+
+
+803. Focus limiter UI — OBS
+
+
+804. Focus distance presets (macro/portrait/infinity) — OBS
+
+
+805. Focus pull between presets — ORIG
+
+
+806. Hyperfocal one-tap — OBS
+
+
+807. Infinity one-tap — OBS
+
+
+808. Macro one-tap — OBS
+
+
+809. AF-on back button style — ADA:DSLR
+
+
+810. Half-press AF lock — ADA:DSLR
+
+
+811. AF area size control — OBS
+
+
+812. AF area shape (zone/center/wide) — OBS
+
+
+813. AF tracking sensitivity — OBS
+
+
+814. AF speed preference (fast/accurate) — OBS
+
+
+815. Focus confirmation beep — OBS
+
+
+816. Focus confirmation flash — ORIG
+
+
+817. Manual focus with AF-assist zoom — OBS
+
+
+818. Focus scale in feet/meters — OBS
+
+
+819. Focus marks (7/14px style) — OBS
+
+
+820. DOF marks on slider — ADA
+
+
+821. Exposure metering mode quick cycle — OBS
+
+
+822. EV fine adjust 1/3 in auto — OBS
+
+
+823. AE bracket with focus lock — OBS
+
+
+824. Exposure timer (auto long exposure) — ORIG
+
+
+825. Auto ND filter emulation — RES
+
+
+826. Highlight-weighted metering — OBS
+
+
+827. Backlight compensation — OBS
+
+
+828. Face exposure priority — OBS
+
+
+829. Multi-face average WB/exposure — OBS
+
+
+830. Scene DR estimate text — ORIG
+
+
+831. ISO auto with max limit — OBS
+
+
+832. Shutter auto with max limit — OBS
+
+
+833. EV lock with shift — ORIG
+
+
+834. Exposure shift memory — ORIG
+
+
+835. AEL button hold behavior — OBS
+
+
+836. Metering linked to zoom — ORIG
+
+
+837. Exposure equalization for HDR pair — RES
+
+
+838. Bracket order control — ORIG
+
+
+839. Bracket interval control — ORIG
+
+
+840. Bracket revert on failure — ORIG
+
+
+841. Long exposure timer with progress — OBS
+
+
+842. Bulb mode with stopwatch — OBS
+
+
+843. Interval shoot with exposure ramp — ORIG
+
+
+844. Astro exposure advisor (500 rule) — OBS
+
+
+845. Star trail stack settings — ORIG
+
+
+846. Night mode ISO cap — ORIG
+
+
+847. Night mode shutter floor — ORIG
+
+
+848. Night mode stack target — ORIG
+
+
+849. HDR exposure pair preview — ORIG
+
+
+850. HDR alignment strength — ORIG
+
+
+851. HDR ghost threshold — ORIG
+
+
+852. HDR output select (natural/vivid) — OBS
+
+
+853. **HDR raw-ish side
+▣  Compaction · DeepSeek V4 Flash Free · 5m 30s
+
+
+
+Thought: 3.3s
+Continuing deliverable (chat-only, no file writes — plan mode). Category A done (500). Completing Category B (B354-B500), then priority lists, roadmap, final 30 shortlist.
+CATEGORY B — CONTINUED
+B4. FOCUS & EXPOSURE (cont.)
+
+
+354. HDR merge with exposure normalization — gain-match frames pre-merge. RES
+
+
+355. Stack memory guard — auto frame cap by RAM. ORIG
+
+
+356. Stack progress % — visible merge progress. ORIG
+
+
+357. Stack cancel button — abort processing safely. ORIG
+
+
+358. Stack result preview vs single — A/B slider. ORIG
+
+
+359. Burst frame count auto-adaptive — light-dependent. ORIG
+
+
+360. Auto stack on tripod detect — long exposure when stable. ORIG
+B5. TIMELAPSE, INTERVAL, MOTION (361-400)
+
+
+361. Interval with total time display — OBS
+
+
+362. Interval with stop time — OBS
+
+
+363. Frame-count estimate for timelapse — ORIG
+
+
+364. Timelapse preview (in-camera) — quick GIF-made-from-stills check. ORIG
+
+
+365. Timelapse settings lock (AE/AF/WB fixed) — OBS
+
+
+366. Timelapse exposure ramp day→night — ORIG
+
+
+367. Timelapse focus drift correction — re-AF every N frames. ORIG
+
+
+368. Motion-triggered interval — shoots only when scene changes. RES
+
+
+369. Intrusion capture (time-lapse security) — motion → burst. RES
+
+
+370. Burst trigger on motion (auto) — RES
+
+
+371. Burst trigger on sound — laugh/clap. OBS
+
+
+372. Burst trigger on smile (simple) — OBS
+
+
+373. Manual capture queue — shots queued for processing. ORIG
+
+
+374. Auto exposure normalized bursts — same EV across burst. OBS
+
+
+375. Gyro-synced capture — fire at motion minima. ORIG
+
+
+376. Pan-sync panorama trigger — ORIG
+
+
+377. Shake compensation count — how many frames merged to fix shake. ORIG
+
+
+378. Long-exposure ND sim strength — RES
+
+
+379. Long-exposure star mode ISO floor — ORIG
+
+
+380. Light trail mode length setting — ORIG
+
+
+381. Light painting brush mode (brightness threshold) — ORIG
+
+
+382. Motion blur reduction mode (sports) — short shutter + burst. OBS
+
+
+383. Freeze mode (fast subjects) — high shutter + ISO budget. OBS
+
+
+384. Panning assist mode — horizontal stable gyro guide. ORIG
+
+
+385. Tracking burst — follow subject with AF re-target. ORIG
+
+
+386. Focus-during-burst — re-focus between frames. ORIG
+
+
+387. Recompose-after-lock workflow — AE/AF lock, reframe, shoot. OBS
+B6. WORKFLOW / SESSION MANAGEMENT (388-420)
+
+
+388. Session log file — auto text log of session. ORIG
+
+
+389. Session export (settings+files) — ORIG
+
+
+390. Shot list view (contact sheet) — thumbnails of session. ORIG
+
+
+391. Batch rename — OBS
+
+
+392. Copy-to-other-folder — OBS
+
+
+393. Recents strip in viewfinder — last 5 thumbnails. OBS
+
+
+394. Recents tap to reopen settings — ORIG
+
+
+395. Undo (delete last) — ORIG
+
+
+396. Swipe gestures for quick modes — OBS
+
+
+397. Mode memory per camera — ORIG
+
+
+398. Startup mode selection — last used mode. OBS
+
+
+399. Startup camera selection — OBS
+
+
+400. Preset swipe (ast/macro/night) — OBS
+
+
+401. Save format indicator in HUD — YUV+txt visible. ORIG
+
+
+402. Processing indicator (busy dot) — ORIG
+
+
+403. Failed-capture toast with cause — ORIG
+
+
+404. Capture disabled reason display — ORIG
+
+
+405. Storage path display — OBS
+
+
+406. Folder picker with SD card option — OBS
+
+
+407. Auto-folder per date — OBS
+
+
+408. Custom folder naming pattern — OBS
+
+
+409. Move-old-files cleanup helper — ORIG
+
+
+410. Low storage auto-delete temp — ORIG
+
+
+411. Backup helper (copy to second storage) — ORIG
+
+
+412. File size estimate before burst — ORIG
+
+
+413. Remaining-shots estimate — ORIG
+
+
+414. Compression toggle (future 10-bit) — ORIG
+B7. PLATFORM / ROSBUSTNESS (415-445)
+
+
+415. Camera reopen recovery — auto after crash. ORIG
+
+
+416. Session state save on pause — ORIG
+
+
+417. Permission re-check flow — OBS
+
+
+418. Android 14+ partial photo access guidance — OBS
+
+
+419. Error log to file — ORIG
+
+
+420. Error log share button — ORIG
+
+
+421. Thermal throttle display — ORIG
+
+
+422. Battery temperature display — ORIG
+
+
+423. CPU governor-friendly processing — background thread priority. ORIG
+
+
+424. Wake lock during processing — ORIG
+
+
+425. Screen-dim capture mode — ORIG
+
+
+426. Stability test mode — 100-shot stress test. ORIG
+
+
+427. Memory leak watchdog — ORIG
+
+
+428. Frame queue watchdog — ORIG
+
+
+429. Camera HAL version display — OBS
+
+
+430. Device codename display — ORIG
+
+
+431. Camera characteristics export — ORIG
+
+
+432. Stream configuration explorer — ORIG
+
+
+433. Max resolution list — OBS
+
+
+434. Resolution selector with aspect — OBS
+
+
+435. Resolution auto-fit to sensor — OBS
+
+
+436. Frame rate selector — OBS
+
+
+437. Preview fps selector — OBS
+
+
+438. Buffer count setting — ORIG
+
+
+439. Use-cases presets (max quality / low latency) — ORIG
+
+
+440. HAL1 fallback info — ORIG
+
+
+441. Legacy mode warning — ORIG
+
+
+442. Online docs link — OBS
+
+
+443. In-app changelog — OBS
+
+
+444. Diagnostics screen (self-test) — ORIG
+
+
+445. Send diagnostics via share — ORIG
+B8. UI / UX / ACCESSIBILITY (446-475)
+
+
+446. One-handed reach layout — OBS
+
+
+447. Dark theme only (camera-first) — OBS
+
+
+448. Large shutter button option — OBS
+
+
+449. Pause/hide controls mode — clean view. OBS
+
+
+450. All controls hidden (pure viewfinder) — OBS
+
+
+451. Volume key functions mapping — OBS
+
+
+452. Gesture shutter (double-tap) — OBS
+
+
+453. Long-press shutter = burst — OBS
+
+
+454. Shutter side switch (left/right) — OBS
+
+
+455. HUD text size adjust — ORIG
+
+
+456. HUD opacity adjust — ORIG
+
+
+457. Overlay dimming — ORIG
+
+
+458. Sensor info on long-press — ORIG
+
+
+459. Quick settings drawer — ORIG
+
+
+460. Favorites row — user-pinned controls. ORIG
+
+
+461. Contextual help (fingertip) — ORIG
+
+
+462. First-run wizard (manual vs auto) — OBS
+
+
+463. Beginner/Expert mode switch — OBS
+
+
+464. Expert mode hides wizards — ORIG
+
+
+465. Keyboard shortcuts (hardware) — OBS
+B9. EXPORT / SHARE / INTEROP (476-495)
+
+
+466. Export processed PNG from YUV — explicit opt-in. OBS
+
+
+467. Export JPEG — opt-in. OBS
+
+
+468. Export DNG-like sidecar (10-bit container) — RES
+
+
+469. Export contact sheet PDF — ORIG
+
+
+470. Share YUV+txt bundle — direct share. ORIG
+
+
+471. Zip session export — ORIG
+
+
+472. FTP-like network copy — ORIG
+
+
+473. WebDAV export — ORIG
+
+
+474. USB storage export — OBS
+
+
+475. Export to app-specific folder only — ORIG
+
+
+476. Conversion worker with progress — ORIG
+
+
+477. Batch convert folder — ORIG
+
+
+478. Preview in external viewer intent — OBS
+
+
+479. Custom MIME intent — ORIG
+
+
+480. Filename timestamp sort — OBS
+B10. LONG TAIL (491-500)
+
+
+481. Embedded scene notes audio — voice memo. OBS
+
+
+482. Mood preset (scenery tags) — ORIG
+
+
+483. Solar/lunar event reminders — ORIG
+
+
+484. Golden hour timer — ORIG
+
+
+485. Blue hour timer — ORIG
+
+
+486. Star visibility forecast-ish — ORIG
+
+
+487. Weather-light hint — ORIG
+
+
+488. Shutter count odometer — ORIG
+
+
+489. Device health report — thermal/latency/drops. ORIG
+
+
+490. Version-skew detector (sidecar vs app) — ORIG
+PRIORITY LISTS (10)
+P0 — Foundation (ship first): B1-B10, B18, B22, B25, B54, B92, B133, B147, B154, B168, B223, B255, B276, B278, B284, B306, B334, B416, B418, B421, B423, B458, B476, B484, B487, B493 — core controls, storage, recovery, HUD.
+P1 — Quality & pro scope: B11, B12 (fine), B102-B104, B133, B136, B138, B144, B173, B185, B201, B208, B212, B241, B242, B243, B248, B255, B259, B260, B291, B309, B329, B332, B333, B347, B349, B352, B353 — exposure/focus/WB meters + YUV denoise.
+P2 — Computational: A53, A59, A61, A80, A81, A86, A94, A96, A99, A111, A137, A146, A150, A163, A170, A330, A336, A343, A348, A352, A367 — alignment, merge, ghost handling.
+P3 — Night/astro: A35, A86, A387, A388, A441-A447, A463, B67, B68, B80, B88, B344-B347 — night stacking + astro cal frames.
+P4 — Scopes: A266-A269, A271, A275, A279, A283, A288, A295, A299, A316, B14-B17, B204, B205, B210 — monitor overlays.
+P5 — Calibration: A1-A10, A16-A20, A28, A33, A38, A41-A45, A120, A129, A134, A139, A142, B287-B300 — sensor maps, noise models, chart modes.
+P6 — Multi-frame systems: A51, A52, A56, A57, A62, A63, A66, A71, A75, A79, A84, A88, A90, A97, A100, A107, A108, A110, A123, A125, A128 — burst core.
+P7 — HDR & DR: A80, A111, A114, A121, A122, A125, A126, A143, A144, A146, A147, B137, B349-B356 — DR-first capture.
+P8 — Workflows: A345, A346, A351, A353, A358, A362, A363, A371, A373, A376, A383, A398, A404, A406, A408, A419, A420, A425, A428, A431, A433, B389-B414 — session/sidecar/batch.
+P9 — Creative: A371-A430, B378-B387 — motion/creative sims.
+P10 — Sci/robust: A431-A475, A476-A500, B415-B445 — diagnostics & reliability.
+ROADMAP (8 phases)
+
+
+491. Foundation — existing controls hardened + P0 list + recovery (B416, B418, B421).
+
+
+492. Scope trio — histogram% + zebra% + peaking threshold (B201, B208-B211) → v1.5.
+
+
+493. Burst engine — capture/queue/buffer watchdog → stacking core (A56, A57, A86).
+
+
+494. Night/astro — night stack + dark/bias/flat capture (A441-A447).
+
+
+495. Scopes complete — waveform, parade, vectorscope (A266-A269).
+
+
+496. Calibration suite — hot-pixel, noise model, exp. invariance (A1-A10).
+
+
+497. Computational polish — ETTR YUV, exp fusion, ghost control (A80, A111-A126).
+
+
+498. Creative + diagnostics — motion trails, light painting, sci modes, export tools.
+FINAL 30 SHORTLIST (phase-ordered, highest signal)
+
+
+499. B416 Camera reopen recovery — zero-crash photography.
+
+
+500. B421 Thermal display — instrumentation that prevents meltdown captures.
+
+
+501. A86 Tripod-detect stacking — auto long-exposure when stable.
+
+
+502. A56 Temporal median stack — first real burst product.
+
+
+503. A51 Lucky-frame picker — first burst quality filter.
+
+
+504. A441 Star stacking + darks — astronomy differentiator YUV apps lack.
+
+
+505. A111 ETTR YUV guide — DR-max capture; core philosophy.
+
+
+506. A113 Highlight-protect AE — never blow skies.
+
+
+507. A114 Shadow-priority AE — never crush blacks.
+
+
+508. A80 Mertens YUV exposure fusion — HDR without tone-map artifacts.
+
+
+509. B137 HDR+ lite merge — burst HDR with alignment (P2 core).
+
+
+510. A35 Tripod detector (gyro) — plumbing for #3.
+
+
+511. A37 Zero-shake shutter — decisive-moment firing.
+
+
+512. A38 Hold-quality score — gamified steadiness; builds astro habit.
+
+
+513. A266 Waveform monitor — Blackmagic-grade exposure confidence.
+
+
+514. A267 RGB parade — channel truth beyond Y.
+
+
+515. A269 Vectorscope + skin line — WB trust.
+
+
+516. A275 False-color exposure — professional exposure language.
+
+
+517. A279 Zebra % dial — calibrated highlight safety.
+
+
+518. A283 Focus heat map — focus confidence everywhere.
+
+
+519. A241 Monochrome from Y only — pure luma quality demo; YUV-native.
+
+
+520. A1 Hot-pixel map — defect era: sensor health matters.
+
+
+521. A7 CA calibration — lens truth; also enables A201 focus assist.
+
+
+522. A12 ISO invariance tester — teaches shooters their sensor; matches MotionCam ISO philosophy.
+
+
+523. A95 Auto burst length advisor — adaptive stack size from light.
+
+
+524. B293 Calibration before/after preview — visible proof flat/dark fixed it.
+
+
+525. A355 Recipe profiles — reproducible processing per scene.
+
+
+526. B357 Stack progress + A/B preview — process confidence loop.
+
+
+527. A431-Flat-field macro — scientific imaging press; "YUVCam does lab work".
+
+
+528. B480 Share YUV+txt bundle — closing the loop: researchers can consume YUVCam output directly.
+All 1000 ideas delivered (A: 500, B: 500). Priority keys, roadmap, shortlist complete. Stop here? Or want condensed per-cluster deep-dives (e.g., full spec for top 30: API classes, algorithms, complexity estimates) — say so.
+
+
