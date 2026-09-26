@@ -1,0 +1,2178 @@
+Unauthorized
+Payment Required                                        Forbidden
+Not Found                                               Method Not Allowed
+Not Acceptable                                          Proxy Authentication Required
+Request Timeout                                         Gone
+Conditional Request Failed                              Request Entity Too Large                                Request-URI Too Long
+Unsupported Media Type                                  Unsupported URI Scheme                                  Unknown Resource-Priority
+Bad Extension                                           Extension Required
+Session Interval Too Small                              Interval Too Brief                                      Bad Location Information
+Use Identity Header                                     Provide Referrer Identity
+Flow Failed                                             Anonymity Disallowed
+Bad Identity-Info                                       Unsupported Certificate                                 Invalid Identity Header
+First Hop Lacks Outbound Support                        Max-Breadth Exceeded
+Bad Info Package                                        Consent Needed                                          Temporarily Unavailable
+Call/Transaction Does Not Exist                         Loop Detected
+Too Many Hops                                           Address Incomplete
+Ambiguous                                               Busy Here
+Request Terminated                                      Not Acceptable Here
+Bad Event                                               Request Pending
+Undecipherable                                          Security Agreement Required
+Internal Server Error                                   Not Implemented                                         Bad Gateway
+Service Unavailable                                     Server Time-out                                         Version Not Supported
+Message Too Large                                       Push Notification Service Not Supported
+Precondition Failure                                    Busy Everywhere
+Decline                                                 Does Not Exist Anywhere                                 Unwanted
+Rejected                                                TEF_ES_V004
+TEF_AR_V007                                             TEF_BR_SV_V006                                          TEF_BR_SG_V006
+TEF_BR_SF_V009                                          TEF_FBR_V001
+TEF_CL_V002                                             TEF_CO_V006
+TEF_PE_V004                                                     aspcmd.c                                        cmd = %s
+fail to execute, cmd = %s                               exit code is not expected '0', ret = %d, cmd = %s
+sHwModel == NULL || ImgVersion == NULL || sCutVersion == NULL || nSize <= 0                                     RTF8115VW                                               RTF8117VW                                               R8115VW
+R8117VW                                                 %s%c                                                    %s is not support                                       TEF-%s                                                  s00.00_                                                 /var/defcfg/default_config.info
+no default config info, filename = %s/%s                /var/defcfg
+default_config.info
+UNSPEC
+fail to get default config info                         fail to trim_string default config info
+fail to cut token                                       tef_keyword = [%s]                                      fail to parsing TEF
+tef_country_id is unsupported, tef_country_id = %s      tef_country_id = %s
+tef_cfg_version = %s                                    /var/config/aspcm.conf
+fail to fopen(), filename = %s/%s                       CUSTOMIZATION=%s
+TEF_MIG_REC=%s
+no configuration file, filename = %s/%s
+/var/config                                             aspcm.conf
+fail to parse_config(), str = %s                        key = %s, value = %s
+CUSTOMIZATION                                           TEF_MIG_REC
+fail to malloc(), out of memory                         duplicated, REC[%d] tef_mig_rec_list = %s
+fail to realloc(), out of memory                        REC[%d] tef_mig_rec_list = %s
+fail to save_config()
+TEF-                                                    target_country_id = %s
+fail to trim_string()                                   fail to parse_tef_config_info()
+/var/config/default_config.info                         no current config info, filename = %s/%s
+target_country_id (%s), base_country_id (%s) are unmatched                                                      def_country_id (%s), base_country_id (%s) are unmatched
+mig_version = %s, base_version = %s                     base_version = %s, def_version = %s
+TEF_%s_%s                                               [MIGRATION] %s: none
+[MIGRATION] %s: [%s] --> [%s]
+msg_hdr is NULL                                         cmd_hdr is NULL                                         cmd_buf is NULL
+cmd_len is mismatched
+arg.level is invalid                                    set log level = %s
+QUITE                                                   ERROR                                                   WARNING
+INFO                                                    DEBUG
+Unknown                                                 pfail to BootstrapUtilGetInfo()
+-compact                                                %s_%s_%s                                                bldr_version = %s
+img_commit = %s                                         img_active = %s                                         img_valid[%d] = %s
+img_version[%d] = %s
+asp_img_commit                                          fail to BootenvUtilGetValue()                           PART_0
+PART_1
+asp_gpon_sn                                             asp_gpon_sn = %s                                        ethaddr
+ethaddr = %s                                            mtd is NULL
+fail to open %s                                         fail to MEMGETINFO                                      fail to MEMERASE
+filename is NULL                                        size = %u, erasesize = %u, writesize = %u, oobsize = %u
+fail to get file size of %s                             file_size = %d
+oversize, max_data_size = %d
+out of memory                                           fail to seek, offset = %d
+fail to write, offset = %d                              src_id is NULL
+src_id = %s, filename is invalid
+cp -Hpf %s %s/%s                                        /persist/defcfg                                         asp_cfg
+src_id = %s, fail to 'cp -Hpf %s %s/%s'
+src_id = %s, update '%s' to default configuration       src_id = %s, fail to BootstrapUtilGetInfo()             %s/%u
+/var/cm                                                 mkdir -p %s
+src_id = %s, fail to 'mkdir -p %s', ret = %d            tar -x -f %s -C %s
+src_id = %s, fail to untar %s, ret = %d                 rm -f %s ; sync ; echo 3 > /proc/sys/vm/drop_caches     src_id = %s, fail to delete %s, ret = %d
+%s/%s_%s.info                                           %s/%s_%s.tcboot.bin
+%s/%s_%s.tclinux.bin                                    cat %s | grep 'Bootloader version:'
+src_id = %s, fail to open %s                            Bootloader version: %s
+src_id = %s, fail to retrive bootloader version         the bootloader version %s does not support protection mechanism                                                 /dev/mtd%d
+src_id = %s, do not update bootloader, bldr_version = %ssrc_id = %s, fail to update mtd, mtd = %s, file = %s
+src_id = %s, updated bootloader, bldr_version = %s to %ssrc_id = %s, img_commit = %d, img_active = %d           src_id = %s, update '%s' to %s
+rm -rf %s && echo 3 > /proc/sys/vm/drop_caches          src_id = %s, fail to delete '%s', ret = %d
+has_img is NULL                                         has_cfg is NULL
+rm -f %s && echo 3 > /proc/sys/vm/drop_caches           src_id = %s, fail to scandir(), err = %s
+%s/%s                                                   src_id = %s, '%s' is an image file
+src_id = %s, fail to update_image()                     src_id = %s, '%s' is a config file, postpone            src_id = %s, '%s' is an unknown file, ignore
+src_id = %s, '%s' is a config file                      src_id = %s, fail to update_default_config()
+file_config_info = %s                                   file_cust_value = %s
+update default config to tef_br_default                 cp -Hpf %s %s/%s.%s                                     src_id = %s, fail to 'cp -Hpf %s %s/%s.%s'
+src_id = %s, update '%s' to default configuration for %s[[[BUG]]] upgrade by BAD merged image to %s or %s, please check the content of image                            upgrade by merged image to %s or %s                     setup default config for %s
+cp -Hpf %s/%s.%s %s/%s                                  upgrade by old merged image to %s
+rm -rf %s/%s.%s                                         rtf_def_area
+bootenv %s = %s
+mis-matched bootenv %s (%s)                             fail to BootenvUtilSetValue()                           fail to BootenvUtilSaveData()
+reset bootenv %s = %s
+no bootenv %s, reset to %s                              setup bootenv %s = %s
+upgrade by merged image to other country                arg is NULL                                             echo 3 > /proc/sys/vm/drop_caches
+fail to drop cache, ret = %d                            src_id = %s, fail to AspFmSetEvent(FIRMWARE_UPGRADE)
+src_id = %s, cmd_len is mismatched                      arg.filename = %s
+src_id = %s, arg.filename is invalid                    update default config to other country                  sync
+src_id = %s, fail to update_merged_image()              src_id = %s, there is no img and cfg                    rm -f %s
+src_id = %s, fail to AspFmClearEvent(FIRMWARE_UPGRADE)
+src_id = %s, fail to AspIilAsyncReturn(), err = %s      OVERSIZE                                                BAD_PARAM
+NO_MEM
+TX_FAIL                                                 RX_FAIL                                                 TIMEOUT
+UNKNOWN_SRC_ID                                          UNKNOWN_DST_ID
+UNKNOWN_COMM                                            MISMATCH_COMM                                           UNSUPPORT
+UNKNOWN_CMD                                             BAD_CMD
+BAD_RET                                                 MISMATCH_CMD_LEN
+UNKNOWN_EVT
+BAD_EVT                                                 MISMATCH_EVT_LEN
+CONFLICT_ID                                             BUSY
+arg.filename is invalid
+image is updating                                       fail to pthread_create(), err = %s                      src_id = %s, switch image, %s = %s
+arg.partition is invalid
+src_id = %s, commit image, %s = %s                      asp_img_activate                                        src_id = %s, activate image, %s = %s
+reg1 and reg2 are NULL                                  reg1 is NULL
+reg2 is NULL                                            aspcm_module_tbl = %p, inc = %d, cap = %d, size = %d
+module_entry[%d]: id = %s                               id is NULL                                              id is invalid
+index_target is NULL                                    found is NULL
+aspcm_module_tbl_size = %d, index_target = %d           found, index_lb = %d, index_target = %d
+found, index_mid = %d, index_target = %d                index_target = %d
+aspcm_module_tbl = %p, aspcm_module_tbl_cap = %d        found module, id = %s
+insert module: id = %s, aspcm_module_tbl_size = %d      id is not found, id = %s
+delete module: id = %s                                  aspcm_module_tbl_size = %d
+str is NULL                                             mac_addr is NULL                                        fail to strdup(), out of memory
+cd %s && echo `date -Iseconds` > %s.%s.%s_%s            asp_cfg_sig
+fail to generate signature, ret = %d                    cd %s && build_info >> %s.%s.%s_%s
+cd %s && echo "Manufacturer: Askey" >> %s.%s.%s_%s      cd %s && echo "HW Version: %d" >> %s.%s.%s_%s
+fail to string_to_hex_buf(asp_base_mac_value)           %02X%02X%02X%02X%02X%02X
+got serial number: %s                                   cd %s && echo "SerialNumber: %s" >> %s.%s.%s_%s         cd %s && ln -fs %s.%s.%s_%s %s
+fail to generate link to signature, ret = %d            src_id = %s, cfg has been reset, it needs to reboot immediately                                                 src_id = %s, cfg has been restore, it needs to reboot immediately                                               src_id = %s, need to save configuration
+src_id = %s, fail to AspFmSetEvent(CONFIG_DOWNLOAD)     fail to AspCmDecryptConfigFile()
+tar -ztf %s %s                                          there is no signature in %s
+[[[BUG]]] no min. required info, please check settings of tef_min_req_config_info_table                         src_id = %s, prepare check
+rm -rf %s                                               fail to 'rm -rf %s', ret = %d
+src_id = %s, prepare working directory                  fail to 'mkdir -p %s', ret = %d
+src_id = %s, uncompress configuration                   tar -zxf %s -C %s                                       fail to 'tar -zxf %s -C %s', ret = %d
+no current config info, filename = %s                   grep -e CWMP_ACS_URL= -e CWMP_ACS_URL_LastConnected= -e CWMP_ACS_User= -e CWMP_ACS_Password= %s/%s/cwmp.conf | sed "s/\\\\/\\\\\\\\\\\\\\\\/g" | sed "s/\//\\\\\//g" | awk -F "=" '{printf "sed -i \"s/%%s=.*$/%%s/\" %s/cwmp.conf\n", $1, $0}'                                         saving                                                  fail to '%s'
+grep -e CWMP_ACS_URL= -e CWMP_ACS_URL_LastConnected= -e CWMP_ACS_User= -e CWMP_ACS_Password= %s/cwmp.conf | sed "s/\\\\/\\\\\\\\\\\\\\\\/g" | sed "s/\//\\\\\//g" | awk -F "=" '{printf "sed -i \"s/%%s=.*$/%%s/\" %s/cwmp.conf\n", $1, $0}'                                            fail to '%s', ret = %d
+cd %s && tar -zcf %s/%s *                               fail to prepare backup configuration file, ret = %d
+move downloadable %s/%s to %s                           mv -f %s/%s %s
+fail to 'mv -f %s/%s %s'                                minreq info: [%s][%s]                                   config info: [%s][%s]
+no config info of current configuration
+min_req_country_id, cfg_country_id are unmatched        cfg_version is lower than min_req_version               fail to AspCmEncryptConfigFile()
+/persist/config
+fail to restore %s to %s, ret = %d                      src_id = %s, configuration restored, filename = %s      src_id = %s, fail to AspFmClearEvent(CONFIG_DOWNLOAD)
+fail to 'rm -f %s', ret = %d                            src_id = %s, reset configuration
+cd %s && find . \( -name '*' -a ! -name 'lost+found' \) -maxdepth 1 -exec rm -rf {} \;                          fail to 'rm -f %s/*', ret = %d
+src_id = %s, reset backup                               /persist/bakcfg
+src_id = %s, reset status                               /persist/status
+src_id = %s, umount status
+umount -f %s                                            fail to 'umount -f %s', ret = %d
+src_id = %s, configuration reset
+soft_reset is not supported, customization = %s         src_id = %s, try to configuration soft_reset, customization = %s
+src_id = %s, prepare soft_reset configuration
+rm -rf %s/%s                                            soft_reset                                              mkdir -p %s/%s
+src_id = %s, copy config to working directory           cp -Hpf %s/%s %s/%s
+src_id = %s, decrypt configuration                      %s/%s/%s                                                tar -zxf %s/%s/%s -C %s/%s
+rm -rf %s/%s/%s                                         remove all the config that not relate to VOIP and PPP
+cd %s/%s; find . \( ! -name '.' -a ! -name 'asp_cfg_sig*' -a ! -name 'vsm_cfg_igd*' -a ! -name 'mapping_TR104_*' -a ! -name 'rtm_cfg_igd.*.ppp_intf.conf' \) -exec rm -rf {} \;                                                 src_id = %s, update to default
+cd %s; find . \( ! -name '.' -a ! -name 'asp_cfg_sig*' -a ! -name 'vsm_cfg_igd*' -a ! -name 'mapping_TR104_*' -a ! -name 'rtm_cfg_igd.*.ppp_intf.conf' \) -exec cp -af {} %s/%s \;
+remove all the config that not relate to PPP            cd %s/%s; find . \( ! -name '.' -a ! -name 'asp_cfg_sig*' -a ! -name 'rtm_cfg_igd.*.ppp_intf.conf' \) -exec rm -rf {} \;
+cd %s; find . \( ! -name '.' -a ! -name 'asp_cfg_sig*' -a ! -name 'rtm_cfg_igd.*.ppp_intf.conf' \) -exec cp -af {} %s/%s \;                                             remove all the config that not relate to VOIP
+cd %s/%s; find . \( ! -name '.' -a ! -name 'asp_cfg_sig*' -a ! -name 'vsm_cfg_igd*' -a ! -name 'mapping_TR104_*' \) -exec rm -rf {} \;
+cd %s; find . \( ! -name '.' -a ! -name 'asp_cfg_sig*' -a ! -name 'vsm_cfg_igd*' -a ! -name 'mapping_TR104_*' \) -exec cp -af {} %s/%s \;                               IGD_%s
+src_id = %s, update %s to default                       cd %s && grep -Hs %s rtm_cfg_igd.*.conf | awk -F ":" '{print $1 "=" $2}' | awk -F "=" '{printf "sed -i \"s/%%s=.*$/%%s=%%s/\" %s/%s/%%s\n", $2, $2, $3, $1}'
+SIP_NET_%s                                              cd %s && grep -Hs %s vsm_cfg_igd.1.service.*.sip_net.conf | awk -F ":" '{print $1 "=" $2}' | awk -F "=" '{printf "sed -i \"s/%%s=.*$/%%s=%%s/\" %s/%s/%%s\n", $2, $2, $3, $1}'
+%s/%s_reset                                             src_id = %s, generate %s
+cd %s/%s && tar -zcf %s *                               src_id = %s, encrypt configuration
+src_id = %s, save configuration to %s                   src_id = %s, backup configuration to %s
+src_id = %s, configuration soft_reset, customization = %s
+NONE                                                    IPV4_ADM_STATE                                          IPV6_ADM_STATE
+DNS_CLT_ADM_STATE                                       DNS_RELAY_ADM_STATE
+DNS_RELAY_CACHE_STATE                                   WEB_ADM_STATE
+WEB_PROTOCOL                                            CLI_ADM_STATE                                           CLI_PROTOCOL
+MGT_ACL_STATE                                           FWL_STATE
+FWL_TYPE                                                FWL_LEVEL_ID
+DHCPV4_SVR_ADM_STATE
+DHCPV6_SVR_ADM_STATE                                    IP_MCAST_ADM_STATE                                      RIP_ADM_STATE
+RADV_ADM_STATE
+TEF_WAN_SECURITY                                        TEF_ACCESS_CLASS
+TEF_WEB_TIMEOUT                                         DOMAIN_NAME                                             ALG_ADM_STATE_MASK
+TEF_WIFI_AGENT                                          TEF_SECURITY_AGENT
+TEF_SECURITY_COUNTRY                                    <ADM_STATE
+MEDIA_PROF_ID                                           MAX_SESSIONS                                            SIP_URI_SCHEME
+CLT_AUTH_METHOD
+CLT_AUTH_REALM                                          ORGANIZATION                                            USE_CODEC_PRIORITY_IN_SDP_RESPONSE
+TRANSMIT_SIP_OPTION
+CONFERENCE_CALL_REMOTE_MIXER_ENABLE                     CONFERENCE_CALL_DOMAIN_URI                              SIP_DSCP_MARK
+USER_AGENT_DOMAIN                                       IP_INTF_ID
+IPV4_ADDR_TYPE                                          IPV4_ADDR_ID                                            USER_AGENT_PORT
+USER_AGENT_TRANSPORT                                    ,unsupported, customization = %s
+/persist/defcfg/asp_cfg                                 fail to lstat(), err = %s
+%s/%s is a regular file
+fail to readlink(), err = %s                            %s.%s
+unknown target_filename, target_filename = %s
+arg.def_area is invalid                                 %s/%s.%s                                                %s is not found
+arg.def_area is unsupported
+ln -fs %s.%s %s/%s                                      fail to 'ln -fs %s.%s %s/%s'                            setup symlink %s -> %s.%s
+index is out of range, index = %d, rec_num = %d         invalid path to copy.
+cp %s/%s %s                                             fail to prepare backup configuration file, ret = %d, cmd = cp %s/%s %s
+copy cfg backup file to %s successfully                 arg.busy is invalid
+id = %s, busy = %s                                      fail to aspcm_del_module(), ret = %s
+fail to aspcm_add_module(), ret = %s                    FALSE                                                   TRUE
+Invalid customization: %s                               customization = %s
+Current Custom: %s                                      fail to AspIilLock(), ignore saving
+cfg has been reset, ignore saving                       cfg has been restored, ignore saving
+aspcm_module_tbl_size is %d, ignore saving              generate signature
+fail to generate signature                              reset working directory
+fail to 'rm -rf %s/%s'                                  fail to 'mkdir -p %s/%s'
+copy config to working directory                        cp -af %s/* %s/%s                                       fail to 'cp -af %s/* %s/%s'
+generate downloadable to %s/%s/%s                       cd %s/%s && tar -zcf %s/%s/%s *
+fail to generate downloadable file to %s/%s/%s          encrypt %s/%s/%s
+/var/cm/saving/asp_cfg                                  move downloadable %s/%s/%s to %s
+mv -f %s/%s/%s %s                                       fail to 'mv -f %s/%s/%s %s'
+save configuration to %s                                cp -Hpf %s/%s %s
+fail to copy configuration file, ret = %d               backup configuration to %s
+Save configuration completed, duration = %u ms          umount %s
+fail to 'umount %s', ret = %d                           create working path
+create runtime configuration path                       create runtime default configuration path
+mount default configuration path                        mount -t jffs2 -o rw,sync /dev/mtdblock%d %s            fail to mount %s, ret = %d
+erase mtd%d and remount                                 fail to erase mtd%d
+mount backup configuration path                         mount configuration path                                mount status path
+mount successful                                        rm /persist/status/log/syslog.txt.10 /persist/status/log/syslog.txt.11 /persist/status/log/syslog.txt.12 /persist/status/log/syslog.txt.13 /persist/status/log/syslog.txt.14 /persist/status/log/syslog.txt.15 /persist/status/log/syslog.txt.16                                        fail to remove %s/log/syslog.txt.10~16, ret = %d
+install configuration to runtime path                   copy last configuration to runtime path
+tar -zxf %s/%s -C %s
+install configuration by last configuration             fail to install configuration by last configuration     copy backup configuration to runtime path
+install configuration by backup configuration
+fail to install configuration by backup configuration   copy default configuration to runtime path
+install configuration by default configuration          fail to install configuration by default configuration  no default configuration
+no backup configuration                                 no last configuration
+tef_min_req_config_info, [%s] --> [%s]                  install default configuration to runtime path
+copy default configuration to runtime default configuration path                                                install default configuration
+fail to install default configuration
+/var/defcfg/aspcm.conf                                  def_cfg_key = %s, def_cfg_value = %s                    default customization = %s
+%s/%s.%s is not found
+cp -af %s/%s.%s %s                                      /tef                                                    fail to 'cp -af %s/%s.%s %s'
+migrate to dual def_cfg                                 unsupported bootenv %s (%s)
+reset new customization by bootenv %s (%s)              no bootenv %s                                           curr_cfg_key = %s, curr_cfg_value = %s
+reset new customization by configuration (%s)           reset new customization to %s
+setup a symlink for %s by new customization             reset runtime defcfg                                    rm -rf %s/*
+fail to 'rm -rf %s/*', ret = %d                         [[[BUG]]] mis-matched target (%s) and default customization (%s), please check the content of image             new customization = %s
+mis-matched bootenv %s (%s) and new customization (%s)
+reset default config of tef_br                          fail to load_config()
+touch /var/tmp/weakcipher                               Can't create /var/tmp/weakcipher
+mig_version = %s, cfg_version = %s
+defcfg info: [%s][%s]                                   [[[BUG]]] no min. required info, please check the settings of tef_min_req_config_info_table
+[[[BUG]]] no config info of default configuration
+[[[BUG]]] no config info of current configuration       MISMATCHED: min_req_country_id, def_country_id, customization is unmatched the default configuration
+MISMATCHED: min_req_country_id, cfg_country_id, customization is unmatched the base configuration
+MISMATCHED: def_country_id, cfg_country_id, the base configuration is unmatched the default configuration
+[[[BUG]]] def_version is lower than min_req_version, please check the content of image                          RESET_CFG: has done
+RESET: cfg_version is lower than min_req_version        reset runtime config
+sync runtime default to config                          cp -af %s %s
+fail to 'cp -af %s %s', ret = %d                        reset configuration
+reset backup                                            TEF_PE_V005
+[MIGRATION] %s: [TEF_PE_V004] --> [TEF_PE_V005]         rm %s/mapping_TR104_Services_VoiceService_Capabilities_Codecs.conf 2>/dev/null                                  [MIGRATION] fail to remove %s/mapping_TR104_Services_VoiceService_Capabilities_Codecs.conf, ret = %d            [MIGRATION] remove %s/mapping_TR104_Services_VoiceService_Capabilities_Codecs.conf
+rm %s/mapping_TR104_Services_VoiceService_VoiceProfile_Line_Codec_List.conf 2>/dev/null
+[MIGRATION] fail to remove %s/mapping_TR104_Services_VoiceService_VoiceProfile_Line_Codec_List.conf, ret = %d
+[MIGRATION] remove %s/mapping_TR104_Services_VoiceService_VoiceProfile_Line_Codec_List.conf
+TEF_CL_V003                                             [MIGRATION] %s: [TEF_CL_V002] --> [TEF_CL_V003]
+rm -f %s/acscert-1.cer 2>/dev/null                      [MIGRATION] fail to remove %s/acscert-1.cer, ret = %d
+[MIGRATION] remove %s/acscert-1.cer                     cp -af %s/acscert.cer %s/acscert.cer                    [MIGRATION] fail to copy %s/acscert.cer, ret = %d
+[MIGRATION] remove %s/acscert.cer                       TEF_CL_V004                                             TEF_CL_V005
+[MIGRATION] %s: [TEF_CL_V004] --> [TEF_CL_V005]         rm -f %s/mapping_TR98_Layer3Forwarding_Forwarding.conf 2>/dev/null                                              [MIGRATION] fail to remove %s/mapping_TR98_Layer3Forwarding_Forwarding.conf, ret = %d                           [MIGRATION] remove %s/mapping_TR98_Layer3Forwarding_Forwarding.conf                                             rm -f %s/mapping_TR98_IPv6Layer3Forwarding_Forwarding.conf 2>/dev/null                                          [MIGRATION] fail to remove %s/mapping_TR98_IPv6Layer3Forwarding_Forwarding.conf, ret = %d                       [MIGRATION] remove %s/mapping_TR98_IPv6Layer3Forwarding_Forwarding.conf
+TEF_ES_V011                                             TEF_ES_V012
+[MIGRATION] %s: [TEF_ES_V011] --> [TEF_ES_V012]         rm -f %s/acscert.cer 2>/dev/null
+[MIGRATION] fail to remove %s/acscert.cer, ret = %d     [MIGRATION] copy %s/acscert.cer
+[tef_mig_info.customization]: %s: [%s] --> [%s]         TEF_CO_V011
+TEF_CO_V012                                             [MIGRATION] %s: [TEF_CO_V011] --> [TEF_CO_V012]
+fail to signal(SIGCHLD)                                 fail to signal(SIGALRM)
+keep waiting                                            fail to kill(SIGALRM) to parent process, err = %s
+/persist/status/reboot_reason.bak                       cp -f %s %s
+/persist/status/reboot_reason.txt                       POWEROFF
+REBOOT                                                  KERNELPANIC
+[%u]: %s                                                [0]: %s
+/persist/status/reboot_record.txt
+%d:%u                                                   args is NULL
+invalid handle id                                       src_id = %s, evt_id = %u, timestamp = %u
+evt_len: %u is mismatched (rtm_evt_cfg_igd_time_ntp_state_changed_t: %u)
+fail to AspIilSetEvtHandler(), ret = %s                 RTM_DMON                                                fail to AspIilSubscribeEvent(RTM_CFG_IGD_TIME_NTP_STATE_CHANGED), err = %s
+fail to AspIilCancelEvent(RTM_CFG_IGD_TIME_NTP_STATE_CHANGED), err = %s                                         fail to AspIilInitLog(), app_name = %s
+unknown log level '%s'                                  fail to aspcm_reset()
+fail to aspcm_init()                                    fail to aspcm_setup_daemon_control()
+fail to fork(), err = %s                                ASP cfg mgt daemon is running
+fail to aspcm_reset_daemon_control()                    ASPCM_DMON
+fail to AspIilInit(), ret = %s                          fail to AspIilSetCmdHandler(), ret = %s
+fail to aspcm_notify_daemon_initialized()
+fail to AspIilReset(), ret = %s                         ASP cfg mgt daemon is terminated                        ASP cfg mgt daemon is terminated with error
+RTM_DMON
+@HL@                                                    Aw\@
+.shstrtab                                               .interp                                                 .reginfo
+.dynamic                                                .hash
+.dynsym                                                 .dynstr
+.gnu.version                                            .gnu.version_r                                          .init
+.text                                                   .MIPS.stubs                                             .fini
+.rodata
+.eh_frame                                               .ctors                                                  .dtors
+.jcr
+.data.rel.ro                                            .data                                                   .rld_map
+.got                                                    .sdata
+.bss                                                    .pdr                                                    .gnu.attributes
+.mdebug.abi32                                           
+############################                            # 9. STRINGS GPIO_UTIL - COMPLETO
+############################
+/lib/ld-uClibc.so.0                                     A5Pp
+_init                                                   _fini
+__uClibc_main
+__deregister_frame_info                                 __register_frame_info                                   _Jv_RegisterClasses
+puts
+memset                                                  BootstrapUtilGetInfo                                    printf
+strcmp                                                  strcasecmp
+GpioUtilGetLogLevel                                     GpioUtilSetLogLevel
+strtoul                                                 GpioUtilGetInfo                                         GpioUtilGetState
+GpioUtilSetState                                        GpioUtilGetDir
+GpioUtilSetDir                                          GpioUtilGetData
+GpioUtilSetData                                         libgpio_util.so
+_DYNAMIC_LINKING                                        __RLD_MAP
+_GLOBAL_OFFSET_TABLE_                                   libbootstrap_util.so
+libgcc_s.so.1                                           libc.so.0
+_ftext                                                  _fdata                                                  _edata
+__bss_start                                             _fbss
+_end                                                    /lib:/lib/public:/root/branch_8115/standard/targets/RTF8115VW/TEF/builds/fs/lib:/root/branch_8115/standard/targets/RTF8115VW/TEF/builds/fs/lib/public
+GLIBC_2.0                                               '9)`
+A$c2                                                    @$D,                                                    @$D,
+@$D,                                                    @$D,
+@$D,                                                    @$D-$
+@$D-P                                                   @$D-x
+@$D-                                                    @$D-
+@$D-
+@$D.0
+@$D.d
+@$D.d
+@$D.|
+@$D.
+$b5
+@ !<
+@$E.
+@$D.
+@$D.
+@$B2
+@$D/
+@$D/
+@$D/$
+@$D/,
+@$D/4
+@$d/<
+@$D/
+@$D/
+@$D/$
+@$D/,
+@$D/4
+@$D/T
+@$D/t
+@$D/
+@$D/
+@$D/
+@$B/
+@$B/
+@$B/
+@$D/
+@$B/
+@$B/
+@$B/
+@$D/
+@$B0
+@$B/
+@$B0
+@$D0
+@$D0,
+@$D/
+@$D04
+@$D0L                                                   @$D0h
+@$D/
+@$D/
+@$D0
+@$D0                                                    @$D0                                                    @$D0
+@$D0                                                    @$D0
+@$D1                                                    @$D/
+@$D/
+@$D10
+@$D1L
+@$D1h
+@$D1p
+@$D1
+@$D1
+@$D1
+@$D0
+@$D0                                                    @$D1
+@$D1
+@$D2                                                    @$D.|                                                   @$D.
+@$D2
+$b5
+@$D2H
+@$D2l
+@$D2x
+@$D2
+@$D/
+@$B/
+@$B/
+@$B/                                                    @$D/
+@$B/
+@$B/
+@$B/
+@$D/
+@$B0
+@$B/
+@$B0
+@$D0
+@$D2
+@$D2x
+@$D2
+@$D/
+@$D04
+@$D0L                                                   @$D0h
+@$D2x
+@$D2
+@$D/
+@$D/
+@$D0
+@$D0
+@$D2
+@$D2x
+@$D2
+@$D0
+@$D0
+@$D0
+@$D1
+@$D2x                                                   @$D2
+@$D/
+@$D/
+@$D10
+@$D1L
+@$D2
+@$D2x
+@$D2
+@$D1p
+@$D1
+@$D1
+@$D1
+@$D2x
+@$D2                                                    @$D0
+@$D0                                                    @$D1
+@$D1
+A$P2                                                    ASP_CM
+ASP_GPI_RST_BTN
+ASP_GPO_LED_CTL
+ASP_GPO_GPON_LED_1
+ASP_GPO_GPON_LED_2
+ASP_GPO_GPON_TX_PWR
+ASP_GPO_WIFI_LED_1
+ASP_GPI_WIFI_BTN_1
+ASP_GPO_WIFI_RST_1
+ASP_GPO_WIFI_LED_2
+ASP_GPI_WIFI_BTN_2
+ASP_GPO_POTS_LED_1
+ASP_GPO_POTS_LED_2
+ASP_GPO_POTS_LED_3
+ASP_GPIO_UNKNOWN
+ASP_GPO_HPNA_RST
+ASP_GPO_SLIC_RST
+Usage:
+    gpio_util help
+    gpio_util log [{quite|error|warning|info|debug}]
+    gpio_util show <pin>
+    gpio_util state <pin> [{enable|disable}]
+    gpio_util dir <pin> [{input|output}]
+    gpio_util data <pin> [{high|low}]
+    gpio_util asp_pin_name
+    gpio_util asp_show <asp_pin_name>
+    gpio_util asp_state <asp_pin_name> [{enable|disable}]
+    gpio_util asp_dir <asp_pin_name> [{input|output}]
+    gpio_util asp_data <asp_pin_name> [{high|low}]
+asp_pin_name is invalid
+fail to BootstrapUtilGetInfo()
+unsupported hardware version, asp_hw_model_name = %s, asp_hw_version = %d
+help
+fail to GpioUtilGetLogLevel()
+quite
+error
+warning
+info
+debug
+unknown, level = %d
+fail to GpioUtilSetLogLevel()
+set level to %s
+show
+fail to GpioUtilGetState()
+gpio pin = %u
+disable
+unknown
+enable
+gpio state = %s
+input
+output
+gpio direction = %s
+high
+gpio data = %s
+state
+gpio %u state = enable
+gpio %u state = disable
+gpio %u state is unknown
+fail to GpioUtilSetState()
+set gpio %u state = %s
+fail to GpioUtilGetDir()
+gpio %u direction = output
+gpio %u direction = input
+gpio %u direction is unknown
+fail to GpioUtilSetDir()
+set gpio %u direction = %s
+data
+fail to GpioUtilGetData()
+gpio %u data = high
+gpio %u data = low
+gpio %u data is unknown
+fail to GpioUtilSetData()
+set gpio %u data = %s
+asp_pin_name
+asp_hw_model_name = %s, asp_hw_version = %d
+%s, asp_pin: %d --> pin: 0x%08x
+asp_show
+asp_pin is unsupported
+gpio asp_pin = %s, pin = %u
+asp_state
+asp_dir
+asp_data
+.shstrtab
+.interp
+.reginfo
+.dynamic
+.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.init
+.text
+.MIPS.stubs
+.fini
+.rodata
+.eh_frame
+.ctors
+.dtors
+.jcr
+.data.rel.ro
+.data
+.rld_map
+.got
+.sdata
+.bss
+.pdr
+.gnu.attributes
+.mdebug.abi32
+
+############################
+# 10. STRINGS HW_UTIL - COMPLETO
+############################
+/lib/ld-uClibc.so.0
+_init
+_fini
+__uClibc_main
+__deregister_frame_info
+__register_frame_info
+_Jv_RegisterClasses
+libecnt_lib_dbg.so.1
+_DYNAMIC_LINKING
+__RLD_MAP
+_GLOBAL_OFFSET_TABLE_
+libapi_lib_gponmgr.so.1
+puts
+atoi
+gponmgr_lib_set_counter_type
+strcmp
+libgcc_s.so.1
+libc.so.0
+_ftext
+_fdata
+_edata
+__bss_start
+_fbss
+_end
+GLIBC_2.0
+@ !,B
+ =====================================================
+gpon_set_counter_type [0/1], 0: GEM-based, 1: ethernet-based
+gpon_set_counter_type
+.shstrtab
+.interp
+.reginfo
+.dynamic
+.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.init
+.text
+.MIPS.stubs
+.fini
+.rodata
+.eh_frame
+.ctors
+.dtors
+.jcr
+.data
+.rld_map
+.got
+.sdata
+.bss
+.pdr
+.gnu.attributes
+.mdebug.abi32
+
+############################
+# 11. STRINGS LIBLED_UTIL - COMPLETO
+############################
+_GLOBAL_OFFSET_TABLE_
+_init
+_gp_disp
+_fini
+__cxa_finalize
+__deregister_frame_info
+__register_frame_info
+_Jv_RegisterClasses
+LedUtilEnableSet
+printf
+ioctl
+open
+puts
+close
+LedUtilEnableGet
+LedUtilGetLedNumber
+memset
+LedUtilGetLedConfig
+memcpy
+LedUtilGetLedStatus
+LedUtilSetLedConfig
+LedUtilResetLedConfig
+libgcc_s.so.1
+libc.so.0
+_ftext
+_fdata
+_edata
+__bss_start
+_fbss
+_end
+libled_util.so
+GLIBC_2.0
+@ !<
+@ !<
+@ !<
+@ !<
+@(!$
+@ !<
+@(!$
+@ !<
+@ !<
+ASP_CM
+ASP_GPI_RST_BTN
+ASP_GPO_LED_CTL
+ASP_GPO_GPON_LED_1
+ASP_GPO_GPON_LED_2
+ASP_GPO_GPON_TX_PWR
+ASP_GPO_WIFI_LED_1
+ASP_GPI_WIFI_BTN_1
+ASP_GPO_WIFI_RST_1
+ASP_GPO_WIFI_LED_2
+ASP_GPI_WIFI_BTN_2
+ASP_GPO_POTS_LED_1
+ASP_GPO_POTS_LED_2
+ASP_GPO_POTS_LED_3
+ASP_GPIO_UNKNOWN
+ASP_GPO_HPNA_RST
+ASP_GPO_SLIC_RST
+LedUtilEnableSet
+%s():%d: Open fd error
+%s():%d: ioctl failed.
+%s():%d: Return fd error
+drv_fd_op
+%s():%d: Invalid parameter
+/dev/asp_led
+open /dev/asp_led error!
+close /dev/asp_led error!
+LedUtilEnableGet
+%s():%d: Invalid arg
+%s():%d: Close fd error
+LedUtilGetLedNumber
+%s():%d: cnt is NULL
+%s():%d: ioctl failed, ret = %d
+LedUtilGetLedConfig
+%s():%d: data is NULL
+LedUtilGetLedStatus
+LedUtilSetLedConfig
+LedUtilResetLedConfig
+.shstrtab
+.reginfo
+.dynamic
+.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.rel.dyn
+.init
+.text
+.MIPS.stubs
+.fini
+.rodata
+.eh_frame
+.ctors
+.dtors
+.jcr
+.data.rel.ro
+.data
+.got
+.sdata
+.bss
+.pdr
+.gnu.attributes
+.mdebug.abi32
+
+############################
+# 12. STRINGS TCLEDCTRL - LED/GPIO/PROC
+############################
+` !(
+@0!-
+@ !,B
+@0!$c
+(!$c
+[DEBUG]num %d wifi gpio %d, action %d
+TC3162 LED Manager 0.1 exit
+tc3162/led_def
+tc3162/led_ppp
+tc3162/gpio_dbg
+tc3162/led_xpon
+tc3162/led_752x
+tc3162/gpio_output
+%d %d
+usage: <value1> <value2>
+usage: <judgement pkts> <need timer or not>
+usage: <is_internet_led> <is_internet_trying_led>
+%s %s %d %d
+gpio
+input
+get gpio%d input: 0x%x
+output
+set gpio%d output: %d
+get gpio%d val: 0x%x
+set gpio%d val: %d
+gpio output/set <gpio_num> <gpio_val>
+gpio input/get <gpio_num>
+%d %d %d %d %d
+usage: <led_no> <gpio> <mode> <speed> <onoff>
+%d %x %x %d %d
+%d  %d  %d  %d
+%d %d
+%02d: actived:%02x ctrl:%02x
+led_no  gpio    mode    speed   onoff
+%d      %x      %x      %d      %d
+%d      %d      %d      %d      %d
+%s %d %d
+gpio_no exceeds %d.
+active
+gpio_status error.
+deactive
+TC3162 LED Manager 0.1 init
+tcledctrl version: %s.
+tcledctrl V1.1.0.0 (Jun 17 2022-06:21:29)
+tc3162/wps_button
+tc3162/reset_button
+tc3162/wlan_button
+tc3162/led_internet
+tc3162/led_internet_para
+tc3162/led_usb
+eSetWPSLedMode
+wscStatus
+wscTimerRunning
+wsc_done
+ledChk
+led_ien
+led_oen
+ledGetGpio
+ledSetMode
+ledGetMode
+ledTurnOff
+ledTurnOn
+internet_hwnat_timer_switch
+internet_hwnat_pktnum
+internet_trying_led_on
+internet_led_on
+led_ether_up_status
+led_xpon_status
+xpon_los_status
+gpio_current
+set_wlan_gpio_mode
+hook_wlan_led_get_data
+hook_wlan_led_action
+getDslLedGpio
+chkWlanGpioMode
+depends=
+vermagic=2.6.36 SMP mod_unload MIPS32_R2 32BIT MT_SMTC
+tcledctrl
+GCC: (Buildroot 2012.05) 4.3.6
+GCC: (Buildroot 2012.05) 4.3.6
+.symtab
+.strtab
+.shstrtab
+.note.gnu.build-id
+.rel.text.getDslLedGpio
+.rel.text.get_led_mode_data
+.rel.text.get_led_data
+.rel.text.chkWlanGpioMode
+.rel.text.ledGetMode
+.rel.text.ledSetMode
+.rel.text.getSysResetGpio
+.rel.text.ledGetGpio
+.rel.text.getWlanRadioGpio
+.rel.text.save_gpio_info
+.text.ledNumberSpecial
+.rel.text.led_wifi
+.rel.text.restore_gpio_info
+.rel.text.led_ien
+.rel.text.led_oen
+.rel.text.ledTurnOff
+.rel.text.ledTurnOn
+.rel.text.Usb_Led_Flash_Op
+.rel.text.wpsLedChk
+.rel.text.WPSLedBlink
+.rel.text.ledChk
+.rel.text.SetWPSLedMode
+.rel.text.wpsLedChkSpec
+.rel.text.set_wlan_gpio_mode
+.rel.exit.text
+.rel.text.ether_led_752x_write_proc
+.rel.text.led_usb_write_proc
+.rel.text.led_internet_para_write_proc
+.rel.text.led_internet_write_proc
+.rel.text.gpio_dbg_write_proc
+.rel.text.led_def_write_proc
+.rel.text.ether_led_752x_read_proc
+.rel.text.led_xpon_read_proc
+.rel.text.led_usb_read_proc
+.rel.text.led_internet_para_read_proc
+.rel.text.led_internet_read_proc
+.rel.text.wlan_button_proc_stats
+.rel.text.reset_button_proc_stats
+.rel.text.gpio_output_read_proc
+.rel.text.wps_button_read_proc
+.rel.text.led_ppp_read_proc                             .rel.text.getLEDDef
+.rel.text.led_xpon_write_proc                           .rel.text.wps_button_write_proc
+.rel.text.led_ppp_write_proc
+.rel.text.gpio_output_write_proc
+.rel.text.led_def_read_proc
+.rel.text.ledInit
+.rel.init.text
+.rel.text.inputButtonTimer
+.rel.text.ledTimer
+.reginfo
+.rodata
+.rodata.str1.4
+.rel__ksymtab
+__ksymtab_strings
+--
+$LC46
+$LC47
+inputButtonTimer
+statusprobe
+__this_module
+chkWlanGpioMode
+ledGetMode
+restore_gpio_info
+wpsLedChk
+gpio_current
+getWlanRadioGpio
+cleanup_module
+memcpy
+usb_dev_status
+init_module
+wpsLedChkSpec
+hook_wlan_led_action
+create_proc_entry
+wps_button_type
+led_oen
+SetWPSLedMode
+Usb_Led_Flash_Op_hook
+getLEDDef
+set_wlan_gpio_mode
+getSysResetGpio
+add_timer
+mod_timer
+ledTurnOn
+led_ien
+wsc_done
+gpio_output_status
+strcasecmp
+internet_hwnat_pktnum
+save_gpio_info
+ledTimer
+sscanf
+printk
+WPSLEDTimeCnt
+memset
+del_timer_sync
+ledGetGpio
+usb_phyport_status
+internet_hwnat_timer_switch
+__copy_user
+ledNumberSpecial
+
+
+ '############################'
+ '# 11. STRINGS LIBLED_UTIL - COMPLETO'
+ '############################'
+ngs /lib/private/libled_util.so 2>/dev/null
+
+
+ '############################'
+ '# 12. STRINGS TCLEDCTRL - LED/GPIO/PROC'
+ '############################'
+ngs /lib/modules/tcledctrl.ko 2>/dev/null | \
+grep -iE -C 5 'led|gpio|proc|usage|asp_led'
+
+echo
+echo '############################'
+echo '# 13. ASP_GPO / ASP_LED EM BINARIOS'
+echo '############################'
+for f in /bin/* /sbin/* /usr/bin/* /usr/sbin/* /var/bin/
+         /lib/* /lib/private/* /userfs/bin/*
+         do
+             [ -f "$f" ] || continue
+                 if strings "$f" 2>/dev/null | \
+                        grep -qiE 'ASP_GPO_|asp_led|/dev
+                            then
+                                    echo
+~ # sh test.sh
+############################
+# 1. SISTEMA
+############################
+Linux (none) 2.6.36 #1 SMP Fri Jun 17 06:20:49 UTC 2022 mips unknown
+
+Linux version 2.6.36 (asp@RTF8115VW-V7.20.4) (gcc version 4.3.6 (Buildroot 2012.05) ) #1 SMP Fri Jun 17 06:20:49 UTC 2022
+
+system type             : EcoNet EN751221 SOC
+processor               : 0
+cpu model               : MIPS 34Kc V5.8
+BogoMIPS                : 599.65
+wait instruction        : yes
+microsecond timers      : yes
+tlb_entries             : 64
+extra interrupt vector  : yes
+hardware watchpoint     : yes, count: 4, address/irw mask: [0x0000, 0x03d0, 0x0708, 0x03b8]
+ASEs implemented        : mips16 dsp mt
+shadow register sets    : 1
+core                    : 0
+VCED exceptions         : not available
+VCEI exceptions         : not available
+
+processor               : 1
+cpu model               : (null) V5.8
+BogoMIPS                : 448.92
+wait instruction        : yes
+microsecond timers      : yes
+tlb_entries             : 64
+extra interrupt vector  : yes
+hardware watchpoint     : yes, count: 4, address/irw mask: [0x0000, 0x03d0, 0x0708, 0x03b8]
+ASEs implemented        : mips16 dsp mt
+shadow register sets    : 1
+core                    : 0
+VCED exceptions         : not available
+VCEI exceptions         : not available
+
+processor               : 2
+cpu model               : (null) V5.8
+BogoMIPS                : 448.92
+wait instruction        : yes
+microsecond timers      : yes
+tlb_entries             : 64
+extra interrupt vector  : yes
+hardware watchpoint     : yes, count: 4, address/irw mask: [0x0000, 0x03d0, 0x0708, 0x03b8]
+ASEs implemented        : mips16 dsp mt
+shadow register sets    : 1
+core                    : 0
+
+############################
+# 2. MODULOS
+############################
+xpon                  396598  2
+qdma_wan              157183  1 xpon
+eth_ephy              103666  0
+eth                   116541  3 hw_nat,xpon,eth_ephy
+ecnt_igmp              32899  3 hw_nat,xpon,eth
+tccicmd                78849  5 mt7603eap,xpon,eth_ephy,eth,sif
+tcledctrl              29373  6 mt7603eap,hw_nat,xpon,phy,eth,tccicmd
+
+-rw-r--r--    1 support  root        51548 Jun 17  2022 /lib/modules/tcledctrl.ko
+
+############################
+# 3. LED.CONF
+############################                            ; led_no                                                ; ======================================================; LED_DSL_STATUS                = 0                     ; LED_DSL_ACT_STATUS            = 1
+; LED_DSL_NOACT_STATUS          = 2
+; LED_DSL_IDLE_STATUS           = 3
+; LED_DSL_HANDSHAKE_STATUS      = 4
+; LED_DSL_TRAINING_STATUS       = 5
+; LED_DSL_SHOWTIME_STATUS       = 6
+; LED_PPP_STATUS                = 7
+; LED_PPP_ACT_STATUS            = 8
+; LED_PPP_NOACT_STATUS          = 9
+; LED_USB_STATUS                = 10
+; LED_USB_ACT_STATUS            = 11
+; LED_USB_NOACT_STATUS          = 12
+; LED_WLAN_STATUS               = 13
+; LED_WLAN_ACT_STATUS           = 14
+; LED_WLAN_NOACT_STATUS         = 15
+; LED_ETHER_STATUS              = 16
+; LED_ETHER_ACT_STATUS          = 17
+; LED_ETHER_NOACT_STATUS        = 18
+; LED_FLASH_STATUS              = 19
+; LED_SYS_BOOT_STATUS           = 20
+; LED_SYS_STATUS                = 21
+; LED_SYS_INIT_STATUS           = 22
+; LED_ETHER_10M_STATUS          = 23
+; LED_ETHER_10M_ACT_STATUS      = 24
+; LED_ETHER_10M_NOACT_STATUS    = 25
+; LED_ETHER_100M_STATUS         = 26
+; LED_ETHER_100M_ACT_STATUS     = 27
+; LED_ETHER_100M_NOACT_STATUS   = 28
+; LED_PPP_ON_DSL_OFF            = 29
+; LED_WLAN_RESET                = 30
+; LED_LAN_RESET                 = 31
+; LED_BOOT_BICOLOR              = 32
+; LED_INTERNET_STATUS           = 33
+; LED_INTERNET_ACT_STATUS       = 34
+; LED_INTERNET_NOACT_STATUS     = 35
+; LED_PPP_ACT_BICOLOR           = 36
+; LED_PPP_NOACT_BICOLOR         = 37
+; LED_INTERNET_TRYING_STATUS    = 38
+; LED_BOOT_FAILURE              = 39
+; LED_TR68_PWR_BOOTING          = 40
+; LED_TR68_PWR_BOOTED           = 41
+; LED_PHY_TX_POWER_DISABLE      = 42
+; LED_WLAN_WPS_STATUS           = 43
+; LED_WLAN_WPS_ACT_STATUS       = 44
+; LED_WLAN_WPS_NOACT_STATUS     = 45
+; LED_VOIP_HOOK1_STATUS = 49
+; LED_VOIP_HOOK2_STATUS = 50
+; LED_USB_STATUS                = 54
+; LED_USB_ACT_STATUS            = 55
+; LED_SYS_RESET                 = 56
+; LED_WLAN_RADIO                = 57
+; LED_WLAN_WPS                  = 58
+; LED_XPON_STATUS               = 64
+; LED_XPON_TRYING_STATUS        = 65
+; LED_XPON_LOS_ON_STATUS        = 66
+; LED_XPON_LOS_STATUS           = 67
+; LED_LANPORT1_STATUS           = 68
+; LED_LANPORT1_ACT_STATUS       = 69
+; LED_LANPORT2_STATUS           = 70
+; LED_LANPORT2_ACT_STATUS       = 71
+; LED_LANPORT3_STATUS           = 72
+; LED_LANPORT3_ACT_STATUS       = 73
+; LED_LANPORT4_STATUS           = 74
+; LED_LANPORT4_ACT_STATUS       = 75
+;
+; mode
+; ======================================================
+; LED_MODE_NOT_USED                     = 0
+; LED_MODE_ONOFF                        = 1
+; LED_MODE_BLINK                        = 2
+; LED_MODE_NOACT                        = 3
+; LED_MODE_INPUT                        = 5
+;
+; speed
+; ======================================================
+; LED_SPEED_FAST                = 0
+; LED_SPEED_MED                 = 1
+; LED_SPEED_SLOW                = 2
+; LED_SPEED_VERY_SLOW           = 3
+;
+;led_no  gpio    mode    speed   onoff
+;======================================================
+0       0       0       0       0
+1       0       0       0       0
+2       0       0       0       0
+3 0     0       0       0
+4 0     0       0       0
+5 0     0       0       0
+6 0     0       0       0
+7       0       0       0       0
+8       0       0       0       0
+9       0       0       0       0
+10  0 0 0 0
+11  0 0 0 0
+12      0 0 0 0
+13      0 0 0 0
+14      0 0 0 0
+15      0 0 0 0
+16      0       0       0       0
+17      0       0       0       0
+18      0       0       0       0
+19      0       0       0       0
+20      0       0       0       0
+21      0       0       0       0
+22      0       0       0       0
+23      0       0       0       0
+24      0       0       0       0
+25      0       0       0       0
+26      0       0       0       0
+27      0       0       0       0
+28      0       0       0       0
+29      0       0       0       0
+30      0       0       0       0
+31      0       0       0       0
+32      0       0       0       0
+33      4 1 0 0
+34      4 1 0 0
+35      0       0       0       0                       36      0       0       0       0
+37      0       0       0       0                       38      0       0       0       0                       39      0       0       0       0
+40      0       0       0       0                       41      0       0       0       0
+42      16 1 0 1                                        43      65 1 0 1                                        44      65 2 0 1
+45      65 3 3 0                                        46      0       0       0       0
+47      0       0       0       0                       48      0       0       0       0
+49      78      1       0       0                       50      0       0       0       0
+51      0       0       0       0                       52      0       0       0       0
+53      0       0       0       0
+54      11 1 0 0                                        55      11 2 0 0
+56      0       5       0       0                       57      79      5       0       0
+58      77 5 0 0                                        59      0       0       0       0
+60      0       0       0       0                       61      0       0       0       0
+62      0       0       0       0                       63      0       0       0       0
+64      2       1       0       0
+65      2       2       0       0                       66      0 0 0 0
+67      0 0 0 0                                         68      0 0 0 0
+69      0 0 0 0                                         70      0 0 0 0
+71      0 0 0 0                                         72      0 0 0 0
+73      0 0 0 0
+74      0 0 0 0                                         75      0 0 0 0
+76      0       0       0       0                       77      0       0       0       0
+78      0       0       0       0                       79      0       0       0       0
+80      0       0       0       0                       81      0       0       0       0
+82      0       0       0       0                       83      0       0       0       0
+84      0       0       0       0
+85      0       0       0       0                       86      0       0       0       0                       87      0       0       0       0
+88      0       0       0       0                       89      0       0       0       0
+90      0       0       0       0                       91      0       0       0       0
+92      0       0       0       0                       93      0       0       0       0
+94      0       0       0       0                       95      0       0       0       0
+96      0       0       0       0                       97      0       0       0       0
+98      0       0       0       0
+99      0       0       0       0                       100     0       0       0       0
+101     0       0       0       0                       102     0       0       0       0
+                                                        ############################
+# 4. PROC LED                                           ############################
+                                                        ===== /proc/tc3162/led_def =====
+led_no  gpio    mode    speed   onoff
+0       0       0       0       0                       1       0       0       0       0
+2       0       0       0       0                       3       0       0       0       0
+4       0       0       0       0                       5       0       0       0       0
+6       0       0       0       0                       7       0       0       0       0                       8       0       0       0       0                       9       0       0       0       0
+10      0       0       0       0                       11      0       0       0       0                       12      0       0       0       0
+13      0       0       0       0                       14      0       0       0       0
+15      0       0       0       0                       16      0       0       0       0
+17      0       0       0       0                       18      0       0       0       0
+19      0       0       0       0                       20      0       0       0       0                       21      0       0       0       0
+22      0       0       0       0                       23      0       0       0       0
+24      0       0       0       0                       25      0       0       0       0
+26      0       0       0       0                       27      0       0       0       0
+28      0       0       0       0                       29      0       0       0       0
+30      0       0       0       0
+31      0       0       0       0                       32      0       0       0       0
+33      0       0       0       0                       34      0       0       0       0
+35      0       0       0       0                       36      0       0       0       0
+37      0       0       0       0                       38      0       0       0       0
+39      0       0       0       0                       40      0       0       0       0
+41      0       0       0       0                       42      16      1       0       1
+43      0       0       0       0                       44      0       0       0       0
+45      0       0       0       0                       46      0       0       0       0
+47      0       0       0       0                       48      0       0       0       0
+49      0       0       0       0                       50      0       0       0       0
+51      0       0       0       0                       52      0       0       0       0
+53      0       0       0       0                       54      0       0       0       0
+55      0       0       0       0                       56      0       0       0       0
+57      0       0       0       0                       58      0       0       0       0
+59      0       0       0       0                       60      0       0       0       0
+61      0       0       0       0                       62      0       0       0       0
+63      0       0       0       0                       64      0       0       0       0
+65      0       0       0       0                       66      0       0       0       0
+67      0       0       0       0                       68      0       0       0       0
+69      0       0       0       0                       70      0       0       0       0
+71      0       0       0       0                       72      0       0       0       0
+73      0       0       0       0                       74      0       0       0       0                       75      0       0       0       0
+76      0       0       0       0                       77      0       0       0       0
+78      0       0       0       0                       79      0       0       0       0                       80      0       0       0       0
+81      0       0       0       0                       82      0       0       0       0
+83      0       0       0       0                       84      0       0       0       0
+85      0       0       0       0                       86      0       0       0       0
+87      0       0       0       0                       88      0       0       0       0
+89      0       0       0       0                       90      0       0       0       0
+91      0       0       0       0                       92      0       0       0       0
+93      0       0       0       0                       94      0       0       0       0
+95      0       0       0       0
+96      0       0       0       0                       97      0       0       0       0
+98      0       0       0       0                       99      0       0       0       0
+100     0       0       0       0                       101     0       0       0       0
+102     0       0       0       0                       
+===== /proc/tc3162/led_internet =====
+0 0
+                                                        ===== /proc/tc3162/led_internet_para =====
+8 1                                                     
+===== /proc/tc3162/led_ppp =====                        0                                                       
+===== /proc/tc3162/led_usb =====                        0 0                                                     
+===== /proc/tc3162/led_xpon =====                       2
+                                                        ===== /proc/tc3162/gpio_output =====
+00: actived:00 ctrl:00                                  01: actived:00 ctrl:00                                  02: actived:00 ctrl:00
+03: actived:00 ctrl:00                                  04: actived:00 ctrl:00
+05: actived:00 ctrl:00                                  06: actived:00 ctrl:00                                  07: actived:00 ctrl:00
+08: actived:00 ctrl:00                                  09: actived:00 ctrl:00
+10: actived:00 ctrl:00                                  11: actived:00 ctrl:00
+12: actived:00 ctrl:00                                  13: actived:00 ctrl:00
+14: actived:00 ctrl:00                                  15: actived:00 ctrl:00
+16: actived:00 ctrl:00                                  17: actived:00 ctrl:00                                  18: actived:00 ctrl:00
+19: actived:00 ctrl:00                                  20: actived:00 ctrl:00
+21: actived:00 ctrl:00                                  22: actived:00 ctrl:00
+23: actived:00 ctrl:00
+24: actived:00 ctrl:00                                  25: actived:00 ctrl:00
+26: actived:00 ctrl:00                                  27: actived:00 ctrl:00
+28: actived:00 ctrl:00                                  29: actived:00 ctrl:00
+30: actived:00 ctrl:00                                  31: actived:00 ctrl:00
+32: actived:00 ctrl:00                                  33: actived:00 ctrl:00
+34: actived:00 ctrl:00
+35: actived:00 ctrl:00                                  36: actived:00 ctrl:00
+37: actived:00 ctrl:00                                  38: actived:00 ctrl:00                                  39: actived:00 ctrl:00                                  40: actived:00 ctrl:00
+41: actived:00 ctrl:00
+42: actived:00 ctrl:00                                  43: actived:00 ctrl:00
+44: actived:00 ctrl:00                                  45: actived:00 ctrl:00
+46: actived:00 ctrl:00                                  47: actived:00 ctrl:00
+48: actived:00 ctrl:00                                  49: actived:00 ctrl:00
+50: actived:00 ctrl:00                                  51: actived:00 ctrl:00
+52: actived:00 ctrl:00
+53: actived:00 ctrl:00                                  54: actived:00 ctrl:00
+55: actived:00 ctrl:00                                  56: actived:00 ctrl:00
+57: actived:00 ctrl:00                                  58: actived:00 ctrl:00                                  59: actived:00 ctrl:00
+60: actived:00 ctrl:00                                  61: actived:00 ctrl:00
+62: actived:00 ctrl:00                                  63: actived:00 ctrl:00
+64: actived:00 ctrl:00                                  65: actived:00 ctrl:00                                  66: actived:00 ctrl:00
+67: actived:00 ctrl:00                                  68: actived:00 ctrl:00                                  69: actived:00 ctrl:00
+70: actived:00 ctrl:00                                  71: actived:00 ctrl:00
+72: actived:00 ctrl:00                                  73: actived:00 ctrl:00
+74: actived:00 ctrl:00                                  75: actived:00 ctrl:00                                  76: actived:00 ctrl:00
+77: actived:00 ctrl:00                                  78: actived:00 ctrl:00
+79: actived:00 ctrl:00                                  80: actived:00 ctrl:00                                  
+===== /proc/tc3162/gpio_dbg =====                       
+############################                            # 5. /dev
+############################
+crw-rw-rw-    1 support  root     321,   0 Jun 17  2022 /dev/asp_led
+crw-r--r--    1 support  root      10, 151 Jun 17  2022 /dev/led
+                                                        2206 285
+                                                        ############################
+# 6. SYSFS ASP_LED
+############################                            /sys/devices/virtual/asp_led/asp_led/dev
+/sys/devices/virtual/asp_led/asp_led/uevent             
+                                                        ===== /sys/devices/virtual/asp_led/asp_led/dev =====
+321:0                                                   
+===== /sys/devices/virtual/asp_led/asp_led/uevent =====                                                         ############################
+# 7. PROCESSOS RELEVANTES                               ############################
+   17    17     2     0 support      0 DW   [led_threa     79    79     1    51 support   1652 S    aspsysd
+  269   269     1    51 support  10708 S    aspcmd        269   270     1    51 support  10708 S    aspcmd
+  285   285     1    51 support  35036 S    aspfmd        285   286     1    51 support  35036 S    aspfmd
+  285   291     1    51 support  35036 S    aspfmd
+  285   292     1    51 support  35036 S    aspfmd        285   293     1    51 support  35036 S    aspfmd
+  302   302     1    51 support  10028 S    aspsmd        302   303     1    51 support  10028 S    aspsmd        313   313     1    51 support   9556 S    asppmd
+  313   314     1    51 support   9556 S    asppmd        354   354     2     0 support      0 SW   [xpon_daem
+ 1845  1845     1  1842 support  16132 S <  httpd -I rb  1845  1846     1  1842 support  16132 S <  httpd -I rb
+ 2586  2586  2585    51 support  14104 S    aspsh -k
+ 2586  2613  2585    51 support  14104 S    aspsh -k     2611  2611     1    51 support  15908 S <  httpd -I as
+ 2611  2612     1    51 support  15908 S <  httpd -I as  2932  2932     1  2932 support  11188 S    pppd aspiil
+ 2932  3070     1  2932 support  11188 S    pppd aspiil  3138  3138  2952  3138 support  14104 S    -aspsh
+ 3138  3143  2952  3138 support  14104 S    -aspsh       3141  3141     1  3133 support  15908 S <  httpd -I rb
+ 3141  3142     1  3133 support  15908 S <  httpd -I rb  3207  3207     1  3204 support  15908 S <  httpd -I rb
+ 3207  3208     1  3204 support  15908 S <  httpd -I rb  5910  5910  5873  5910 support  14104 S    -aspsh
+ 5910  5911  5873  5910 support  14104 S    -aspsh      13078 13078 12996 13078 support  14108 S    -aspsh
+13078 13083 12996 13078 support  14108 S    -aspsh      21047 21047 20966 21047 support  14108 S    -aspsh
+21047 21052 20966 21047 support  14108 S    -aspsh      
+############################                            # 8. STRINGS ASPCMD - COMPLETO
+############################                            /lib/ld-uClibc.so.0                                     _init
+_fini                                                   __uClibc_main
+__deregister_frame_info                                 __register_frame_info
+_Jv_RegisterClasses                                     memset
+vsnprintf                                               AspIilTrace
+system
+__ctype_b                                               strlen
+memmove                                                 strchr
+strcmp                                                  strcpy
+strncmp                                                 fopen
+fgets
+fclose                                                  fprintf
+free                                                    malloc
+realloc
+strstr                                                  AspIilSetLogLevel
+AspIilGetLogLevel                                       BootstrapUtilGetInfo
+BootenvUtilGetValue                                     strtol
+ioctl                                                   lseek
+write                                                   read                                                    AspIilGetTimeStamp
+popen                                                   fscanf
+pclose                                                  atoi
+strcasecmp                                              alphasort                                               scandir
+__errno_location                                        strerror
+AspCmIsImageFile                                        AspCmIsConfigFile                                       BootenvUtilSetValue
+BootenvUtilSaveData                                     pthread_self
+pthread_detach                                          AspFmSetEvent
+AspFmClearEvent                                         AspIilAsyncReturn
+memcpy                                                  pthread_create
+strdup                                                  AspCmDecryptConfigFile
+AspCmEncryptConfigFile                                  lstat
+readlink                                                AspCmIsSupportedCustomization
+puts                                                    AspIilTracedLock
+AspIilTracedUnlock                                      AspIilDiffTimeStampInMs
+signal                                                  AspIilResetLog
+getppid                                                 kill
+unlink                                                  sscanf
+AspIilSetEvtHandler                                     AspIilSubscribeEvent
+AspIilCancelEvent                                       AspIilInitLog
+fork                                                    AspIilInit                                              AspIilSetCmdHandler
+usleep                                                  AspIilIsRunning
+AspIilReset                                             _exit
+libpthread.so.0                                         _DYNAMIC_LINKING
+__RLD_MAP                                               _GLOBAL_OFFSET_TABLE_
+libaspiil.so                                            libbootstrap_util.so
+libbootenv_util.so
+libaspfm.so                                             libaspcm.so
+librtm.so                                               libgcc_s.so.1
+libc.so.0                                               _ftext
+_fdata                                                  _edata
+__bss_start                                             _fbss
+_end
+/lib:/lib/public:/lib/private:/root/branch_8115/standard/targets/RTF8115VW/TEF/builds/fs/lib:/root/branch_8115/standard/targets/RTF8115VW/TEF/builds/fs/lib/public:/root/branch_8115/standard/targets/RTF8115VW/TEF/builds/fs/lib/private                                               GLIBC_2.0
+@ !$                                                    @(!<                                                    @(!<                                                    @(!<                                                    @(!<                                                    @(!<                                                    @(!<
+@(!<                                                    @(!<
+@ !$                                                    `(!<
+@(!<                                                    @(!<
+@ !$
+`(!<                                                    `(!<
+`(!<                                                    `(!<                                                    `(!<
+@ !$                                                    @ !$                                                    @ !$
+@ !$                                                    @ !$
+@ !$                                                    @ !$
+@ !$                                                    @ !$                                                    @ !$
+@ !$                                                    @ !$
+` !$                                                    ` !$                                                    ` !$
+@ !<                                                    ` !$
+@0!'                                                    @(!$
+@ !<
+` !$                                                    @0!'
+@(!$                                                    @ !$
+@ !$                                                    @ !$                                                    @ !$
+@ !$                                                    @ !$                                                    ` !$
+@ !$                                                    ` !$                                                    ` !$                                                    @ !<
+` !$                                                    @(!$                                                    @ !<                                                    ` !$                                                    @(!$
+@ 4EM                                                   @ 4EM                                                   ` !$                                                    ` !$                                                    ` !$                                                    ` !$                                                    @ !$
+@ !<                                                    @ !$                                                    `(!<                                                    @ !$                                                    `(!<                                                    ` !$                                                    ` !$
+` !$                                                    @ !$
+`(!<                                                    @ !$                                                    @ !$                                                    `(!<
+`(!$                                                    @ !$                                                    @ !$                                                    @ !$                                                    @ !$
+@ !$                                                    @ !$                                                    @ !$
+`0!<                                                    @ !$
+`0!<                                                    `(!<
+` !$                                                    ` !$                                                    @ !<
+@ !$                                                    ` !$
+@ !<                                                    ` !$                                                    @ !<
+@ !$                                                    `(!<
+`(!<                                                    `(!<
+` !$                                                    ` !$
+` !$                                                    ` !$
+` !$                                                    ` !$
+` !$                                                    ` !$
+` !$                                                    ` !$
+` !$                                                    ` !$
+@ !$                                                    ` !$
+@ !<                                                    @ !$
+@ !$                                                    @ !$
+@ !$                                                    @ !$
+` !$                                                    @ !<
+@ !$                                                    @ !$
+` !$                                                    ` !$
+` !$                                                    ` !$
+` !$                                                    @ !$
+@ !$                                                    @ !$                                                    `(!$
+` !$                                                    ` !$                                                    ` !$
+@ !<                                                    ` !$
+@ !<                                                    @ !$
+@ !$                                                    `0!<                                                    @(!$
+@ !<                                                    @ !$
+@ !$                                                    @ !$                                                    @ !$
+` !$                                                    ` !$
+` !$                                                    ` !$
+` !$                                                    ` !$
+` !$                                                    ` !$
+@ !$                                                    @ !$
+` !$                                                    @ !<
+` !$                                                    @ !<
+@ !$                                                    @ !$
+@ !$                                                    @ !$
+@ !$                                                    @ !$
+`0!<
+`(!$                                                    ` !$
+@ !$                                                    @ !$
+@ !$                                                    @ !$
+@ !$                                                    A$Ew\
+A$Ew\
+@ !$                                                    ` !$
+@ !$                                                    @ !$
+`(!$                                                    ` !$
+@ !$                                                    @(!$                                                    `(!$
+@ !$                                                    @ !$                                                    @ !<
+TEF-ES                                                  TEF-AR
+TEF-BR_SV                                               TEF-BR_SG
+TEF-BR_SF                                               TEF-CL                                                  TEF-CO
+TEF-PE                                                  TEF-FBR
+ASP_CM                                                  ASP_GPI_RST_BTN                                         ASP_GPO_LED_CTL                                         ASP_GPO_GPON_LED_1                                      ASP_GPO_GPON_LED_2                                      ASP_GPO_GPON_TX_PWR                                     ASP_GPO_WIFI_LED_1
+ASP_GPI_WIFI_BTN_1                                      ASP_GPO_WIFI_RST_1
+ASP_GPO_WIFI_LED_2                                      ASP_GPI_WIFI_BTN_2                                      ASP_GPO_POTS_LED_1
+ASP_GPO_POTS_LED_2                                      ASP_GPO_POTS_LED_3
+ASP_GPIO_UNKNOWN                                        ASP_GPO_HPNA_RST
+ASP_GPO_SLIC_RST                                        Trying                                                  Ringing
+Call is Being Forwarded                                 Queued                                                  Session Progress
+Early Dialog Terminated                                 Accepted
+No Notification                                         Multiple Choices
+Moved Permanently                                       Moved Temporarily                                       Use Proxy
+Alternative Service                                     Bad Request
+Unauthorized                                            Payment Required                                        Forbidden
+Not Found                                               Method Not Allowed
+Not Acceptable                                          Proxy Authentication Required
+Request Timeout                                         Gone
+Conditional Request Failed                              Request Entity Too Large
+Request-URI Too Long
+Unsupported Media Type
+Unsupported URI Scheme                                  Unknown Resource-Priority                               Bad Extension                                           Extension Required                                      Session Interval Too Small
+Interval Too Brief                                      Bad Location Information
+Use Identity Header                                     Provide Referrer Identity
+Flow Failed                                             Anonymity Disallowed
+Bad Identity-Info
+Unsupported Certificate                                 Invalid Identity Header
+First Hop Lacks Outbound Support                        Max-Breadth Exceeded
+Bad Info Package                                        Consent Needed
+Temporarily Unavailable                                 Call/Transaction Does Not Exist                         Loop Detected                                           Too Many Hops                                           Address Incomplete                                      Ambiguous                                               Busy Here
+Request Terminated                                      Not Acceptable Here
+Bad Event                                               Request Pending
+Undecipherable                                          Security Agreement Required
+Internal Server Error                                   Not Implemented
+Bad Gateway
+Service Unavailable                                     Server Time-out
+Version Not Supported                                   Message Too Large
+Push Notification Service Not Supported                 Precondition Failure
+Busy Everywhere                                         Decline                                                 Does Not Exist Anywhere                                 Unwanted
+Rejected                                                TEF_ES_V004
+TEF_AR_V007                                             TEF_BR_SV_V006
+TEF_BR_SG_V006                                          TEF_BR_SF_V009
+TEF_FBR_V001                                            TEF_CL_V002                                             TEF_CO_V006
+TEF_PE_V004                                                     aspcmd.c                                        cmd = %s
+fail to execute, cmd = %s                               exit code is not expected '0', ret = %d, cmd = %s       sHwModel == NULL || ImgVersion == NULL || sCutVersion == NULL || nSize <= 0                                     RTF8115VW                                               RTF8117VW                                               R8115VW
+R8117VW                                                 %s%c
+%s is not support                                       TEF-%s                                                  s00.00_                                                 /var/defcfg/default_config.info                         no default config info, filename = %s/%s
+/var/defcfg                                             default_config.info
+UNSPEC                                                  fail to get default config info
+fail to trim_string default config info                 fail to cut token
+tef_keyword = [%s]                                      fail to parsing TEF                                     tef_country_id is unsupported, tef_country_id = %s
+tef_country_id = %s                                     tef_cfg_version = %s
+/var/config/aspcm.conf                                  fail to fopen(), filename = %s/%s
+CUSTOMIZATION=%s                                        TEF_MIG_REC=%s                                          no configuration file, filename = %s/%s
+/var/config                                             aspcm.conf                                              fail to parse_config(), str = %s
+key = %s, value = %s                                    CUSTOMIZATION
+TEF_MIG_REC                                             fail to malloc(), out of memory
+duplicated, REC[%d] tef_mig_rec_list = %s               fail to realloc(), out of memory                        REC[%d] tef_mig_rec_list = %s
+fail to save_config()                                   TEF-
+target_country_id = %s                                  fail to trim_string()                                   fail to parse_tef_config_info()                         /var/config/default_config.info                         no current config info, filename = %s/%s                target_country_id (%s), base_country_id (%s) are unmatched
+def_country_id (%s), base_country_id (%s) are unmatched mig_version = %s, base_version = %s
+base_version = %s, def_version = %s                     TEF_%s_%s
+[MIGRATION] %s: none                                    [MIGRATION] %s: [%s] --> [%s]
+msg_hdr is NULL                                         cmd_hdr is NULL
+cmd_buf is NULL                                         cmd_len is mismatched
+arg.level is invalid                                    set log level = %s                                      QUITE
+ERROR                                                   WARNING
+INFO                                                    DEBUG
+Unknown                                                 pfail to BootstrapUtilGetInfo()
+-compact                                                %s_%s_%s
+bldr_version = %s                                       img_commit = %s
+img_active = %s                                         img_valid[%d] = %s
+img_version[%d] = %s                                    asp_img_commit
+fail to BootenvUtilGetValue()                           PART_0
+PART_1                                                  asp_gpon_sn
+asp_gpon_sn = %s                                        ethaddr
+ethaddr = %s                                            mtd is NULL
+fail to open %s                                         fail to MEMGETINFO
+fail to MEMERASE                                        filename is NULL
+size = %u, erasesize = %u, writesize = %u, oobsize = %u fail to get file size of %s
+file_size = %d                                          oversize, max_data_size = %d
+out of memory                                           fail to seek, offset = %d
+fail to write, offset = %d                              src_id is NULL
+src_id = %s, filename is invalid                        cp -Hpf %s %s/%s                                        /persist/defcfg
+asp_cfg                                                 src_id = %s, fail to 'cp -Hpf %s %s/%s'
+src_id = %s, update '%s' to default configuration       src_id = %s, fail to BootstrapUtilGetInfo()
+%s/%u                                                   /var/cm
+mkdir -p %s                                             src_id = %s, fail to 'mkdir -p %s', ret = %d
+tar -x -f %s -C %s                                      src_id = %s, fail to untar %s, ret = %d
+rm -f %s ; sync ; echo 3 > /proc/sys/vm/drop_caches     src_id = %s, fail to delete %s, ret = %d
+%s/%s_%s.info                                           %s/%s_%s.tcboot.bin
+%s/%s_%s.tclinux.bin                                    cat %s | grep 'Bootloader version:'                     src_id = %s, fail to open %s
+Bootloader version: %s                                  src_id = %s, fail to retrive bootloader version
+the bootloader version %s does not support protection mechanism
+/dev/mtd%d                                              src_id = %s, do not update bootloader, bldr_version = %s
+src_id = %s, fail to update mtd, mtd = %s, file = %s    src_id = %s, updated bootloader, bldr_version = %s to %s
+src_id = %s, img_commit = %d, img_active = %d           src_id = %s, update '%s' to %s
+rm -rf %s && echo 3 > /proc/sys/vm/drop_caches          src_id = %s, fail to delete '%s', ret = %d
+has_img is NULL                                         has_cfg is NULL                                         rm -f %s && echo 3 > /proc/sys/vm/drop_caches
+src_id = %s, fail to scandir(), err = %s                %s/%s
+src_id = %s, '%s' is an image file                      src_id = %s, fail to update_image()                     src_id = %s, '%s' is a config file, postpone            src_id = %s, '%s' is an unknown file, ignore
+src_id = %s, '%s' is a config file
+src_id = %s, fail to update_default_config()            file_config_info = %s
+file_cust_value = %s                                    update default config to tef_br_default                 cp -Hpf %s %s/%s.%s
+src_id = %s, fail to 'cp -Hpf %s %s/%s.%s'              src_id = %s, update '%s' to default configuration for %s
+[[[BUG]]] upgrade by BAD merged image to %s or %s, please check the content of image                            upgrade by merged image to %s or %s
+setup default config for %s                             cp -Hpf %s/%s.%s %s/%s
+upgrade by old merged image to %s                       rm -rf %s/%s.%s
+rtf_def_area                                            bootenv %s = %s
+mis-matched bootenv %s (%s)                             fail to BootenvUtilSetValue()
+fail to BootenvUtilSaveData()                           reset bootenv %s = %s
+no bootenv %s, reset to %s                              setup bootenv %s = %s                                   upgrade by merged image to other country
+arg is NULL                                             echo 3 > /proc/sys/vm/drop_caches
+fail to drop cache, ret = %d                            src_id = %s, fail to AspFmSetEvent(FIRMWARE_UPGRADE)
+src_id = %s, cmd_len is mismatched                      arg.filename = %s
+src_id = %s, arg.filename is invalid                    update default config to other country                  sync
+src_id = %s, fail to update_merged_image()              src_id = %s, there is no img and cfg
+rm -f %s                                                src_id = %s, fail to AspFmClearEvent(FIRMWARE_UPGRADE)
+src_id = %s, fail to AspIilAsyncReturn(), err = %s      OVERSIZE
+BAD_PARAM                                               NO_MEM                                                  TX_FAIL
+RX_FAIL                                                 TIMEOUT
+UNKNOWN_SRC_ID                                          UNKNOWN_DST_ID
+UNKNOWN_COMM                                            MISMATCH_COMM
+UNSUPPORT                                               UNKNOWN_CMD                                             BAD_CMD
+BAD_RET                                                 MISMATCH_CMD_LEN
+UNKNOWN_EVT                                             BAD_EVT
+MISMATCH_EVT_LEN                                        CONFLICT_ID
+BUSY                                                    arg.filename is invalid                                 image is updating
+fail to pthread_create(), err = %s                      src_id = %s, switch image, %s = %s
+arg.partition is invalid                                src_id = %s, commit image, %s = %s
+asp_img_activate                                        src_id = %s, activate image, %s = %s
+reg1 and reg2 are NULL                                  reg1 is NULL                                            reg2 is NULL
+aspcm_module_tbl = %p, inc = %d, cap = %d, size = %d    module_entry[%d]: id = %s
+id is NULL                                              id is invalid
+index_target is NULL                                    found is NULL                                           aspcm_module_tbl_size = %d, index_target = %d
+found, index_lb = %d, index_target = %d                 found, index_mid = %d, index_target = %d
+index_target = %d                                       aspcm_module_tbl = %p, aspcm_module_tbl_cap = %d
+found module, id = %s                                   insert module: id = %s, aspcm_module_tbl_size = %d
+id is not found, id = %s                                delete module: id = %s
+aspcm_module_tbl_size = %d                              str is NULL                                             mac_addr is NULL
+fail to strdup(), out of memory                         cd %s && echo `date -Iseconds` > %s.%s.%s_%s
+asp_cfg_sig                                             fail to generate signature, ret = %d
+cd %s && build_info >> %s.%s.%s_%s                      cd %s && echo "Manufacturer: Askey" >> %s.%s.%s_%s
+cd %s && echo "HW Version: %d" >> %s.%s.%s_%s
+fail to string_to_hex_buf(asp_base_mac_value)           %02X%02X%02X%02X%02X%02X                                got serial number: %s
+cd %s && echo "SerialNumber: %s" >> %s.%s.%s_%s         cd %s && ln -fs %s.%s.%s_%s %s
+fail to generate link to signature, ret = %d            src_id = %s, cfg has been reset, it needs to reboot immediately                                                 src_id = %s, cfg has been restore, it needs to reboot immediately                                               src_id = %s, need to save configuration                 src_id = %s, fail to AspFmSetEvent(CONFIG_DOWNLOAD)
+fail to AspCmDecryptConfigFile()                        tar -ztf %s %s
+there is no signature in %s                             [[[BUG]]] no min. required info, please check settings of tef_min_req_config_info_table                         src_id = %s, prepare check
+rm -rf %s                                               fail to 'rm -rf %s', ret = %d                           src_id = %s, prepare working directory
+fail to 'mkdir -p %s', ret = %d                         src_id = %s, uncompress configuration
+tar -zxf %s -C %s                                       fail to 'tar -zxf %s -C %s', ret = %d
+no current config info, filename = %s                   grep -e CWMP_ACS_URL= -e CWMP_ACS_URL_LastConnected= -e CWMP_ACS_User= -e CWMP_ACS_Password= %s/%s/cwmp.conf | sed "s/\\\\/\\\\\\\\\\\\\\\\/g" | sed "s/\//\\\\\//g" | awk -F "=" '{printf "sed -i \"s/%%s=.*$/%%s/\" %s/cwmp.conf\n", $1, $0}'                                         saving
+fail to '%s'                                            grep -e CWMP_ACS_URL= -e CWMP_ACS_URL_LastConnected= -e CWMP_ACS_User= -e CWMP_ACS_Password= %s/cwmp.conf | sed "s/\\\\/\\\\\\\\\\\\\\\\/g" | sed "s/\//\\\\\//g" | awk -F "=" '{printf "sed -i \"s/%%s=.*$/%%s/\" %s/cwmp.conf\n", $1, $0}'                                            fail to '%s', ret = %d
+cd %s && tar -zcf %s/%s *                               fail to prepare backup configuration file, ret = %d
+move downloadable %s/%s to %s                           mv -f %s/%s %s
+fail to 'mv -f %s/%s %s'                                minreq info: [%s][%s]
+config info: [%s][%s]                                   no config info of current configuration                 min_req_country_id, cfg_country_id are unmatched
+cfg_version is lower than min_req_version               fail to AspCmEncryptConfigFile()
+/persist/config                                         fail to restore %s to %s, ret = %d
+src_id = %s, configuration restored, filename = %s      src_id = %s, fail to AspFmClearEvent(CONFIG_DOWNLOAD)
+fail to 'rm -f %s', ret = %d                            src_id = %s, reset configuration                        cd %s && find . \( -name '*' -a ! -name 'lost+found' \) -maxdepth 1 -exec rm -rf {} \;                          fail to 'rm -f %s/*', ret = %d
+src_id = %s, reset backup                               /persist/bakcfg
+src_id = %s, reset status                               /persist/status
+src_id = %s, umount status                              umount -f %s                                            fail to 'umount -f %s', ret = %d
+src_id = %s, configuration reset                        soft_reset is not supported, customization = %s
+src_id = %s, try to configuration soft_reset, customization = %s
+src_id = %s, prepare soft_reset configuration           rm -rf %s/%s
+soft_reset                                              mkdir -p %s/%s                                          src_id = %s, copy config to working directory           cp -Hpf %s/%s %s/%s                                     src_id = %s, decrypt configuration
+%s/%s/%s                                                tar -zxf %s/%s/%s -C %s/%s
+rm -rf %s/%s/%s                                         remove all the config that not relate to VOIP and PPP   cd %s/%s; find . \( ! -name '.' -a ! -name 'asp_cfg_sig*' -a ! -name 'vsm_cfg_igd*' -a ! -name 'mapping_TR104_*' -a ! -name 'rtm_cfg_igd.*.ppp_intf.conf' \) -exec rm -rf {} \;
+src_id = %s, update to default                          cd %s; find . \( ! -name '.' -a ! -name 'asp_cfg_sig*' -a ! -name 'vsm_cfg_igd*' -a ! -name 'mapping_TR104_*' -a ! -name 'rtm_cfg_igd.*.ppp_intf.conf' \) -exec cp -af {} %s/%s \;                                              remove all the config that not relate to PPP
+cd %s/%s; find . \( ! -name '.' -a ! -name 'asp_cfg_sig*' -a ! -name 'rtm_cfg_igd.*.ppp_intf.conf' \) -exec rm -rf {} \;                                                cd %s; find . \( ! -name '.' -a ! -name 'asp_cfg_sig*' -a ! -name 'rtm_cfg_igd.*.ppp_intf.conf' \) -exec cp -af {} %s/%s \;
+remove all the config that not relate to VOIP           cd %s/%s; find . \( ! -name '.' -a ! -name 'asp_cfg_sig*' -a ! -name 'vsm_cfg_igd*' -a ! -name 'mapping_TR104_*' \) -exec rm -rf {} \;
+cd %s; find . \( ! -name '.' -a ! -name 'asp_cfg_sig*' -a ! -name 'vsm_cfg_igd*' -a ! -name 'mapping_TR104_*' \) -exec cp -af {} %s/%s \;                               IGD_%s
+src_id = %s, update %s to default                       cd %s && grep -Hs %s rtm_cfg_igd.*.conf | awk -F ":" '{print $1 "=" $2}' | awk -F "=" '{printf "sed -i \"s/%%s=.*$/%%s=%%s/\" %s/%s/%%s\n", $2, $2, $3, $1}'
+SIP_NET_%s                                              cd %s && grep -Hs %s vsm_cfg_igd.1.service.*.sip_net.conf | awk -F ":" '{print $1 "=" $2}' | awk -F "=" '{printf "sed -i \"s/%%s=.*$/%%s=%%s/\" %s/%s/%%s\n", $2, $2, $3, $1}'                                                  %s/%s_reset
+src_id = %s, generate %s                                cd %s/%s && tar -zcf %s *
+src_id = %s, encrypt configuration                      src_id = %s, save configuration to %s
+src_id = %s, backup configuration to %s                 src_id = %s, configuration soft_reset, customization = %s                                                       NONE
+IPV4_ADM_STATE                                          IPV6_ADM_STATE
+DNS_CLT_ADM_STATE                                       DNS_RELAY_ADM_STATE
+DNS_RELAY_CACHE_STATE                                   WEB_ADM_STATE
+WEB_PROTOCOL                                            CLI_ADM_STATE
+CLI_PROTOCOL                                            MGT_ACL_STATE
+FWL_STATE                                               FWL_TYPE
+FWL_LEVEL_ID                                            DHCPV4_SVR_ADM_STATE
+DHCPV6_SVR_ADM_STATE                                    IP_MCAST_ADM_STATE
+RIP_ADM_STATE                                           RADV_ADM_STATE
+TEF_WAN_SECURITY                                        TEF_ACCESS_CLASS
+TEF_WEB_TIMEOUT                                         DOMAIN_NAME
+ALG_ADM_STATE_MASK                                      TEF_WIFI_AGENT
+TEF_SECURITY_AGENT                                      TEF_SECURITY_COUNTRY
+<ADM_STATE                                              MEDIA_PROF_ID
+MAX_SESSIONS                                            SIP_URI_SCHEME
+CLT_AUTH_METHOD                                         CLT_AUTH_REALM
+ORGANIZATION                                            USE_CODEC_PRIORITY_IN_SDP_RESPONSE
+TRANSMIT_SIP_OPTION                                     CONFERENCE_CALL_REMOTE_MIXER_ENABLE
+CONFERENCE_CALL_DOMAIN_URI                              SIP_DSCP_MARK
+USER_AGENT_DOMAIN                                       IP_INTF_ID
+IPV4_ADDR_TYPE                                          IPV4_ADDR_ID
+USER_AGENT_PORT                                         USER_AGENT_TRANSPORT
+,unsupported, customization = %s                        /persist/defcfg/asp_cfg                                 fail to lstat(), err = %s
+%s/%s is a regular file                                 fail to readlink(), err = %s                            %s.%s
+unknown target_filename, target_filename = %s           arg.def_area is invalid
+%s/%s.%s                                                %s is not found
+arg.def_area is unsupported                             ln -fs %s.%s %s/%s                                      fail to 'ln -fs %s.%s %s/%s'
+setup symlink %s -> %s.%s                               index is out of range, index = %d, rec_num = %d
+invalid path to copy.                                   cp %s/%s %s                                             fail to prepare backup configuration file, ret = %d, cmd = cp %s/%s %s                                          copy cfg backup file to %s successfully
+arg.busy is invalid                                     id = %s, busy = %s
+fail to aspcm_del_module(), ret = %s                    fail to aspcm_add_module(), ret = %s                    FALSE                                                   TRUE                                                    Invalid customization: %s
+customization = %s                                      Current Custom: %s                                      fail to AspIilLock(), ignore saving
+cfg has been reset, ignore saving                       cfg has been restored, ignore saving
+aspcm_module_tbl_size is %d, ignore saving              generate signature
+fail to generate signature                              reset working directory                                 fail to 'rm -rf %s/%s'
+fail to 'mkdir -p %s/%s'                                copy config to working directory
+cp -af %s/* %s/%s                                       fail to 'cp -af %s/* %s/%s'                             generate downloadable to %s/%s/%s
+cd %s/%s && tar -zcf %s/%s/%s *                         fail to generate downloadable file to %s/%s/%s
+encrypt %s/%s/%s                                        /var/cm/saving/asp_cfg
+move downloadable %s/%s/%s to %s                        mv -f %s/%s/%s %s
+fail to 'mv -f %s/%s/%s %s'
+save configuration to %s                                cp -Hpf %s/%s %s
+fail to copy configuration file, ret = %d               backup configuration to %s
+Save configuration completed, duration = %u ms          umount %s
+fail to 'umount %s', ret = %d                           create working path                                     create runtime configuration path
+create runtime default configuration path               mount default configuration path
+mount -t jffs2 -o rw,sync /dev/mtdblock%d %s            fail to mount %s, ret = %d
+erase mtd%d and remount                                 fail to erase mtd%d
+mount backup configuration path                         mount configuration path
+mount status path                                       mount successful                                        rm /persist/status/log/syslog.txt.10 /persist/status/log/syslog.txt.11 /persist/status/log/syslog.txt.12 /persist/status/log/syslog.txt.13 /persist/status/log/syslog.txt.14 /persist/status/log/syslog.txt.15 /persist/status/log/syslog.txt.16                                        fail to remove %s/log/syslog.txt.10~16, ret = %d
+install configuration to runtime path                   copy last configuration to runtime path
+tar -zxf %s/%s -C %s                                    install configuration by last configuration             fail to install configuration by last configuration
+copy backup configuration to runtime path               install configuration by backup configuration
+fail to install configuration by backup configuration   copy default configuration to runtime path              install configuration by default configuration
+fail to install configuration by default configuration  no default configuration
+no backup configuration                                 no last configuration
+tef_min_req_config_info, [%s] --> [%s]                  install default configuration to runtime path
+copy default configuration to runtime default configuration path                                                install default configuration
+fail to install default configuration                   /var/defcfg/aspcm.conf
+def_cfg_key = %s, def_cfg_value = %s                    default customization = %s
+%s/%s.%s is not found                                   cp -af %s/%s.%s %s
+/tef                                                    fail to 'cp -af %s/%s.%s %s'                            migrate to dual def_cfg
+unsupported bootenv %s (%s)                             reset new customization by bootenv %s (%s)              no bootenv %s
+curr_cfg_key = %s, curr_cfg_value = %s                  reset new customization by configuration (%s)
+reset new customization to %s                           setup a symlink for %s by new customization
+reset runtime defcfg                                    rm -rf %s/*                                             fail to 'rm -rf %s/*', ret = %d
+[[[BUG]]] mis-matched target (%s) and default customization (%s), please check the content of image
+new customization = %s                                  mis-matched bootenv %s (%s) and new customization (%s)  reset default config of tef_br
+fail to load_config()                                   touch /var/tmp/weakcipher
+Can't create /var/tmp/weakcipher                        mig_version = %s, cfg_version = %s
+defcfg info: [%s][%s]
+[[[BUG]]] no min. required info, please check the settings of tef_min_req_config_info_table                     [[[BUG]]] no config info of default configuration
+[[[BUG]]] no config info of current configuration
+MISMATCHED: min_req_country_id, def_country_id, customization is unmatched the default configuration
+MISMATCHED: min_req_country_id, cfg_country_id, customization is unmatched the base configuration               MISMATCHED: def_country_id, cfg_country_id, the base configuration is unmatched the default configuration       [[[BUG]]] def_version is lower than min_req_version, please check the content of image                          RESET_CFG: has done
+RESET: cfg_version is lower than min_req_version        reset runtime config                                    sync runtime default to config
+cp -af %s %s                                            fail to 'cp -af %s %s', ret = %d                        reset configuration
+reset backup
+TEF_PE_V005                                             [MIGRATION] %s: [TEF_PE_V004] --> [TEF_PE_V005]         rm %s/mapping_TR104_Services_VoiceService_Capabilities_Codecs.conf 2>/dev/null
+[MIGRATION] fail to remove %s/mapping_TR104_Services_VoiceService_Capabilities_Codecs.conf, ret = %d            [MIGRATION] remove %s/mapping_TR104_Services_VoiceService_Capabilities_Codecs.conf                              rm %s/mapping_TR104_Services_VoiceService_VoiceProfile_Line_Codec_List.conf 2>/dev/null                         [MIGRATION] fail to remove %s/mapping_TR104_Services_VoiceService_VoiceProfile_Line_Codec_List.conf, ret = %d
+[MIGRATION] remove %s/mapping_TR104_Services_VoiceService_VoiceProfile_Line_Codec_List.conf
+TEF_CL_V003                                             [MIGRATION] %s: [TEF_CL_V002] --> [TEF_CL_V003]
+rm -f %s/acscert-1.cer 2>/dev/null
+[MIGRATION] fail to remove %s/acscert-1.cer, ret = %d   [MIGRATION] remove %s/acscert-1.cer
+cp -af %s/acscert.cer %s/acscert.cer                    [MIGRATION] fail to copy %s/acscert.cer, ret = %d
+[MIGRATION] remove %s/acscert.cer
+TEF_CL_V004                                             TEF_CL_V005                                             [MIGRATION] %s: [TEF_CL_V004] --> [TEF_CL_V005]
+rm -f %s/mapping_TR98_Layer3Forwarding_Forwarding.conf 2>/dev/null                                              [MIGRATION] fail to remove %s/mapping_TR98_Layer3Forwarding_Forwarding.conf, ret = %d
+[MIGRATION] remove %s/mapping_TR98_Layer3Forwarding_Forwarding.conf
+rm -f %s/mapping_TR98_IPv6Layer3Forwarding_Forwarding.conf 2>/dev/null
+[MIGRATION] fail to remove %s/mapping_TR98_IPv6Layer3Forwarding_Forwarding.conf, ret = %d                       [MIGRATION] remove %s/mapping_TR98_IPv6Layer3Forwarding_Forwarding.conf                                         TEF_ES_V011
+TEF_ES_V012                                             [MIGRATION] %s: [TEF_ES_V011] --> [TEF_ES_V012]
+rm -f %s/acscert.cer 2>/dev/null                        [MIGRATION] fail to remove %s/acscert.cer, ret = %d
+[MIGRATION] copy %s/acscert.cer                         [tef_mig_info.customization]: %s: [%s] --> [%s]
+TEF_CO_V011                                             TEF_CO_V012
+[MIGRATION] %s: [TEF_CO_V011] --> [TEF_CO_V012]         fail to signal(SIGCHLD)
+fail to signal(SIGALRM)                                 keep waiting                                            fail to kill(SIGALRM) to parent process, err = %s
+/persist/status/reboot_reason.bak                       cp -f %s %s
+/persist/status/reboot_reason.txt                       POWEROFF
+REBOOT                                                  KERNELPANIC
+[%u]: %s                                                [0]: %s
+/persist/status/reboot_record.txt                       %d:%u
+args is NULL                                            invalid handle id
+src_id = %s, evt_id = %u, timestamp = %u                evt_len: %u is mismatched (rtm_evt_cfg_igd_time_ntp_state_changed_t: %u)
+fail to AspIilSetEvtHandler(), ret = %s                 RTM_DMON
+fail to AspIilSubscribeEvent(RTM_CFG_IGD_TIME_NTP_STATE_CHANGED), err = %s                                      fail to AspIilCancelEvent(RTM_CFG_IGD_TIME_NTP_STATE_CHANGED), err = %s                                         fail to AspIilInitLog(), app_name = %s
+unknown log level '%s'                                  fail to aspcm_reset()
+fail to aspcm_init()                                    fail to aspcm_setup_daemon_control()
+fail to fork(), err = %s                                ASP cfg mgt daemon is running
+fail to aspcm_reset_daemon_control()                    ASPCM_DMON
+fail to AspIilInit(), ret = %s                          fail to AspIilSetCmdHandler(), ret = %s
+fail to aspcm_notify_daemon_initialized()               fail to AspIilReset(), ret = %s
+ASP cfg mgt daemon is terminated                        ASP cfg mgt daemon is terminated with error
+RTM_DMON
+@HL@
+Aw\@
+.shstrtab                                               .interp
+.reginfo
+.dynamic                                                .hash
+.dynsym                                                 .dynstr
+.gnu.version
+.gnu.version_r                                          .init                                                   .text
+.MIPS.stubs                                             .fini                                                   .rodata
+.eh_frame                                               .ctors
+.dtors                                                  .jcr
+.data.rel.ro                                            .data                                                   .rld_map
+.got                                                    .sdata
+.bss                                                    .pdr                                                    .gnu.attributes
+.mdebug.abi32                                           
+############################                            # 9. STRINGS GPIO_UTIL - COMPLETO
+############################
+/lib/ld-uClibc.so.0                                     A5Pp
+_init                                                   _fini
+__uClibc_main                                           __deregister_frame_info
+__register_frame_info                                   _Jv_RegisterClasses
+puts                                                    memset
+BootstrapUtilGetInfo                                    printf                                                  strcmp
+strcasecmp                                              GpioUtilGetLogLevel                                     GpioUtilSetLogLevel
+strtoul                                                 GpioUtilGetInfo
+GpioUtilGetState                                        GpioUtilSetState
+GpioUtilGetDir                                          GpioUtilSetDir                                          GpioUtilGetData
+GpioUtilSetData                                         libgpio_util.so
+_DYNAMIC_LINKING                                        __RLD_MAP                                               _GLOBAL_OFFSET_TABLE_
+libbootstrap_util.so                                    libgcc_s.so.1
+libc.so.0                                               _ftext
+_fdata                                                  _edata
+__bss_start                                             _fbss
+_end                                                    /lib:/lib/public:/root/branch_8115/standard/targets/RTF8115VW/TEF/builds/fs/lib:/root/branch_8115/standard/targets/RTF8115VW/TEF/builds/fs/lib/public
+GLIBC_2.0                                               '9)`                                                    A$c2
+@$D,                                                    @$D,                                                    @$D,
+@$D,                                                    @$D,
+@$D-$                                                   @$D-P
+@$D-x                                                   @$D-                                                    @$D-
+@$D-                                                    @$D.0
+@$D.d                                                   @$D.d                                                   @$D.|
+@$D.                                                    $b5
+@ !<                                                    @$E.
+@$D.                                                    @$D.
+@$B2                                                    @$D/                                                    @$D/
+@$D/$                                                   @$D/,                                                   @$D/4
+@$d/<                                                   @$D/
+@$D/                                                    @$D/$
+@$D/,                                                   @$D/4                                                   @$D/T
+@$D/t                                                   @$D/
+@$D/                                                    @$D/                                                    @$B/
+@$B/                                                    @$B/
+@$D/                                                    @$B/
+@$B/
+@$B/
+@$D/                                                    @$B0                                                    @$B/
+@$B0                                                    @$D0                                                    @$D0,
+@$D/                                                    @$D04
+@$D0L                                                   @$D0h
+@$D/                                                    @$D/                                                    @$D0
+@$D0                                                    @$D0
+@$D0                                                    @$D0                                                    @$D0
+@$D1                                                    @$D/
+@$D/                                                    @$D10
+@$D1L                                                   @$D1h                                                   @$D1p
+@$D1                                                    @$D1
+@$D1                                                    @$D0
+@$D0                                                    @$D1
+@$D1                                                    @$D2                                                    @$D.|                                                   @$D.                                                    @$D2
+$b5
+@$D2H                                                   @$D2l
+@$D2x                                                   @$D2
+@$D/                                                    @$B/
+@$B/                                                    @$B/                                                    @$D/                                                    @$B/
+@$B/                                                    @$B/
+@$D/                                                    @$B0                                                    @$B/
+@$B0
+@$D0                                                    @$D2
+@$D2x                                                   @$D2
+@$D/                                                    @$D04
+@$D0L                                                   @$D0h
+@$D2x                                                   @$D2
+@$D/                                                    @$D/
+@$D0                                                    @$D0
+@$D2                                                    @$D2x
+@$D2
+@$D0                                                    @$D0
+@$D0
+@$D1                                                    @$D2x                                                   @$D2                                                    @$D/
+@$D/                                                    @$D10
+@$D1L                                                   @$D2
+@$D2x                                                   @$D2
+@$D1p                                                   @$D1                                                    @$D1
+@$D1                                                    @$D2x                                                   @$D2                                                    @$D0                                                    @$D0                                                    @$D1                                                    @$D1
+A$P2                                                    ASP_CM
+ASP_GPI_RST_BTN                                         ASP_GPO_LED_CTL                                         ASP_GPO_GPON_LED_1
+ASP_GPO_GPON_LED_2                                      ASP_GPO_GPON_TX_PWR
+ASP_GPO_WIFI_LED_1                                      ASP_GPI_WIFI_BTN_1
+ASP_GPO_WIFI_RST_1                                      ASP_GPO_WIFI_LED_2
+ASP_GPI_WIFI_BTN_2                                      ASP_GPO_POTS_LED_1
+ASP_GPO_POTS_LED_2                                      ASP_GPO_POTS_LED_3
+ASP_GPIO_UNKNOWN                                        ASP_GPO_HPNA_RST
+ASP_GPO_SLIC_RST                                        Usage:
+    gpio_util help
+    gpio_util log [{quite|error|warning|info|debug}]        gpio_util show <pin>
+    gpio_util state <pin> [{enable|disable}]                gpio_util dir <pin> [{input|output}]
+    gpio_util data <pin> [{high|low}]                       gpio_util asp_pin_name
+    gpio_util asp_show <asp_pin_name>                       gpio_util asp_state <asp_pin_name> [{enable|disable}]                                                           gpio_util asp_dir <asp_pin_name> [{input|output}]
+    gpio_util asp_data <asp_pin_name> [{high|low}]
+asp_pin_name is invalid                                 fail to BootstrapUtilGetInfo()
+unsupported hardware version, asp_hw_model_name = %s, asp_hw_version = %d
+help                                                    fail to GpioUtilGetLogLevel()
+quite                                                   error
+warning                                                 info
+debug                                                   unknown, level = %d
+fail to GpioUtilSetLogLevel()
+set level to %s                                         show
+fail to GpioUtilGetState()                              gpio pin = %u
+disable                                                 unknown
+enable                                                  gpio state = %s
+input                                                   output
+gpio direction = %s                                     high
+gpio data = %s                                          state
+gpio %u state = enable                                  gpio %u state = disable
+gpio %u state is unknown                                fail to GpioUtilSetState()
+set gpio %u state = %s                                  fail to GpioUtilGetDir()
+gpio %u direction = output                              gpio %u direction = input
+gpio %u direction is unknown                            fail to GpioUtilSetDir()
+set gpio %u direction = %s                              data
+fail to GpioUtilGetData()                               gpio %u data = high
+gpio %u data = low                                      gpio %u data is unknown
+fail to GpioUtilSetData()                               set gpio %u data = %s
+asp_pin_name                                            asp_hw_model_name = %s, asp_hw_version = %d
+%s, asp_pin: %d --> pin: 0x%08x                         asp_show
+asp_pin is unsupported                                  gpio asp_pin = %s, pin = %u
+asp_state                                               asp_dir
+asp_data                                                .shstrtab
+.interp                                                 .reginfo
+.dynamic                                                .hash
+.dynsym                                                 .dynstr
+.gnu.version                                            .gnu.version_r
+.init                                                   .text
+.MIPS.stubs
+.fini                                                   .rodata
+.eh_frame                                               .ctors
+.dtors                                                  .jcr
+.data.rel.ro
+.data                                                   .rld_map
+.got                                                    .sdata
+.bss                                                    .pdr
+.gnu.attributes                                         .mdebug.abi32
+                                                        ############################
+# 10. STRINGS HW_UTIL - COMPLETO
+############################                            /lib/ld-uClibc.so.0
+_init                                                   _fini
+__uClibc_main                                           __deregister_frame_info
+__register_frame_info
+_Jv_RegisterClasses                                     libecnt_lib_dbg.so.1
+_DYNAMIC_LINKING                                        __RLD_MAP
+_GLOBAL_OFFSET_TABLE_                                   libapi_lib_gponmgr.so.1
+puts
+atoi                                                    gponmgr_lib_set_counter_type
+strcmp                                                  libgcc_s.so.1
+libc.so.0                                               _ftext
+_fdata
+_edata                                                  __bss_start
+_fbss                                                   _end
+GLIBC_2.0                                               @ !,B
+ =====================================================  gpon_set_counter_type [0/1], 0: GEM-based, 1: ethernet-based                                                    gpon_set_counter_type
+.shstrtab                                               .interp
+.reginfo                                                .dynamic
+.hash                                                   .dynsym
+.dynstr                                                 .gnu.version
+.gnu.version_r                                          .init
+.text                                                   .MIPS.stubs                                             .fini
+.rodata                                                 .eh_frame
+.ctors                                                  .dtors
+.jcr                                                    .data                                                   .rld_map
+.got                                                    .sdata                                                  .bss
+.pdr                                                    .gnu.attributes
+.mdebug.abi32                                           
+############################                            # 11. STRINGS LIBLED_UTIL - COMPLETO                    ############################
+_GLOBAL_OFFSET_TABLE_                                   _init
+_gp_disp                                                _fini                                                   __cxa_finalize
+__deregister_frame_info                                 __register_frame_info
+_Jv_RegisterClasses                                     LedUtilEnableSet
+printf                                                  ioctl
+open                                                    puts                                                    close
+LedUtilEnableGet                                        LedUtilGetLedNumber
+memset                                                  LedUtilGetLedConfig                                     memcpy
+LedUtilGetLedStatus
+LedUtilSetLedConfig                                     LedUtilResetLedConfig
+libgcc_s.so.1                                           libc.so.0
+_ftext                                                  _fdata
+_edata                                                  __bss_start
+_fbss                                                   _end
+libled_util.so                                          GLIBC_2.0
+@ !<                                                    @ !<
+@ !<                                                    @ !<
+@(!$                                                    @ !<
+@(!$                                                    @ !<
+@ !<                                                    ASP_CM
+ASP_GPI_RST_BTN                                         ASP_GPO_LED_CTL
+ASP_GPO_GPON_LED_1                                      ASP_GPO_GPON_LED_2
+ASP_GPO_GPON_TX_PWR                                     ASP_GPO_WIFI_LED_1
+ASP_GPI_WIFI_BTN_1                                      ASP_GPO_WIFI_RST_1                                      ASP_GPO_WIFI_LED_2
+ASP_GPI_WIFI_BTN_2                                      ASP_GPO_POTS_LED_1
+ASP_GPO_POTS_LED_2                                      ASP_GPO_POTS_LED_3
+ASP_GPIO_UNKNOWN                                        ASP_GPO_HPNA_RST
+ASP_GPO_SLIC_RST                                        LedUtilEnableSet
+%s():%d: Open fd error                                  %s():%d: ioctl failed.                                  %s():%d: Return fd error                                drv_fd_op                                               %s():%d: Invalid parameter
+/dev/asp_led                                            open /dev/asp_led error!                                close /dev/asp_led error!                               LedUtilEnableGet                                        %s():%d: Invalid arg
+%s():%d: Close fd error                                 LedUtilGetLedNumber
+%s():%d: cnt is NULL                                    %s():%d: ioctl failed, ret = %d                         LedUtilGetLedConfig                                     %s():%d: data is NULL                                   LedUtilGetLedStatus                                     LedUtilSetLedConfig
+LedUtilResetLedConfig                                   .shstrtab                                               .reginfo                                                .dynamic                                                .hash
+.dynsym                                                 .dynstr
+.gnu.version
+.gnu.version_r                                          .rel.dyn                                                .init                                                   .text                                                   .MIPS.stubs
+.fini                                                   .rodata
+.eh_frame                                               .ctors                                                  .dtors
+.jcr                                                    .data.rel.ro
+.data
+.got                                                    .sdata
+.bss                                                    .pdr
+.gnu.attributes                                         .mdebug.abi32
+                                                        ############################
+# 12. STRINGS TCLEDCTRL - LED/GPIO/PROC                 ############################                            ` !(
+@0!-                                                    @ !,B
+@0!$c                                                   (!$c
+[DEBUG]num %d wifi gpio %d, action %d                   TC3162 LED Manager 0.1 exit
+tc3162/led_def                                          tc3162/led_ppp
+tc3162/gpio_dbg                                         tc3162/led_xpon                                         tc3162/led_752x
+tc3162/gpio_output                                      %d %d
+usage: <value1> <value2>                                usage: <judgement pkts> <need timer or not>
+usage: <is_internet_led> <is_internet_trying_led>
+%s %s %d %d
+gpio                                                    input
+get gpio%d input: 0x%x                                  output
+set gpio%d output: %d                                   get gpio%d val: 0x%x                                    set gpio%d val: %d
+gpio output/set <gpio_num> <gpio_val>                   gpio input/get <gpio_num>                               %d %d %d %d %d
+usage: <led_no> <gpio> <mode> <speed> <onoff>           %d %x %x %d %d
+%d  %d  %d  %d                                          %d %d
+%02d: actived:%02x ctrl:%02x                            led_no  gpio    mode    speed   onoff                   %d      %x      %x      %d      %d
+%d      %d      %d      %d      %d                      %s %d %d
+gpio_no exceeds %d.                                     active                                                  gpio_status error.
+deactive                                                TC3162 LED Manager 0.1 init
+tcledctrl version: %s.                                  tcledctrl V1.1.0.0 (Jun 17 2022-06:21:29)
+tc3162/wps_button                                       tc3162/reset_button
+tc3162/wlan_button                                      tc3162/led_internet
+tc3162/led_internet_para                                tc3162/led_usb
+eSetWPSLedMode                                          wscStatus
+wscTimerRunning                                         wsc_done
+ledChk                                                  led_ien
+led_oen                                                 ledGetGpio
+ledSetMode                                              ledGetMode
+ledTurnOff                                              ledTurnOn
+internet_hwnat_timer_switch                             internet_hwnat_pktnum
+internet_trying_led_on                                  internet_led_on
+led_ether_up_status                                     led_xpon_status
+xpon_los_status                                         gpio_current                                            set_wlan_gpio_mode
+hook_wlan_led_get_data                                  hook_wlan_led_action
+getDslLedGpio                                           chkWlanGpioMode
+depends=                                                vermagic=2.6.36 SMP mod_unload MIPS32_R2 32BIT MT_SMTC
+tcledctrl
+GCC: (Buildroot 2012.05) 4.3.6
+GCC: (Buildroot 2012.05) 4.3.6                          .symtab
+.strtab                                                 .shstrtab
+.note.gnu.build-id                                      .rel.text.getDslLedGpio
+.rel.text.get_led_mode_data                             .rel.text.get_led_data
+.rel.text.chkWlanGpioMode                               .rel.text.ledGetMode
+.rel.text.ledSetMode                                    .rel.text.getSysResetGpio
+.rel.text.ledGetGpio                                    .rel.text.getWlanRadioGpio
+.rel.text.save_gpio_info                                .text.ledNumberSpecial
+.rel.text.led_wifi                                      .rel.text.restore_gpio_info
+.rel.text.led_ien                                       .rel.text.led_oen
+.rel.text.ledTurnOff
+.rel.text.ledTurnOn                                     .rel.text.Usb_Led_Flash_Op
+.rel.text.wpsLedChk                                     .rel.text.WPSLedBlink
+.rel.text.ledChk                                        .rel.text.SetWPSLedMode
+.rel.text.wpsLedChkSpec
+.rel.text.set_wlan_gpio_mode                            .rel.exit.text                                          .rel.text.ether_led_752x_write_proc
+.rel.text.led_usb_write_proc                            .rel.text.led_internet_para_write_proc
+.rel.text.led_internet_write_proc                       .rel.text.gpio_dbg_write_proc
+.rel.text.led_def_write_proc                            .rel.text.ether_led_752x_read_proc                      .rel.text.led_xpon_read_proc
+.rel.text.led_usb_read_proc                             .rel.text.led_internet_para_read_proc                   .rel.text.led_internet_read_proc
+.rel.text.wlan_button_proc_stats                        .rel.text.reset_button_proc_stats
+.rel.text.gpio_output_read_proc                         .rel.text.wps_button_read_proc
+.rel.text.led_ppp_read_proc                             .rel.text.getLEDDef                                     .rel.text.led_xpon_write_proc                           .rel.text.wps_button_write_proc                         .rel.text.led_ppp_write_proc
+.rel.text.gpio_output_write_proc                        .rel.text.led_def_read_proc                             .rel.text.ledInit
+.rel.init.text                                          .rel.text.inputButtonTimer
+.rel.text.ledTimer                                      .reginfo
+.rodata                                                 .rodata.str1.4
+.rel__ksymtab
+__ksymtab_strings                                       --                                                      $LC46
+$LC47                                                   inputButtonTimer
+statusprobe                                             __this_module                                           chkWlanGpioMode
+ledGetMode                                              restore_gpio_info
+wpsLedChk
+gpio_current                                            getWlanRadioGpio
+cleanup_module                                          memcpy
+usb_dev_status                                          init_module
+wpsLedChkSpec                                           hook_wlan_led_action
+create_proc_entry                                       wps_button_type
+led_oen                                                 SetWPSLedMode
+Usb_Led_Flash_Op_hook
+getLEDDef
+set_wlan_gpio_mode
+getSysResetGpio
+add_timer
+mod_timer                                               ledTurnOn                                               led_ien
+wsc_done                                                gpio_output_status                                      strcasecmp
+internet_hwnat_pktnum                                   save_gpio_info
+ledTimer                                                sscanf
+printk                                                  WPSLEDTimeCnt                                           memset
+del_timer_sync                                          ledGetGpio
+usb_phyport_status                                      internet_hwnat_timer_switch                             __copy_user
+ledNumberSpecial                                        led_ether_up_status
+internet_led_on                                         hook_wlan_led_get_data
+WPSLedMode                                              jiffies
+sprintf                                                 init_timer_key                                          get_led_mode_data
+remove_proc_entry                                       Usb_Led_Flash_Op                                        simple_strtoul
+xpon_los_status                                         ledTurnOff
+internet_trying_led_on                                  WPSLedBlink
+wscStatus                                               wscTimerRunning                                         ledInit
+ledSetMode                                              getDslLedGpio
+                                                        ############################                            # 13. ASP_GPO / ASP_LED EM BINARIOS
+############################                            
+===== /bin/aspcmd =====                                 TEF-BR_SG
+TEF-BR_SF                                               TEF-CL
+TEF-CO                                                  TEF-PE
+TEF-FBR                                                 ASP_CM
+ASP_GPI_RST_BTN                                         ASP_GPO_LED_CTL
+ASP_GPO_GPON_LED_1                                      ASP_GPO_GPON_LED_2
+ASP_GPO_GPON_TX_PWR                                     ASP_GPO_WIFI_LED_1
+ASP_GPI_WIFI_BTN_1                                      ASP_GPO_WIFI_RST_1                                      ASP_GPO_WIFI_LED_2
+ASP_GPI_WIFI_BTN_2                                      ASP_GPO_POTS_LED_1
+ASP_GPO_POTS_LED_2                                      ASP_GPO_POTS_LED_3
+ASP_GPIO_UNKNOWN                                        ASP_GPO_HPNA_RST
+ASP_GPO_SLIC_RST                                        Trying
+Ringing                                                 Call is Being Forwarded
+Queued                                                  Session Progress
+Early Dialog Terminated                                 Accepted                                                No Notification
+                                                        ===== /bin/aspsh =====
+[%dD                                                    [%dC
+AskeyNoNameNode
+help                                                    Receive signal: %d                                      aspsh.log
+ASP_CM
+ASP_GPI_RST_BTN                                         ASP_GPO_LED_CTL
+ASP_GPO_GPON_LED_1                                      ASP_GPO_GPON_LED_2                                      ASP_GPO_GPON_TX_PWR
+ASP_GPO_WIFI_LED_1                                      ASP_GPI_WIFI_BTN_1
+ASP_GPO_WIFI_RST_1                                      ASP_GPO_WIFI_LED_2
+ASP_GPI_WIFI_BTN_2                                      ASP_GPO_POTS_LED_1                                      ASP_GPO_POTS_LED_2
+ASP_GPO_POTS_LED_3                                      ASP_GPIO_UNKNOWN                                        ASP_GPO_HPNA_RST
+ASP_GPO_SLIC_RST
+aspsh_util.c                                            fail to BootstrapUtilGetInfo()                          AskeyNoNameNode
+NULL
+Arguments are NULL!!!                                   [%dD                                                    [%dC
+[%dA                                                    --
+Push Notification Service Not Supported                 Precondition Failure                                    Busy Everywhere
+Decline                                                 Does Not Exist Anywhere
+Unwanted                                                Rejected
+ASP_GPI_RST_BTN
+ASP_GPO_LED_CTL                                         ASP_GPO_GPON_LED_1                                      ASP_GPO_GPON_LED_2                                      ASP_GPO_GPON_TX_PWR                                     ASP_GPO_WIFI_LED_1
+ASP_GPI_WIFI_BTN_1                                      ASP_GPO_WIFI_RST_1                                      ASP_GPO_WIFI_LED_2
+ASP_GPI_WIFI_BTN_2
+ASP_GPO_POTS_LED_1                                      ASP_GPO_POTS_LED_2                                      ASP_GPO_POTS_LED_3
+ASP_GPIO_UNKNOWN                                        ASP_GPO_HPNA_RST
+ASP_GPO_SLIC_RST                                        %d.%d.%d.%d
+setsockopt: Interface Bind error!                       You are so handsome
+Your command:                                           Process end....                                         testFunc
+function_table.c                                        %s: argc=%d
+                                                        ===== /bin/build_info =====
+_edata                                                  __bss_start
+_fbss                                                   _end
+/lib:/lib/public:/lib/private:/root/branch_8115/standard/targets/RTF8115VW/TEF/builds/fs/lib:/root/branch_8115/standard/targets/RTF8115VW/TEF/builds/fs/lib/public:/root/branch_8115/standard/targets/RTF8115VW/TEF/builds/fs/lib/private                                               GLIBC_2.0                                               ASP_CM
+ASP_GPI_RST_BTN                                         ASP_GPO_LED_CTL
+ASP_GPO_GPON_LED_1                                      ASP_GPO_GPON_LED_2
+ASP_GPO_GPON_TX_PWR                                     ASP_GPO_WIFI_LED_1
+ASP_GPI_WIFI_BTN_1                                      ASP_GPO_WIFI_RST_1
+ASP_GPO_WIFI_LED_2                                      ASP_GPI_WIFI_BTN_2
+ASP_GPO_POTS_LED_1                                      ASP_GPO_POTS_LED_2
+ASP_GPO_POTS_LED_3                                      ASP_GPIO_UNKNOWN                                        ASP_GPO_HPNA_RST
+ASP_GPO_SLIC_RST                                        fail to BootstrapUtilGetInfo()
+Family: %s                                              RTF81XX
+Model: %s                                               Profile: %s                                             Bootloader version: %s
+Release version: %s                                     g12.6_RTF_TEF001_V7.20.S38
+                                                        ===== /bin/cped =====
+@$GLT
+@$EC                                                    @$GLt                                                   @$EC
+@$GL
+A$PL                                                    ASP_CM
+ASP_GPI_RST_BTN                                         ASP_GPO_LED_CTL                                         ASP_GPO_GPON_LED_1
+ASP_GPO_GPON_LED_2                                      ASP_GPO_GPON_TX_PWR
+ASP_GPO_WIFI_LED_1                                      ASP_GPI_WIFI_BTN_1
+ASP_GPO_WIFI_RST_1                                      ASP_GPO_WIFI_LED_2                                      ASP_GPI_WIFI_BTN_2
+ASP_GPO_POTS_LED_1                                      ASP_GPO_POTS_LED_2                                      ASP_GPO_POTS_LED_3
+ASP_GPIO_UNKNOWN
+ASP_GPO_HPNA_RST                                        ASP_GPO_SLIC_RST                                        TEF-ES
+TEF-AR
+TEF-BR_SV                                               TEF-BR_SG                                               TEF-BR_SF
+TEF-CL                                                  TEF-CO
+TEF-PE                                                                                                          ===== /bin/gpio_util =====
+@$D2                                                    @$D0
+@$D0                                                    @$D1
+@$D1
+A$P2                                                    ASP_CM
+ASP_GPI_RST_BTN
+ASP_GPO_LED_CTL                                         ASP_GPO_GPON_LED_1
+ASP_GPO_GPON_LED_2                                      ASP_GPO_GPON_TX_PWR                                     ASP_GPO_WIFI_LED_1
+ASP_GPI_WIFI_BTN_1
+ASP_GPO_WIFI_RST_1                                      ASP_GPO_WIFI_LED_2                                      ASP_GPI_WIFI_BTN_2
+ASP_GPO_POTS_LED_1                                      ASP_GPO_POTS_LED_2
+ASP_GPO_POTS_LED_3                                      ASP_GPIO_UNKNOWN
+ASP_GPO_HPNA_RST                                        ASP_GPO_SLIC_RST                                        Usage:
+    gpio_util help                                          gpio_util log [{quite|error|warning|info|debug}]
+    gpio_util show <pin>                                    gpio_util state <pin> [{enable|disable}]
+    gpio_util dir <pin> [{input|output}]                    gpio_util data <pin> [{high|low}]                       gpio_util asp_pin_name
+                                                        ===== /bin/wdwd =====
+ebtables -t broute -A BROUTING -p 0x0806 --arp-ip-src %s/255.255.255.0 -i eth+ -j %s
+ebtables -t broute -A BROUTING -p 0x0806 --arp-ip-src %s/255.255.255.0 -i ra+ -j %s
+ebtables -t broute -A %s -i %s.mgt -j ACCEPT            ebtables -t broute -A %s -i %s -j ACCEPT
+ebtables -t filter -A FORWARD -p 0x0806 --arp-ip-src %s -j DROP
+iptables -w -t mangle -A FORWARD -4 -s %s -j DROP       iptables -t mangle -A FORWARD -4 -s %s -j DROP          enable QTN chip
+gpio_util asp_data ASP_GPO_WIFI_RST_1 high              qtn%d
+vlantables -N %s %s                                     echo 1 > /proc/sys/net/ipv6/conf/%s/disable_ipv6
+vlantables -R %s -A --tags 0 --prio 0 --set-rxif %s     vlantables -R %s -A --tags 1 --prio 0 --filter-vid %d 0 --pop-tag --set-rxif %s                                 vlantables -R %s -A --tags 2 --prio 0 --filter-vid %d 0 --pop-tag --set-rxif %s                                 vlantables -R %s -A --tags 3 --prio 0 --filter-vid %d 0 --pop-tag --set-rxif %s
+vlantables -T %s -A --tags 0 --prio 0 --filter-txif %s --push-tag --set-vid %d 0
+--                                                      [fail] qcsapi_get_interface_stats(): TIMEOUT, ret: %d
+qcsapi_get_interface_stats                              [fail] rpc_ret = wdw_qcsapi_get_interface_stats(wdw_qtn_handle_ptr, vIntfName, &stats)(): TIMEOUT, ret: %d      [fail] rpc_ret = wdw_qcsapi_reset_all_counters(wdw_qtn_handle_ptr, intf_name)(): TIMEOUT, ret: %d               [fail] qcsapi_reset_all_counters(): %s, ret: %d(%s)
+[fail] qcsapi_reset_all_counters(): %s, ret: %d         [fail] qcsapi_reset_all_counters(): TIMEOUT, ret: %d    qcsapi_reset_all_counters
+gpio_util asp_data ASP_GPO_WIFI_RST_1 low &>/dev/null   gpio_util asp_data ASP_GPO_WIFI_RST_1 high &>/dev/null
+insmod /lib/modules/`uname -r`/kernel/drivers/pci/host/pcie-ca77xx-host.ko
+rboot /taroko/wfo_qsr10g_ax.bin                         insmod /lib/modules/qsr10g-pcie-ax-wfo.ko
+ifconfig host0 up                                       [fail] rpc_ret = wdw_qcsapi_system_get_time_since_start(wdw_qtn_handle_ptr, &elapsedTime)(): TIMEOUT, ret: %d   [fail] rpc_ret = wdw_qcsapi_wifi_get_icac_status(wdw_qtn_handle_ptr, ASP_QTN_5G_INTF_NAME, &icacstatus)(): TIMEOUT, ret: %d                                             [fail] rpc_ret = wdw_qcsapi_wifi_get_cac_status(wdw_qtn_handle_ptr, ASP_QTN_5G_INTF_NAME, &cacstatus)(): TIMEOUT, ret: %d
+clnt is NULL
+                                                        ===== /lib/private/libled_util.so =====                 @ !<
+@(!$
+@ !<                                                    @(!$
+@ !<                                                    @ !<                                                    ASP_CM
+ASP_GPI_RST_BTN                                         ASP_GPO_LED_CTL
+ASP_GPO_GPON_LED_1                                      ASP_GPO_GPON_LED_2
+ASP_GPO_GPON_TX_PWR                                     ASP_GPO_WIFI_LED_1                                      ASP_GPI_WIFI_BTN_1
+ASP_GPO_WIFI_RST_1                                      ASP_GPO_WIFI_LED_2                                      ASP_GPI_WIFI_BTN_2
+ASP_GPO_POTS_LED_1
+ASP_GPO_POTS_LED_2                                      ASP_GPO_POTS_LED_3                                      ASP_GPIO_UNKNOWN
+ASP_GPO_HPNA_RST
+ASP_GPO_SLIC_RST                                        LedUtilEnableSet                                        %s():%d: Open fd error
+%s():%d: ioctl failed.                                  %s():%d: Return fd error
+drv_fd_op                                               %s():%d: Invalid parameter                              /dev/asp_led
+open /dev/asp_led error!                                close /dev/asp_led error!
+LedUtilEnableGet                                        %s():%d: Invalid arg
+%s():%d: Close fd error
+LedUtilGetLedNumber                                     %s():%d: cnt is NULL
+%s():%d: ioctl failed, ret = %d                         LedUtilGetLedConfig
+%s():%d: data is NULL
+                                                        ############################                            # 14. REFERENCIAS EM SCRIPTS/CONFIG
+############################
+/etc/init.d/bsp_rcS                                                                                             ############################
+# 15. ARQUIVOS COM "LED" NOS NOMES                      ############################
+/userfs/led.conf                                        /lib/modules/tcledctrl.ko
+/lib/private/libled_util.so                                                                                     ############################
+# FIM                                                   ############################
